@@ -1,9 +1,416 @@
-[gd_scene load_steps=2 format=3 uid="uid://dlj06bmwedjwi"]
+[gd_scene load_steps=22 format=3 uid="uid://dlj06bmwedjwi"]
 
-[ext_resource type="Texture2D" uid="uid://bkrqmyrh5usgm" path="res://assets/backgrounds/Boxing Ring_final.png" id="1_kvgqi"]
+[ext_resource type="Script" uid="uid://k3gm1lif0mn2" path="res://scripts/scenes/fight.gd" id="1_5mf5x"]
+[ext_resource type="Texture2D" uid="uid://bqs3v8xt7ur8n" path="res://assets/backgrounds/Boxing_Ring_1_FinalNES.png" id="2_57w1i"]
+[ext_resource type="PackedScene" uid="uid://dqyhbm5jgsaui" path="res://scenes/player.tscn" id="3_5mf5x"]
+[ext_resource type="Script" uid="uid://qjk7bgi88ekw" path="res://scripts/ref.gd" id="3_57w1i"]
+[ext_resource type="Texture2D" uid="uid://cj3eyir3gde5s" path="res://assets/backgrounds/ref.png" id="3_qogor"]
+[ext_resource type="Texture2D" uid="uid://dlxotyl28axk1" path="res://assets/backgrounds/Round_number.png" id="4_i268b"]
+[ext_resource type="Texture2D" uid="uid://dn5uyh1bdrbuv" path="res://assets/stars.png" id="5_f43n0"]
+[ext_resource type="Texture2D" uid="uid://i4k4ek7a6pn" path="res://assets/Timer_Text.png" id="6_i268b"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qogor"]
+bg_color = Color(0.0862745, 0.0862745, 0.0862745, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_57w1i"]
+bg_color = Color(0.988235, 0.988235, 0.988235, 1)
+
+[sub_resource type="Animation" id="Animation_rejdh"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Stars_Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [2]
+}
+
+[sub_resource type="Animation" id="Animation_dhtev"]
+resource_name = "flashing"
+length = 0.800003
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Stars_Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [2, 3, 4, 5, 2, 3, 4, 5]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_cipto"]
+_data = {
+&"RESET": SubResource("Animation_rejdh"),
+&"flashing": SubResource("Animation_dhtev")
+}
+
+[sub_resource type="Animation" id="Animation_i268b"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Ref_Sprite:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(218, 121)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Ref_Sprite:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_d0pif"]
+resource_name = "count"
+length = 9.33334
+step = 0.0166667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Ref_Sprite:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2(114, 121)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Ref_Sprite:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.334455, 0.402101, 0.433617, 0.933333, 1.26779, 1.33543, 1.36695, 1.86638, 2.20084, 2.26848, 2.3, 2.8, 3.13446, 3.2021, 3.23362, 3.73333, 4.06779, 4.13543, 4.16695, 4.66667, 5.00112, 5.06877, 5.10028, 5.6, 5.93445, 6.0021, 6.03362, 6.53333, 6.86779, 6.93543, 6.96695, 7.46667, 7.80112, 7.86877, 7.90028, 8.4, 8.73446, 8.8021, 8.83362),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [2, 3, 4, 5, 2, 3, 4, 6, 2, 3, 4, 7, 2, 3, 4, 8, 2, 3, 4, 9, 2, 3, 4, 10, 2, 3, 4, 11, 2, 3, 4, 12, 2, 3, 4, 13, 2, 3, 4, 14]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.833333, 1.76667, 2.7, 3.63333, 4.53333, 5.5, 6.43333, 7.36667, 8.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"values": [{
+"args": [1],
+"method": &"count_for_enemy"
+}, {
+"args": [2],
+"method": &"count_for_enemy"
+}, {
+"args": [3],
+"method": &"count_for_enemy"
+}, {
+"args": [4],
+"method": &"count_for_enemy"
+}, {
+"args": [5],
+"method": &"count_for_enemy"
+}, {
+"args": [6],
+"method": &"count_for_enemy"
+}, {
+"args": [7],
+"method": &"count_for_enemy"
+}, {
+"args": [8],
+"method": &"count_for_enemy"
+}, {
+"args": [9],
+"method": &"count_for_enemy"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_b8bj8"]
+resource_name = "fight"
+length = 1.66667
+step = 0.0166667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Ref_Sprite:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2(114, 121)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Ref_Sprite:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.266667, 0.533333, 0.7, 0.866667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [2, 3, 2, 3, 18]
+}
+
+[sub_resource type="Animation" id="Animation_8lmvx"]
+resource_name = "ko"
+step = 0.0166667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Ref_Sprite:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2(153, 121)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Ref_Sprite:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [15, 16, 17]
+}
+
+[sub_resource type="Animation" id="Animation_fxs7y"]
+resource_name = "tko"
+step = 0.0166667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Ref_Sprite:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2(153, 121)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Ref_Sprite:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [15, 16, 19]
+}
+
+[sub_resource type="Animation" id="Animation_bjlyo"]
+resource_name = "walking_back"
+length = 1.4
+step = 0.0166667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Ref_Sprite:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45, 0.5, 0.55, 0.6, 0.65, 0.7, 0.75, 0.8, 0.85, 0.9, 0.95, 1, 1.05, 1.1, 1.15, 1.2, 1.25, 1.3),
+"transitions": PackedFloat32Array(1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06),
+"update": 1,
+"values": [Vector2(114, 121), Vector2(118, 121), Vector2(122, 121), Vector2(126, 121), Vector2(130, 121), Vector2(134, 121), Vector2(138, 121), Vector2(142, 121), Vector2(146, 121), Vector2(150, 121), Vector2(154, 121), Vector2(158, 121), Vector2(162, 121), Vector2(166, 121), Vector2(170, 121), Vector2(174, 121), Vector2(178, 121), Vector2(182, 121), Vector2(186, 121), Vector2(190, 121), Vector2(194, 121), Vector2(198, 121), Vector2(202, 121), Vector2(206, 121), Vector2(210, 121), Vector2(214, 121), Vector2(218, 121)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Ref_Sprite:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45, 0.5, 0.55, 0.6, 0.65, 0.7, 0.75, 0.8, 0.85, 0.9, 0.95, 1, 1.05, 1.1, 1.15, 1.2, 1.25, 1.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0]
+}
+
+[sub_resource type="Animation" id="Animation_f43n0"]
+resource_name = "walking_out"
+length = 1.4
+step = 0.0166667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Ref_Sprite:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45, 0.5, 0.55, 0.6, 0.65, 0.7, 0.75, 0.8, 0.85, 0.9, 0.95, 1, 1.05, 1.1, 1.15, 1.2, 1.25, 1.3),
+"transitions": PackedFloat32Array(1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06),
+"update": 0,
+"values": [Vector2(218, 121), Vector2(214, 121), Vector2(210, 121), Vector2(206, 121), Vector2(202, 121), Vector2(198, 121), Vector2(194, 121), Vector2(190, 121), Vector2(186, 121), Vector2(182, 121), Vector2(178, 121), Vector2(174, 121), Vector2(170, 121), Vector2(166, 121), Vector2(162, 121), Vector2(158, 121), Vector2(154, 121), Vector2(150, 121), Vector2(146, 121), Vector2(142, 121), Vector2(138, 121), Vector2(134, 121), Vector2(130, 121), Vector2(126, 121), Vector2(122, 121), Vector2(118, 121), Vector2(114, 121)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Ref_Sprite:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45, 0.5, 0.55, 0.6, 0.65, 0.7, 0.75, 0.8, 0.85, 0.9, 0.95, 1, 1.05, 1.1, 1.15, 1.2, 1.25, 1.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_dhtev"]
+_data = {
+&"RESET": SubResource("Animation_i268b"),
+&"count": SubResource("Animation_d0pif"),
+&"fight": SubResource("Animation_b8bj8"),
+&"ko": SubResource("Animation_8lmvx"),
+&"tko": SubResource("Animation_fxs7y"),
+&"walking_back": SubResource("Animation_bjlyo"),
+&"walking_out": SubResource("Animation_f43n0")
+}
 
 [node name="Fight" type="Node2D"]
+script = ExtResource("1_5mf5x")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Player" parent="." instance=ExtResource("3_5mf5x")]
+z_index = 1
+position = Vector2(120, 173)
+
+[node name="Ring" type="Node2D" parent="."]
+
+[node name="Background" type="Sprite2D" parent="Ring"]
 position = Vector2(128, 120)
-texture = ExtResource("1_kvgqi")
+texture = ExtResource("2_57w1i")
+
+[node name="Round_Number" type="Sprite2D" parent="Ring"]
+position = Vector2(240, 20)
+texture = ExtResource("4_i268b")
+centered = false
+hframes = 3
+
+[node name="Enemy_Heathbar" type="ProgressBar" parent="Ring"]
+offset_left = 132.0
+offset_top = 11.0
+offset_right = 194.0
+offset_bottom = 21.0
+theme_override_styles/background = SubResource("StyleBoxFlat_qogor")
+theme_override_styles/fill = SubResource("StyleBoxFlat_57w1i")
+max_value = 96.0
+value = 96.0
+show_percentage = false
+
+[node name="Player_Heathbar" type="ProgressBar" parent="Ring"]
+offset_left = 124.0
+offset_top = 21.0
+offset_right = 186.0
+offset_bottom = 31.0
+scale = Vector2(-1, -1)
+theme_override_styles/background = SubResource("StyleBoxFlat_qogor")
+theme_override_styles/fill = SubResource("StyleBoxFlat_57w1i")
+max_value = 96.0
+value = 96.0
+show_percentage = false
+
+[node name="Player_Stambar" type="ProgressBar" parent="Ring"]
+offset_left = 124.0
+offset_top = 25.0
+offset_right = 186.0
+offset_bottom = 28.0
+scale = Vector2(-1, -1)
+theme_override_styles/background = SubResource("StyleBoxFlat_qogor")
+theme_override_styles/fill = SubResource("StyleBoxFlat_57w1i")
+max_value = 96.0
+value = 96.0
+show_percentage = false
+
+[node name="Enemy_Stambar" type="ProgressBar" parent="Ring"]
+offset_left = 132.0
+offset_top = 22.0
+offset_right = 194.0
+offset_bottom = 25.0
+theme_override_styles/background = SubResource("StyleBoxFlat_qogor")
+theme_override_styles/fill = SubResource("StyleBoxFlat_57w1i")
+max_value = 96.0
+value = 96.0
+show_percentage = false
+
+[node name="Stars" type="Node2D" parent="Ring"]
+
+[node name="Stars_Sprite" type="Sprite2D" parent="Ring/Stars"]
+visible = false
+position = Vector2(27, 17)
+texture = ExtResource("5_f43n0")
+hframes = 2
+vframes = 3
+frame = 2
+
+[node name="Animations" type="AnimationPlayer" parent="Ring/Stars"]
+libraries = {
+&"": SubResource("AnimationLibrary_cipto")
+}
+
+[node name="Timer" type="Node2D" parent="Ring"]
+
+[node name="Minute" type="Sprite2D" parent="Ring/Timer"]
+position = Vector2(218, 14)
+texture = ExtResource("6_i268b")
+hframes = 10
+frame = 3
+
+[node name="Decond" type="Sprite2D" parent="Ring/Timer"]
+position = Vector2(232, 14)
+texture = ExtResource("6_i268b")
+hframes = 10
+
+[node name="Second" type="Sprite2D" parent="Ring/Timer"]
+position = Vector2(240, 14)
+texture = ExtResource("6_i268b")
+hframes = 10
+
+[node name="Ref" type="Node2D" parent="Ring"]
+z_index = 1
+script = ExtResource("3_57w1i")
+
+[node name="Ref_Sprite" type="Sprite2D" parent="Ring/Ref"]
+position = Vector2(218, 121)
+texture = ExtResource("3_qogor")
+centered = false
+hframes = 6
+vframes = 4
+
+[node name="Animations" type="AnimationPlayer" parent="Ring/Ref"]
+libraries = {
+&"": SubResource("AnimationLibrary_dhtev")
+}

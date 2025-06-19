@@ -1,16 +1,190 @@
-[gd_scene load_steps=27 format=3 uid="uid://dqyhbm5jgsaui"]
+[gd_scene load_steps=48 format=3 uid="uid://dqyhbm5jgsaui"]
 
-[ext_resource type="Script" path="res://scripts/player/Player.gd" id="1_psbi0"]
-[ext_resource type="Texture2D" uid="uid://cc8p8vu8mcele" path="res://assets/Player.png" id="2_ca8do"]
-[ext_resource type="Script" path="res://scripts/State_Machine.gd" id="3_ymm6l"]
-[ext_resource type="Script" path="res://scenes/Duck.gd" id="4_k7q6l"]
-[ext_resource type="Script" path="res://scripts/player/states/Idle.gd" id="4_msfd8"]
-[ext_resource type="Script" path="res://scenes/Duck_Recovery.gd" id="5_tmnfb"]
-[ext_resource type="Script" path="res://scenes/Left_Dodge.gd" id="7_irejg"]
-[ext_resource type="Script" path="res://scenes/Left_Dodge_Recovery.gd" id="8_vvh7u"]
-[ext_resource type="Script" path="res://scenes/Parry.gd" id="9_tf1nu"]
-[ext_resource type="Script" path="res://scenes/Right_Dodge.gd" id="10_ay7w1"]
-[ext_resource type="Script" path="res://scenes/Right_Dodge_Recovery.gd" id="11_y2slx"]
+[ext_resource type="Script" uid="uid://ddu7tow35015g" path="res://scripts/player/Player.gd" id="1_psbi0"]
+[ext_resource type="Texture2D" uid="uid://cc8p8vu8mcele" path="res://assets/Player.png" id="2_l71n6"]
+[ext_resource type="Script" uid="uid://c0y76ue11d7tn" path="res://scripts/generics/State_Machine.gd" id="3_ymm6l"]
+[ext_resource type="Script" uid="uid://kf6mycj3kk08" path="res://scripts/player/states/block.gd" id="4_a8ls1"]
+[ext_resource type="Script" uid="uid://bqxsbge2jwwrf" path="res://scripts/player/states/Duck.gd" id="4_k7q6l"]
+[ext_resource type="Script" uid="uid://bjenn7ek7gymb" path="res://scripts/player/states/Idle.gd" id="4_msfd8"]
+[ext_resource type="Script" uid="uid://oko1wrl8v3l8" path="res://scripts/player/states/Duck_Recovery.gd" id="5_tmnfb"]
+[ext_resource type="Script" uid="uid://36wwi3j5y5o1" path="res://scripts/player/states/hit_left.gd" id="7_fulsm"]
+[ext_resource type="Script" uid="uid://8bptbqvxkjjw" path="res://scripts/player/states/Left_Dodge.gd" id="7_irejg"]
+[ext_resource type="Script" uid="uid://1ssa7e2dkn0j" path="res://scripts/player/states/hit_right.gd" id="8_4r5pv"]
+[ext_resource type="Script" uid="uid://c252r1n7qhg4o" path="res://scripts/player/states/Left_Dodge_Recovery.gd" id="8_vvh7u"]
+[ext_resource type="Script" uid="uid://dtdq52ngpbjdq" path="res://scripts/player/states/falling_left.gd" id="9_4r5pv"]
+[ext_resource type="Script" uid="uid://djwiy670qcqef" path="res://scripts/player/states/fallen.gd" id="9_i4ail"]
+[ext_resource type="Script" uid="uid://dpgx2mwknbmco" path="res://scripts/player/states/left_hook.gd" id="9_oprun"]
+[ext_resource type="Script" uid="uid://jqrb0cwn7af" path="res://scripts/player/states/Parry.gd" id="9_tf1nu"]
+[ext_resource type="Script" uid="uid://b2vx2mvwhscf2" path="res://scripts/player/states/falling_right.gd" id="10_60mlk"]
+[ext_resource type="Script" uid="uid://dia1te1d52arb" path="res://scripts/player/states/left_jab.gd" id="10_a8ls1"]
+[ext_resource type="Script" uid="uid://b4o5o365svgev" path="res://scripts/player/states/Right_Dodge.gd" id="10_ay7w1"]
+[ext_resource type="Script" uid="uid://dhgwjlpm8c5b2" path="res://scripts/player/states/Right_Dodge_Recovery.gd" id="11_y2slx"]
+[ext_resource type="Script" uid="uid://ctxtk3tlmqqxb" path="res://scripts/player/states/right_hook.gd" id="14_qfm1y"]
+[ext_resource type="Script" uid="uid://bv302eu5htmek" path="res://scripts/player/states/right_jab.gd" id="15_fulsm"]
+[ext_resource type="Script" uid="uid://vwdc8pef6lec" path="res://scripts/player/states/walking_down.gd" id="22_a38lo"]
+[ext_resource type="Script" uid="uid://wa3abncbc6qj" path="res://scripts/player/states/star_punch.gd" id="22_ke2ow"]
+[ext_resource type="Script" uid="uid://cneylit27t5p0" path="res://scripts/player/states/tired.gd" id="22_l71n6"]
+[ext_resource type="Script" uid="uid://btni0dfjexenx" path="res://scripts/player/states/walking_up.gd" id="23_4ni07"]
+
+[sub_resource type="Animation" id="Animation_ndto1"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-17, -41)]
+}
+
+[sub_resource type="Animation" id="Animation_m0rsl"]
+resource_name = "duck"
+length = 0.533336
+step = 0.0166667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 0.0666667, 0.116667, 0.166667),
+"transitions": PackedFloat32Array(1e+06, 1e+06, 1e+06, 1e+06, 1e+06),
+"update": 0,
+"values": [Vector2(-17, -41), Vector2(-17, -38), Vector2(-17, -36), Vector2(-17, -32), Vector2(-17, -26)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.166667),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [1, 21, 24]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("State_Machine/Duck")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.266667, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"check_light"
+}, {
+"args": [],
+"method": &"check_normal"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_7irf6"]
+resource_name = "duck_recovery"
+length = 0.200002
+step = 0.0166667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0166667, 0.05, 0.1, 0.133333),
+"transitions": PackedFloat32Array(1e+06, 1e+06, 1e+06, 1e+06, 1e+06),
+"update": 0,
+"values": [Vector2(-17, -32), Vector2(-17, -35), Vector2(-17, -37), Vector2(-17, -39), Vector2(-17, -41)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.0666667, 0.133333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [24, 21, 1]
+}
+
+[sub_resource type="Animation" id="Animation_60mlk"]
+resource_name = "falling_left"
+length = 0.600003
+step = 0.0166667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.133333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [15, 16]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 0.0833333, 0.133333, 0.183333, 0.233333, 0.283333, 0.333333),
+"transitions": PackedFloat32Array(1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06),
+"update": 0,
+"values": [Vector2(-20, -24), Vector2(-19, -19), Vector2(-18, -12), Vector2(-17, -15), Vector2(-17, -10), Vector2(-17, -5), Vector2(-17, 0), Vector2(-17, 8)]
+}
+
+[sub_resource type="Animation" id="Animation_i4ail"]
+resource_name = "falling_right"
+length = 0.600003
+step = 0.0166667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.133333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [18, 16]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 0.0833333, 0.133333, 0.183333, 0.233333, 0.283333, 0.333333),
+"transitions": PackedFloat32Array(1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06),
+"update": 0,
+"values": [Vector2(-14, -24), Vector2(-15, -19), Vector2(-16, -12), Vector2(-17, -15), Vector2(-17, -10), Vector2(-17, -5), Vector2(-17, 0), Vector2(-17, 8)]
+}
 
 [sub_resource type="Animation" id="Animation_48ie5"]
 resource_name = "idle"
@@ -42,36 +216,9 @@ tracks/1/keys = {
 "values": [Vector2(-17, -41), Vector2(-19, -41), Vector2(-22, -41), Vector2(-19, -41), Vector2(-17, -41), Vector2(-16, -41), Vector2(-17, -41), Vector2(-19, -41), Vector2(-22, -41), Vector2(-19, -41), Vector2(-17, -41), Vector2(-16, -41), Vector2(-17, -41), Vector2(-19, -41), Vector2(-22, -41), Vector2(-19, -41), Vector2(-17, -41), Vector2(-16, -41), Vector2(-15, -41), Vector2(-13, -41), Vector2(-10, -41), Vector2(-13, -41), Vector2(-15, -41), Vector2(-16, -41)]
 }
 
-[sub_resource type="Animation" id="Animation_ndto1"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [1]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(-17, -41)]
-}
-
 [sub_resource type="Animation" id="Animation_rbxmj"]
 resource_name = "left_dodge"
-length = 0.300002
+length = 0.533336
 step = 0.0166667
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -96,6 +243,23 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06),
 "update": 0,
 "values": [Vector2(-16, -41), Vector2(-19, -43), Vector2(-22, -44), Vector2(-25, -43), Vector2(-28, -41), Vector2(-34, -41), Vector2(-40, -41)]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("State_Machine/Left_Dodge")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.266667, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"check_light"
+}, {
+"args": [],
+"method": &"check_normal"
+}]
 }
 
 [sub_resource type="Animation" id="Animation_qesu0"]
@@ -127,6 +291,92 @@ tracks/1/keys = {
 "values": [Vector2(-40, -41), Vector2(-34, -41), Vector2(-28, -41), Vector2(-25, -43), Vector2(-22, -44), Vector2(-19, -43), Vector2(-16, -41)]
 }
 
+[sub_resource type="Animation" id="Animation_fulsm"]
+resource_name = "left_hit"
+length = 0.533336
+step = 0.0166667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0666667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [14, 15]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 0.0666667, 0.1),
+"transitions": PackedFloat32Array(1e+06, 1e+06, 1e+06, 1e+06),
+"update": 0,
+"values": [Vector2(-17, -37), Vector2(-19, -34), Vector2(-21, -32), Vector2(-22, -29)]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("State_Machine/Hit_Left")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.133333),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"handle_ko"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_n8a8s"]
+resource_name = "left_hook"
+length = 0.416669
+step = 0.0166667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 0.0666667, 0.316667, 0.366666, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [6, 7, 8, 7, 6, 0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.0166667, 0.0333333, 0.05, 0.0666667, 0.316667, 0.366666, 0.4),
+"transitions": PackedFloat32Array(1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06),
+"update": 0,
+"values": [Vector2(-22, -41), Vector2(-21, -42), Vector2(-20, -44), Vector2(-18, -45), Vector2(-15, -47), Vector2(-18, -45), Vector2(-21, -42), Vector2(-22, -41)]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("State_Machine/Left_Hook")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.0666667),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"damage_enemy"
+}]
+}
+
 [sub_resource type="Animation" id="Animation_nl0i8"]
 resource_name = "left_jab"
 length = 0.433335
@@ -153,7 +403,211 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.0166667, 0.0333333, 0.05, 0.0833333, 0.35, 0.366667, 0.4),
 "transitions": PackedFloat32Array(1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06),
 "update": 0,
-"values": [Vector2(-22, -41), Vector2(-20, -44), Vector2(-18, -48), Vector2(-16, -56), Vector2(-14, -63), Vector2(-14, -58), Vector2(-14, -53), Vector2(-15, -48)]
+"values": [Vector2(-22, -41), Vector2(-20, -44), Vector2(-18, -48), Vector2(-15, -56), Vector2(-12, -63), Vector2(-15, -58), Vector2(-14, -53), Vector2(-15, -48)]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("State_Machine/Left_Jab")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.0833333),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"damage_enemy"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_85blt"]
+resource_name = "parry"
+length = 0.200002
+step = 0.0166667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0166667, 0.05, 0.0666667, 0.0833333, 0.1),
+"transitions": PackedFloat32Array(1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06),
+"update": 0,
+"values": [Vector2(-17, -41), Vector2(-17, -43), Vector2(-17, -45), Vector2(-17, -46), Vector2(-17, -47), Vector2(-17, -42)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 0.0666667),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [1, 21, 22]
+}
+
+[sub_resource type="Animation" id="Animation_jjyi0"]
+resource_name = "right_dodge"
+length = 0.533336
+step = 0.0166667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.133333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0, 4, 5]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.0166667, 0.0333333, 0.05, 0.0666667, 0.1, 0.133333),
+"transitions": PackedFloat32Array(1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06),
+"update": 0,
+"values": [Vector2(-16, -41), Vector2(-13, -43), Vector2(-9, -44), Vector2(-4, -43), Vector2(-1, -41), Vector2(6, -41), Vector2(13, -41)]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("State_Machine/Right_Dodge")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.266667, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"check_light"
+}, {
+"args": [],
+"method": &"check_normal"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_3f7jx"]
+resource_name = "right_dodge_recovery"
+length = 0.133335
+step = 0.0166667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0166667, 0.05),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [5, 4, 0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.0166667, 0.05, 0.0666667, 0.0833333, 0.1, 0.116667),
+"transitions": PackedFloat32Array(1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06),
+"update": 0,
+"values": [Vector2(13, -41), Vector2(6, -41), Vector2(-1, -41), Vector2(-4, -43), Vector2(-9, -44), Vector2(-13, -43), Vector2(-16, -41)]
+}
+
+[sub_resource type="Animation" id="Animation_cfdub"]
+resource_name = "right_hit"
+length = 0.533336
+step = 0.0166667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0666667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [17, 18]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 0.0666667, 0.1),
+"transitions": PackedFloat32Array(1e+06, 1e+06, 1e+06, 1e+06),
+"update": 0,
+"values": [Vector2(-17, -37), Vector2(-15, -33), Vector2(-13, -30), Vector2(-12, -28)]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("State_Machine/Hit_Right")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.133333),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"handle_ko"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_pqubu"]
+resource_name = "right_hook"
+length = 0.416669
+step = 0.0166667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 0.0666667, 0.316667, 0.366667, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [10, 11, 12, 11, 10, 0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.0166667, 0.0333333, 0.05, 0.0666667, 0.316667, 0.366667, 0.4),
+"transitions": PackedFloat32Array(1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06),
+"update": 0,
+"values": [Vector2(-12, -41), Vector2(-8, -42), Vector2(-5, -44), Vector2(-6, -45), Vector2(-10, -47), Vector2(-5, -45), Vector2(-7, -42), Vector2(-8, -41)]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("State_Machine/Right_Hook")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.0666667),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"damage_enemy"
+}]
 }
 
 [sub_resource type="Animation" id="Animation_mtv76"]
@@ -182,12 +636,26 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.0166667, 0.0333333, 0.05, 0.0833333, 0.35, 0.366667, 0.4),
 "transitions": PackedFloat32Array(1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06),
 "update": 0,
-"values": [Vector2(-5, -41), Vector2(1, -44), Vector2(3, -48), Vector2(0, -56), Vector2(-1, -63), Vector2(-1, -58), Vector2(-1, -53), Vector2(-2, -48)]
+"values": [Vector2(-12, -41), Vector2(-6, -44), Vector2(-3, -48), Vector2(-8, -56), Vector2(-9, -63), Vector2(-1, -58), Vector2(-1, -53), Vector2(-2, -48)]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("State_Machine/Right_Jab")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.0833333),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"damage_enemy"
+}]
 }
 
-[sub_resource type="Animation" id="Animation_jjyi0"]
-resource_name = "right_dodge"
-length = 0.300002
+[sub_resource type="Animation" id="Animation_ujl30"]
+resource_name = "star_punch"
+length = 1.25
 step = 0.0166667
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -196,10 +664,10 @@ tracks/0/path = NodePath("Sprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.133333),
-"transitions": PackedFloat32Array(1, 1, 1),
+"times": PackedFloat32Array(0, 0.0833333, 0.166667, 0.25, 0.316667, 0.383333, 0.45, 0.516667, 0.566667, 0.616667, 0.666667, 0.716667, 0.816256, 0.916667, 1.09903),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [0, 4, 5]
+"values": [25, 26, 25, 26, 25, 26, 25, 26, 25, 26, 25, 26, 27, 28, 29]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -208,44 +676,30 @@ tracks/1/path = NodePath("Sprite:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.0166667, 0.0333333, 0.05, 0.0666667, 0.1, 0.133333),
-"transitions": PackedFloat32Array(1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06),
-"update": 0,
-"values": [Vector2(-16, -41), Vector2(-13, -43), Vector2(-9, -44), Vector2(-4, -43), Vector2(-1, -41), Vector2(6, -41), Vector2(13, -41)]
-}
-
-[sub_resource type="Animation" id="Animation_3f7jx"]
-resource_name = "right_dodge_recovery"
-length = 0.300002
-step = 0.0166667
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.0166667, 0.05),
-"transitions": PackedFloat32Array(1, 1, 1),
+"times": PackedFloat32Array(0, 0.666667, 0.716667, 0.75, 0.783333, 0.816667, 0.833333, 0.85, 0.883333, 0.916667, 0.95, 1, 1.05, 1.08333, 1.15, 1.18333, 1.21667),
+"transitions": PackedFloat32Array(1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06),
 "update": 1,
-"values": [5, 4, 0]
+"values": [Vector2(-12, -41), Vector2(-10, -41), Vector2(-7, -44), Vector2(-4, -49), Vector2(-2, -55), Vector2(-4, -59), Vector2(-5, -61), Vector2(-7, -63), Vector2(-10, -66), Vector2(-12, -66), Vector2(-13, -65), Vector2(-14, -62), Vector2(-15, -58), Vector2(-16, -50), Vector2(-17, -49), Vector2(-17, -44), Vector2(-17, -39)]
 }
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.0166667, 0.05, 0.0666667, 0.0833333, 0.1, 0.116667),
-"transitions": PackedFloat32Array(1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06),
-"update": 0,
-"values": [Vector2(13, -41), Vector2(6, -41), Vector2(-1, -41), Vector2(-4, -43), Vector2(-9, -44), Vector2(-13, -43), Vector2(-16, -41)]
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("State_Machine/Star_Punch")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.85),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"damage_enemy"
+}]
 }
 
-[sub_resource type="Animation" id="Animation_n8a8s"]
-resource_name = "left_hook"
-length = 0.383335
+[sub_resource type="Animation" id="Animation_ke2ow"]
+resource_name = "tired"
+length = 0.200002
+loop_mode = 1
 step = 0.0166667
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -254,67 +708,10 @@ tracks/0/path = NodePath("Sprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.0333333, 0.0666667, 0.316667, 0.35, 0.366667),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [6, 7, 8, 7, 6, 0]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.0166667, 0.0333333, 0.05, 0.0666667, 0.316667, 0.35, 0.366667),
-"transitions": PackedFloat32Array(1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06),
-"update": 0,
-"values": [Vector2(-22, -41), Vector2(-21, -42), Vector2(-20, -44), Vector2(-19, -45), Vector2(-17, -47), Vector2(-19, -45), Vector2(-21, -42), Vector2(-22, -41)]
-}
-
-[sub_resource type="Animation" id="Animation_pqubu"]
-resource_name = "right_hook"
-length = 0.383335
-step = 0.0166667
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.0333333, 0.0666667, 0.316667, 0.35, 0.366667),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [10, 11, 12, 11, 10, 0]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.0166667, 0.0333333, 0.05, 0.0666667, 0.316667, 0.35, 0.366667),
-"transitions": PackedFloat32Array(1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06),
-"update": 0,
-"values": [Vector2(-12, -41), Vector2(-7, -42), Vector2(-3, -44), Vector2(-4, -45), Vector2(-5, -47), Vector2(-5, -45), Vector2(-7, -42), Vector2(-8, -41)]
-}
-
-[sub_resource type="Animation" id="Animation_cfdub"]
-resource_name = "right_hit"
-step = 0.0166667
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1),
+"times": PackedFloat32Array(0, 0.0666667),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [14, 15]
+"values": [19, 20]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -323,115 +720,93 @@ tracks/1/path = NodePath("Sprite:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.0333333, 0.0666667, 0.116667, 0.183333),
-"transitions": PackedFloat32Array(1e+06, 1e+06, 1e+06, 1e+06, 1e+06),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(-11, -37), Vector2(-4, -34), Vector2(0, -32), Vector2(2, -30), Vector2(4, -29)]
+"values": [Vector2(-17, -41)]
 }
 
-[sub_resource type="Animation" id="Animation_m0rsl"]
-resource_name = "duck"
-length = 0.333335
+[sub_resource type="Animation" id="Animation_4ni07"]
+resource_name = "walking_down"
+length = 1.2
 step = 0.0166667
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite:position")
+tracks/0/path = NodePath("Sprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.0333333, 0.0666667, 0.116667, 0.166667),
-"transitions": PackedFloat32Array(1e+06, 1e+06, 1e+06, 1e+06, 1e+06),
-"update": 0,
-"values": [Vector2(-17, -41), Vector2(-17, -39), Vector2(-17, -37), Vector2(-17, -35), Vector2(-17, -32)]
+"times": PackedFloat32Array(0, 0.116667, 0.233333, 0.35, 0.466667, 0.583333, 0.699809, 0.816667, 0.933333, 1.05),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [1, 0, 1, 0, 1, 0, 1, 0, 1, 0]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite:frame")
+tracks/1/path = NodePath("Sprite:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.05, 0.166667),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 1,
-"values": [1, 21, 25]
+"times": PackedFloat32Array(0, 0.0833367, 0.116667, 0.166667, 0.2, 0.233333, 0.283333, 0.316667, 0.35, 0.4, 0.433333, 0.466667, 0.516667, 0.55, 0.583333, 0.633333, 0.666667, 0.7, 0.75, 0.783333, 0.816667, 0.866667, 0.9, 0.933333, 1, 1.03333, 1.06667),
+"transitions": PackedFloat32Array(1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06),
+"update": 0,
+"values": [Vector2(-17, -41), Vector2(-17, -39), Vector2(-17, -37), Vector2(-17, -36), Vector2(-17, -35), Vector2(-17, -33), Vector2(-17, -32), Vector2(-17, -31), Vector2(-17, -29), Vector2(-17, -28), Vector2(-17, -27), Vector2(-17, -25), Vector2(-17, -24), Vector2(-17, -23), Vector2(-17, -21), Vector2(-17, -20), Vector2(-17, -19), Vector2(-17, -17), Vector2(-17, -16), Vector2(-17, -15), Vector2(-17, -13), Vector2(-17, -12), Vector2(-17, -11), Vector2(-17, -9), Vector2(-17, -8), Vector2(-17, -8), Vector2(-17, -8)]
 }
 
-[sub_resource type="Animation" id="Animation_7irf6"]
-resource_name = "duck_recovery"
-length = 0.200002
+[sub_resource type="Animation" id="Animation_l71n6"]
+resource_name = "walking_up"
+length = 1.2
 step = 0.0166667
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite:position")
+tracks/0/path = NodePath("Sprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.0166667, 0.05, 0.1, 0.133333),
-"transitions": PackedFloat32Array(1e+06, 1e+06, 1e+06, 1e+06, 1e+06),
-"update": 0,
-"values": [Vector2(-17, -32), Vector2(-17, -35), Vector2(-17, -37), Vector2(-17, -39), Vector2(-17, -41)]
+"times": PackedFloat32Array(0, 0.116667, 0.233333, 0.35, 0.466667, 0.583333, 0.699809, 0.816667, 0.933333, 1.05),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [1, 0, 1, 0, 1, 0, 1, 0, 1, 0]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite:frame")
+tracks/1/path = NodePath("Sprite:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.0666667, 0.133333),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 1,
-"values": [25, 21, 1]
-}
-
-[sub_resource type="Animation" id="Animation_85blt"]
-resource_name = "parry"
-length = 0.266668
-step = 0.0166667
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.0333333, 0.0666667, 0.116667, 0.166667),
-"transitions": PackedFloat32Array(1e+06, 1e+06, 1e+06, 1e+06, 1e+06),
+"times": PackedFloat32Array(0, 0.05, 0.0833333, 0.116667, 0.166667, 0.2, 0.233333, 0.283333, 0.316667, 0.35, 0.4, 0.433333, 0.466667, 0.516667, 0.55, 0.583333, 0.633333, 0.666667, 0.7, 0.75, 0.783333, 0.816667, 0.866667, 0.9, 0.933333, 0.983333, 1.01667, 1.05),
+"transitions": PackedFloat32Array(1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06),
 "update": 0,
-"values": [Vector2(-17, -41), Vector2(-17, -43), Vector2(-17, -45), Vector2(-17, -46), Vector2(-17, -47)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite:frame")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.0666667, 0.116667),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 1,
-"values": [1, 21, 22]
+"values": [Vector2(-17, -8), Vector2(-17, -8), Vector2(-17, -8), Vector2(-17, -9), Vector2(-17, -10), Vector2(-17, -11), Vector2(-17, -13), Vector2(-17, -14), Vector2(-17, -15), Vector2(-17, -17), Vector2(-17, -18), Vector2(-17, -19), Vector2(-17, -21), Vector2(-17, -22), Vector2(-17, -23), Vector2(-17, -25), Vector2(-17, -26), Vector2(-17, -27), Vector2(-17, -29), Vector2(-17, -30), Vector2(-17, -31), Vector2(-17, -33), Vector2(-17, -34), Vector2(-17, -35), Vector2(-17, -37), Vector2(-17, -38), Vector2(-17, -39), Vector2(-17, -41)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_st6um"]
 _data = {
-"RESET": SubResource("Animation_ndto1"),
-"duck": SubResource("Animation_m0rsl"),
-"duck_recovery": SubResource("Animation_7irf6"),
-"idle": SubResource("Animation_48ie5"),
-"left_dodge": SubResource("Animation_rbxmj"),
-"left_dodge_recovery": SubResource("Animation_qesu0"),
-"left_hook": SubResource("Animation_n8a8s"),
-"left_jab": SubResource("Animation_nl0i8"),
-"parry": SubResource("Animation_85blt"),
-"right_dodge": SubResource("Animation_jjyi0"),
-"right_dodge_recovery": SubResource("Animation_3f7jx"),
-"right_hit": SubResource("Animation_cfdub"),
-"right_hook": SubResource("Animation_pqubu"),
-"right_jab": SubResource("Animation_mtv76")
+&"RESET": SubResource("Animation_ndto1"),
+&"duck": SubResource("Animation_m0rsl"),
+&"duck_recovery": SubResource("Animation_7irf6"),
+&"falling_left": SubResource("Animation_60mlk"),
+&"falling_right": SubResource("Animation_i4ail"),
+&"idle": SubResource("Animation_48ie5"),
+&"left_dodge": SubResource("Animation_rbxmj"),
+&"left_dodge_recovery": SubResource("Animation_qesu0"),
+&"left_hit": SubResource("Animation_fulsm"),
+&"left_hook": SubResource("Animation_n8a8s"),
+&"left_jab": SubResource("Animation_nl0i8"),
+&"parry": SubResource("Animation_85blt"),
+&"right_dodge": SubResource("Animation_jjyi0"),
+&"right_dodge_recovery": SubResource("Animation_3f7jx"),
+&"right_hit": SubResource("Animation_cfdub"),
+&"right_hook": SubResource("Animation_pqubu"),
+&"right_jab": SubResource("Animation_mtv76"),
+&"star_punch": SubResource("Animation_ujl30"),
+&"tired": SubResource("Animation_ke2ow"),
+&"walking_down": SubResource("Animation_4ni07"),
+&"walking_up": SubResource("Animation_l71n6")
 }
 
 [node name="Player" type="Node2D"]
@@ -439,49 +814,130 @@ script = ExtResource("1_psbi0")
 
 [node name="Sprite" type="Sprite2D" parent="."]
 position = Vector2(-17, -41)
-texture = ExtResource("2_ca8do")
+texture = ExtResource("2_l71n6")
 centered = false
 hframes = 15
 vframes = 2
 frame = 1
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="Animations" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_st6um")
+&"": SubResource("AnimationLibrary_st6um")
 }
 
 [node name="State_Machine" type="Node" parent="." node_paths=PackedStringArray("starting_state")]
 script = ExtResource("3_ymm6l")
 starting_state = NodePath("Idle")
 
-[node name="Duck" type="Node" parent="State_Machine"]
+[node name="Block" type="Node" parent="State_Machine" node_paths=PackedStringArray("idle", "left_jab", "right_jab")]
+script = ExtResource("4_a8ls1")
+idle = NodePath("../Idle")
+left_jab = NodePath("../Left_Jab")
+right_jab = NodePath("../Right_Jab")
+
+[node name="Duck" type="Node" parent="State_Machine" node_paths=PackedStringArray("recovery")]
 script = ExtResource("4_k7q6l")
+recovery = NodePath("../Duck_Recovery")
 
-[node name="Duck_Recovery" type="Node" parent="State_Machine"]
+[node name="Duck_Recovery" type="Node" parent="State_Machine" node_paths=PackedStringArray("idle")]
 script = ExtResource("5_tmnfb")
+idle = NodePath("../Idle")
 
-[node name="Idle" type="Node" parent="State_Machine"]
+[node name="Hit_Left" type="Node" parent="State_Machine" node_paths=PackedStringArray("idle", "falling")]
+script = ExtResource("7_fulsm")
+idle = NodePath("../Idle")
+falling = NodePath("../Falling_Left")
+
+[node name="Hit_Right" type="Node" parent="State_Machine" node_paths=PackedStringArray("idle", "falling")]
+script = ExtResource("8_4r5pv")
+idle = NodePath("../Idle")
+falling = NodePath("../Falling_Right")
+
+[node name="Fallen" type="Node" parent="State_Machine" node_paths=PackedStringArray("walking_up")]
+script = ExtResource("9_i4ail")
+walking_up = NodePath("../Walking_Up")
+
+[node name="Falling_Left" type="Node" parent="State_Machine" node_paths=PackedStringArray("fallen")]
+script = ExtResource("9_4r5pv")
+fallen = NodePath("../Fallen")
+
+[node name="Falling_Right" type="Node" parent="State_Machine" node_paths=PackedStringArray("fallen")]
+script = ExtResource("10_60mlk")
+fallen = NodePath("../Fallen")
+
+[node name="Idle" type="Node" parent="State_Machine" node_paths=PackedStringArray("left_dodge", "left_hook", "left_jab", "right_dodge", "right_hook", "right_jab", "duck", "star_punch", "parry", "tired")]
 script = ExtResource("4_msfd8")
+left_dodge = NodePath("../Left_Dodge")
+left_hook = NodePath("../Left_Hook")
+left_jab = NodePath("../Left_Jab")
+right_dodge = NodePath("../Right_Dodge")
+right_hook = NodePath("../Right_Hook")
+right_jab = NodePath("../Right_Jab")
+duck = NodePath("../Duck")
+star_punch = NodePath("../Star_Punch")
+parry = NodePath("../Parry")
+tired = NodePath("../Tired")
 
-[node name="Left_Dodge" type="Node" parent="State_Machine"]
+[node name="Left_Dodge" type="Node" parent="State_Machine" node_paths=PackedStringArray("recovery")]
 script = ExtResource("7_irejg")
+recovery = NodePath("../Left_Dodge_Recovery")
 
-[node name="Left_Dodge_Recovery" type="Node" parent="State_Machine"]
+[node name="Left_Dodge_Recovery" type="Node" parent="State_Machine" node_paths=PackedStringArray("idle")]
 script = ExtResource("8_vvh7u")
+idle = NodePath("../Idle")
 
-[node name="Left_Hook" type="Node" parent="State_Machine"]
+[node name="Left_Hook" type="Node" parent="State_Machine" node_paths=PackedStringArray("idle", "jab", "walking_down")]
+script = ExtResource("9_oprun")
+idle = NodePath("../Idle")
+jab = NodePath("../Left_Jab")
+walking_down = NodePath("../Walking_Down")
 
-[node name="Left_Jab" type="Node" parent="State_Machine"]
+[node name="Left_Jab" type="Node" parent="State_Machine" node_paths=PackedStringArray("idle", "walking_down")]
+script = ExtResource("10_a8ls1")
+idle = NodePath("../Idle")
+walking_down = NodePath("../Walking_Down")
 
-[node name="Parry" type="Node" parent="State_Machine"]
+[node name="Parry" type="Node" parent="State_Machine" node_paths=PackedStringArray("block", "left_jab", "right_jab")]
 script = ExtResource("9_tf1nu")
+block = NodePath("../Block")
+left_jab = NodePath("../Left_Jab")
+right_jab = NodePath("../Right_Jab")
 
-[node name="Right_Dodge" type="Node" parent="State_Machine"]
+[node name="Right_Dodge" type="Node" parent="State_Machine" node_paths=PackedStringArray("recovery")]
 script = ExtResource("10_ay7w1")
+recovery = NodePath("../Right_Dodge_Recovery")
 
-[node name="Right_Dodge_Recovery" type="Node" parent="State_Machine"]
+[node name="Right_Dodge_Recovery" type="Node" parent="State_Machine" node_paths=PackedStringArray("idle")]
 script = ExtResource("11_y2slx")
+idle = NodePath("../Idle")
 
-[node name="Right_Hook" type="Node" parent="State_Machine"]
+[node name="Right_Jab" type="Node" parent="State_Machine" node_paths=PackedStringArray("idle", "walking_down")]
+script = ExtResource("15_fulsm")
+idle = NodePath("../Idle")
+walking_down = NodePath("../Walking_Down")
 
-[node name="Right_Jab" type="Node" parent="State_Machine"]
+[node name="Right_Hook" type="Node" parent="State_Machine" node_paths=PackedStringArray("idle", "jab", "walking_down")]
+script = ExtResource("14_qfm1y")
+idle = NodePath("../Idle")
+jab = NodePath("../Right_Jab")
+walking_down = NodePath("../Walking_Down")
+
+[node name="Star_Punch" type="Node" parent="State_Machine" node_paths=PackedStringArray("idle", "walking_down")]
+script = ExtResource("22_ke2ow")
+idle = NodePath("../Idle")
+walking_down = NodePath("../Walking_Down")
+
+[node name="Tired" type="Node" parent="State_Machine" node_paths=PackedStringArray("left_dodge", "right_dodge", "duck", "parry")]
+script = ExtResource("22_l71n6")
+left_dodge = NodePath("../Left_Dodge")
+right_dodge = NodePath("../Right_Dodge")
+duck = NodePath("../Duck")
+parry = NodePath("../Parry")
+
+[node name="Walking_Down" type="Node" parent="State_Machine" node_paths=PackedStringArray("walking_up")]
+script = ExtResource("22_a38lo")
+walking_up = NodePath("../Walking_Up")
+
+[node name="Walking_Up" type="Node" parent="State_Machine" node_paths=PackedStringArray("idle")]
+script = ExtResource("23_4ni07")
+idle = NodePath("../Idle")

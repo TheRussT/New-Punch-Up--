@@ -1,0 +1,145 @@
+[gd_scene load_steps=25 format=3 uid="uid://cpx4tj35xbcij"]
+
+[ext_resource type="Script" uid="uid://qaw0suhaoho1" path="res://scripts/generics/general_enemy.gd" id="1_4tvi2"]
+[ext_resource type="Texture2D" uid="uid://b5gjpmwrkxhea" path="res://assets/Star.png" id="2_ph7tg"]
+[ext_resource type="Script" uid="uid://c0y76ue11d7tn" path="res://scripts/generics/State_Machine.gd" id="3_fmbhw"]
+[ext_resource type="Script" uid="uid://dk1bv3dvq14sg" path="res://scripts/enemies/states/Daze.gd" id="4_nfr5l"]
+[ext_resource type="Script" uid="uid://dii8vfoe7u4l6" path="res://scripts/enemies/states/Dodge.gd" id="5_haa3b"]
+[ext_resource type="Script" uid="uid://cy4rajir0rytx" path="res://scripts/enemies/states/fallen.gd" id="6_yu6ce"]
+[ext_resource type="Script" uid="uid://dbcn2oju7y4u5" path="res://scripts/enemies/states/falling_high_right.gd" id="7_2j5nw"]
+[ext_resource type="Script" uid="uid://pasynj0k7hlt" path="res://scripts/enemies/states/getup.gd" id="8_pjcpb"]
+[ext_resource type="Script" uid="uid://cxg5ca3ug05sx" path="res://scripts/enemies/states/High_Block.gd" id="9_831s8"]
+[ext_resource type="Script" uid="uid://dsxr5y5hmtal8" path="res://scripts/enemies/states/High_Hit_Left.gd" id="10_cowgo"]
+[ext_resource type="Script" uid="uid://ccylvrf8ickry" path="res://scripts/enemies/states/High_Hit_Right.gd" id="11_aixvg"]
+[ext_resource type="Script" uid="uid://c6tst2v663kp8" path="res://scripts/enemies/states/High_Sent_Left.gd" id="12_byd3a"]
+[ext_resource type="Script" uid="uid://c888xm2p6hsv" path="res://scripts/enemies/states/High_Sent_Right.gd" id="13_nw687"]
+[ext_resource type="Script" uid="uid://1ae1wkng07hg" path="res://scripts/enemies/states/Idle.gd" id="14_o5co5"]
+[ext_resource type="Script" uid="uid://cvtvb6n8cgvle" path="res://scripts/enemies/states/intro.gd" id="15_er5q3"]
+[ext_resource type="Script" uid="uid://drjsdfmfevtjx" path="res://scripts/enemies/states/Low_Block.gd" id="16_gm1vu"]
+[ext_resource type="Script" uid="uid://5psra1rc01a4" path="res://scripts/enemies/states/Low_Hit_Left.gd" id="17_1qm3n"]
+[ext_resource type="Script" uid="uid://c7isar07beiei" path="res://scripts/enemies/states/Low_Hit_Right.gd" id="18_71ave"]
+[ext_resource type="Script" uid="uid://pv025hh2mrjp" path="res://scripts/enemies/states/Low_Sent_Left.gd" id="19_tvkw0"]
+[ext_resource type="Script" uid="uid://cofs8pgtiwtd8" path="res://scripts/enemies/states/Low_Sent_Right.gd" id="20_e2b1k"]
+[ext_resource type="Script" uid="uid://rf4jtp71iufp" path="res://scripts/enemies/states/repositioning.gd" id="21_p5e5s"]
+[ext_resource type="Script" uid="uid://bgrog057ouqxd" path="res://scripts/enemies/states/Stamina_Loss.gd" id="22_eufmx"]
+[ext_resource type="Script" uid="uid://bwwrcgvxey4fc" path="res://scripts/enemies/states/walking_down.gd" id="23_klr5j"]
+[ext_resource type="Script" uid="uid://cfpo2u5lniixe" path="res://scripts/enemies/states/walking_up.gd" id="24_sc2hv"]
+
+[node name="Enemy" type="Node2D"]
+script = ExtResource("1_4tvi2")
+
+[node name="Star" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(29, -5)
+texture = ExtResource("2_ph7tg")
+hframes = 3
+
+[node name="State_Machine" type="Node" parent="." node_paths=PackedStringArray("starting_state")]
+script = ExtResource("3_fmbhw")
+starting_state = NodePath("Idle")
+
+[node name="Daze" type="Node" parent="State_Machine" node_paths=PackedStringArray("idle", "high_left", "high_right", "low_left", "low_right")]
+script = ExtResource("4_nfr5l")
+idle = NodePath("../Idle")
+high_left = NodePath("../High_Hit_Left")
+high_right = NodePath("../High_Hit_Right")
+low_left = NodePath("../Low_Hit_Left")
+low_right = NodePath("../Low_Hit_Right")
+
+[node name="Dodge" type="Node" parent="State_Machine" node_paths=PackedStringArray("idle")]
+script = ExtResource("5_haa3b")
+idle = NodePath("../Idle")
+
+[node name="Fallen" type="Node" parent="State_Machine" node_paths=PackedStringArray("getup")]
+script = ExtResource("6_yu6ce")
+getup = NodePath("../Getup")
+
+[node name="Falling" type="Node" parent="State_Machine" node_paths=PackedStringArray("fallen")]
+script = ExtResource("7_2j5nw")
+fallen = NodePath("../Fallen")
+
+[node name="Getup" type="Node" parent="State_Machine" node_paths=PackedStringArray("fallen")]
+script = ExtResource("8_pjcpb")
+fallen = NodePath("../Fallen")
+
+[node name="High_Block" type="Node" parent="State_Machine" node_paths=PackedStringArray("idle")]
+script = ExtResource("9_831s8")
+idle = NodePath("../Idle")
+
+[node name="High_Hit_Left" type="Node" parent="State_Machine" node_paths=PackedStringArray("daze", "sent")]
+script = ExtResource("10_cowgo")
+daze = NodePath("../Daze")
+sent = NodePath("../High_Sent_Left")
+
+[node name="High_Hit_Right" type="Node" parent="State_Machine" node_paths=PackedStringArray("daze", "sent")]
+script = ExtResource("11_aixvg")
+daze = NodePath("../Daze")
+sent = NodePath("../High_Sent_Right")
+
+[node name="High_Sent_Left" type="Node" parent="State_Machine" node_paths=PackedStringArray("idle", "falling")]
+script = ExtResource("12_byd3a")
+idle = NodePath("../Idle")
+falling = NodePath("../Falling")
+
+[node name="High_Sent_Right" type="Node" parent="State_Machine" node_paths=PackedStringArray("idle", "falling")]
+script = ExtResource("13_nw687")
+idle = NodePath("../Idle")
+falling = NodePath("../Falling")
+
+[node name="Idle" type="Node" parent="State_Machine" node_paths=PackedStringArray("high_left", "high_right", "low_left", "low_right", "high_block", "low_block", "dodge")]
+script = ExtResource("14_o5co5")
+high_left = NodePath("../High_Hit_Left")
+high_right = NodePath("../High_Hit_Right")
+low_left = NodePath("../Low_Hit_Left")
+low_right = NodePath("../Low_Hit_Right")
+high_block = NodePath("../High_Block")
+low_block = NodePath("../Low_Block")
+dodge = NodePath("../Dodge")
+
+[node name="Intro" type="Node" parent="State_Machine" node_paths=PackedStringArray("repositioning")]
+script = ExtResource("15_er5q3")
+repositioning = NodePath("../Repositioning")
+
+[node name="Low_Block" type="Node" parent="State_Machine" node_paths=PackedStringArray("idle")]
+script = ExtResource("16_gm1vu")
+idle = NodePath("../Idle")
+
+[node name="Low_Hit_Left" type="Node" parent="State_Machine" node_paths=PackedStringArray("daze", "sent")]
+script = ExtResource("17_1qm3n")
+daze = NodePath("../Daze")
+sent = NodePath("../Low_Sent_Left")
+
+[node name="Low_Hit_Right" type="Node" parent="State_Machine" node_paths=PackedStringArray("daze", "sent")]
+script = ExtResource("18_71ave")
+daze = NodePath("../Daze")
+sent = NodePath("../Low_Sent_Right")
+
+[node name="Low_Sent_Left" type="Node" parent="State_Machine" node_paths=PackedStringArray("idle", "falling")]
+script = ExtResource("19_tvkw0")
+idle = NodePath("../Idle")
+falling = NodePath("../Falling")
+
+[node name="Low_Sent_Right" type="Node" parent="State_Machine" node_paths=PackedStringArray("idle", "falling")]
+script = ExtResource("20_e2b1k")
+idle = NodePath("../Idle")
+falling = NodePath("../Falling")
+
+[node name="Repositioning" type="Node" parent="State_Machine" node_paths=PackedStringArray("walking_down")]
+script = ExtResource("21_p5e5s")
+walking_down = NodePath("../Walking_Down")
+
+[node name="Stamina_Loss" type="Node" parent="State_Machine" node_paths=PackedStringArray("idle", "high_left", "high_right", "low_left", "low_right")]
+script = ExtResource("22_eufmx")
+idle = NodePath("../Idle")
+high_left = NodePath("../High_Hit_Left")
+high_right = NodePath("../High_Hit_Right")
+low_left = NodePath("../Low_Hit_Left")
+low_right = NodePath("../Low_Hit_Right")
+
+[node name="Walking_Down" type="Node" parent="State_Machine" node_paths=PackedStringArray("idle")]
+script = ExtResource("23_klr5j")
+idle = NodePath("../Idle")
+
+[node name="Walking_Up" type="Node" parent="State_Machine" node_paths=PackedStringArray("walking_down")]
+script = ExtResource("24_sc2hv")
+walking_down = NodePath("../Walking_Down")

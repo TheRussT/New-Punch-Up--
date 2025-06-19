@@ -1,4 +1,4 @@
-extends State
+extends Enemy_Damage_State
 
 @export var idle: State
 @export var high_left: State
@@ -10,13 +10,13 @@ var daze_timer
 
 # Called when the node enters the scene tree for the first time.
 func enter():
-	daze_timer = 400
 	parent.animations.play("daze")
+	parent.animations.advance(0)
+	parent.guard = [1,1,1,1,1]
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func process(delta):
-	daze_timer -= 1
-	if daze_timer <= 0:
+	if !parent.animations.is_playing():
 		return idle
 	return null
