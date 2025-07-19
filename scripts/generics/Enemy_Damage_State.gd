@@ -12,6 +12,7 @@ func damage(value):
 			damage_react(24, 1, parent.get_child(4).get_child(12)) # low block  14
 		else:
 			pass
+		parent.guard = parent.idle_guard
 		return 8
 	elif parent.guard[guard_position] == 7:
 		parent.stamina -= 1
@@ -23,22 +24,24 @@ func damage(value):
 			damage_react(32, 2, parent.get_child(4).get_child(12)) #14
 		else:
 			pass
+		if parent.stamina < 1:
+			parent.state_machine.change_state(parent.get_child(4).get_child(18))
+		else:
+			parent.guard = parent.idle_guard
 		return 7
 	elif parent.guard[guard_position] == 6:
-		if guard_position < 2:
-			damage_react(8, 0, parent.get_child(4).get_child(1)) # dodge
-		elif guard_position < 4:
-			damage_react(8, 0, parent.get_child(4).get_child(1))
-		else:
-			pass
+		damage_react(8, 0, parent.get_child(4).get_child(1))
+		parent.guard = parent.idle_guard
 		return 6
 	elif parent.guard[guard_position] == 5:
-		if guard_position < 2:
-			damage_react(12, 0, parent.get_child(4).get_child(1))
-		elif guard_position < 4:
-			damage_react(12, 0, parent.get_child(4).get_child(1))
+		parent.stamina -= 1
+		parent.ring.update_enemy_stam(parent.stamina)
+		parent.handle_state()
+		damage_react(12, 0, parent.get_child(4).get_child(1))
+		if parent.stamina < 1:
+			parent.state_machine.change_state(parent.get_child(4).get_child(18))
 		else:
-			pass
+			parent.guard = parent.idle_guard
 		return 5
 	elif parent.guard[guard_position] == 4:
 		if guard_position < 2:

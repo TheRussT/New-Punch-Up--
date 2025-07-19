@@ -12,7 +12,6 @@ var consecutive_jabs = 0
 var consecutive_hooks = 0
 var consecutive_idle_hits = 0
 var total_idle_hits = 0
-var idle_guard = [3,3,8,8,3]
 
 var has_taunted = false
 
@@ -24,6 +23,7 @@ func _ready():
 	stamina_max = 12
 	stamina_next = 9
 	guard = [3,3,8,8,3]
+	idle_guard = [3,3,8,8,3]
 	schedule_state = MAIN
 	enemy_schedule = {MAIN: [0x10200, 0x10040, jab, 0x10080, hook, 0x100c0, jab, 
 		0x10040, 0x20109, 0x10050, hook, 0x30001],
@@ -137,3 +137,6 @@ func check_conditions(value, result, state):
 
 func taunt_complete():
 	has_taunted = true
+
+func fight_setup():
+	ring.background.texture = load("res://assets/backgrounds/Boxing_Ring_1_FinalNES.png")

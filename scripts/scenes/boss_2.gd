@@ -10,8 +10,6 @@ enum {
 @export var left_hook_big : State
 @export var taunt : State
 
-var idle_guard = [8,8,8,8,3]
-
 var rage = 0
 
 func _ready():
@@ -23,6 +21,7 @@ func _ready():
 	stamina_next = 18
 	base_x = 100
 	base_y = 88
+	idle_guard = [8,8,8,8,3]
 	guard = [8,8,8,8,3]
 	schedule_state = MAIN
 	enemy_schedule = {MAIN: [0x100d0, jab, 0x10040, jab, 0x100c0, hook, 
@@ -95,3 +94,6 @@ func unrage():
 		handle_state()
 		schedule_index = 0
 		$Boss.material.set_shader_parameter("tolerance", 0.0)
+
+func fight_setup():
+	ring.background.texture = load("res://assets/backgrounds/Boxing_Ring_2_FinalNES.png")

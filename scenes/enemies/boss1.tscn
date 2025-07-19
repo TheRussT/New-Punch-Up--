@@ -737,10 +737,10 @@ tracks/0/path = NodePath("Boss:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.316667, 0.383333, 0.466667, 0.55, 0.8, 0.85, 0.9, 0.95, 1, 1.06667, 1.11667, 1.18333, 1.26667),
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.350001, 0.416667, 0.483334, 0.866668, 0.900002, 0.933335, 0.966668, 1, 1.05, 1.1, 1.15, 1.21667),
 "transitions": PackedFloat32Array(1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06),
 "update": 0,
-"values": [Vector2(0, 0), Vector2(-2, -2), Vector2(-6, -3), Vector2(-8, -2), Vector2(-12, -1), Vector2(-18, 0), Vector2(-24, 1), Vector2(-26, 1), Vector2(-27, 1), Vector2(-28, 1), Vector2(-20, 5), Vector2(-12, 7), Vector2(-2, 7), Vector2(5, 5), Vector2(20, 3), Vector2(25, 1), Vector2(26, 0), Vector2(27, -1), Vector2(27, -2)]
+"values": [Vector2(0, 0), Vector2(-2, -2), Vector2(-6, -3), Vector2(-8, -2), Vector2(-12, -1), Vector2(-16, 0), Vector2(-20, 1), Vector2(-21, 1), Vector2(-22, 1), Vector2(-23, 1), Vector2(-20, 5), Vector2(-12, 7), Vector2(-2, 7), Vector2(5, 5), Vector2(20, 3), Vector2(25, 1), Vector2(26, 0), Vector2(27, -1), Vector2(27, -2)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -749,7 +749,7 @@ tracks/1/path = NodePath("Boss:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.15, 0.8, 1),
+"times": PackedFloat32Array(0, 0.15, 0.866668, 1),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
 "values": [2, 19, 20, 21]
@@ -761,7 +761,7 @@ tracks/2/path = NodePath("State_Machine/Hook")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0.9),
+"times": PackedFloat32Array(0.933335),
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
@@ -775,7 +775,7 @@ tracks/3/path = NodePath(".")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.466667, 0.8, 0.983333, 1.6),
+"times": PackedFloat32Array(0, 0.466667, 0.866668, 0.966668, 1.6),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "values": [{
 "args": [8, 8, 8, 8, 3, 1],
@@ -1471,6 +1471,9 @@ stamina_loss = NodePath("../Stamina_Loss")
 [node name="Low_Sent_Right" parent="State_Machine" index="16" node_paths=PackedStringArray("stamina_loss")]
 stamina_loss = NodePath("../Stamina_Loss")
 
+[node name="Stamina_Loss" parent="State_Machine" index="18"]
+hits = 8
+
 [node name="Jab" type="Node" parent="State_Machine" index="21" node_paths=PackedStringArray("idle", "daze", "stamina_loss", "walking_up")]
 script = ExtResource("5_rmc3d")
 idle = NodePath("../Idle")
@@ -1482,6 +1485,7 @@ walking_up = NodePath("../Walking_Up")
 script = ExtResource("6_jeprl")
 idle = NodePath("../Idle")
 walking_up = NodePath("../Walking_Up")
+animation_name = "hook"
 shake_magnitude = 3
 shake_frames = 24
 can_block = true

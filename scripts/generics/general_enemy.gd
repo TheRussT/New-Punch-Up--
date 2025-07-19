@@ -16,7 +16,8 @@ var stamina_next
 var base_x = 108
 var base_y = 86
 
-var guard 
+var idle_guard = [0,0,0,0,0]
+var guard = idle_guard
 
 var shake_timer = -1
 var total_shake_time = 0
@@ -55,11 +56,12 @@ func _process(delta):
 func handle_shake(delta):
 	if shake_timer <= 0:
 		shake_function_progress = 0
+		position.x = base_x
 		animations.play()
 	else:
 		#print(shake_function_progress)
 		shake_function_progress += 1 * delta + 2 * (shake_timer/total_shake_time)
-		$Boss.position.x = int(0.5 + (shake_magnitude * (shake_timer/total_shake_time))
+		position.x = base_x + int(0.5 + (shake_magnitude * (shake_timer/total_shake_time))
 		* cos(shake_function_progress))
 
 func damage(value):
@@ -105,4 +107,7 @@ func activate(value):
 	state_machine.current_state.activate(value)
 
 func check_conditions(value, result, state):
+	pass
+
+func fight_setup():
 	pass

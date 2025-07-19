@@ -3,6 +3,7 @@ extends Enemy_Damage_State
 @export var idle: State
 @export var walking_up: State
 
+@export var animation_name: String
 @export var shake_magnitude: int
 @export var shake_frames: int
 @export var can_block: bool
@@ -16,7 +17,7 @@ var next_state: State
 # Called when the node enters the scene tree for the first time.
 func enter():
 	next_state = idle
-	parent.animations.play("hook")
+	parent.animations.play(animation_name)
 	parent.animations.advance(0)
 
 #func exit():

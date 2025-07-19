@@ -14,6 +14,8 @@ var enemy_health
 var enemy_stam
 @onready var star_animations = $Ring/Stars/Animations
 
+@onready var background = $Ring/Background
+
 var player_times_kod = 0
 var enemy_times_kod = 0
 
@@ -25,7 +27,7 @@ var enemy_ko_table = {0:[1,0,0,0,0,0,0,0,0,0,0], 1:[72,0,1,0,3], 2:[42,0,0,0,0,1
 func _ready() -> void:
 	ref.instantiate(self)
 	
-	var loaded_enemy = load("res://scenes/enemies/boss2.tscn")
+	var loaded_enemy = load("res://scenes/enemies/boss3.tscn")
 	enemy = loaded_enemy.instantiate()
 	add_child(enemy)
 	#enemy = $Enemy # Instantiate later
@@ -34,6 +36,7 @@ func _ready() -> void:
 	player.enemy = enemy
 	player.ring = self
 	enemy.ring = self
+	enemy.fight_setup()
 	
 	player_stambar.max_value = player_stam
 	
