@@ -11,6 +11,8 @@ extends Enemy_Damage_State
 @export var is_sent_right: bool
 @export var area_hit: int
 @export var punch_damage: int
+@export var available_hits: int
+@export var recovery_hits: int
 
 var next_state: State
 
@@ -62,4 +64,6 @@ func damage_player():
 		parent.shake_timer = 0.267
 		parent.shake_magnitude = 3
 		parent.total_shake_time = 0.267
-	
+	elif result == 5:
+		parent.available_hits = available_hits
+		parent.recovery_hits = recovery_hits

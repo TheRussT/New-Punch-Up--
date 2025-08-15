@@ -1,6 +1,10 @@
-[gd_scene load_steps=2 format=3 uid="uid://dyrtli1hio7tb"]
+[gd_scene load_steps=6 format=3 uid="uid://dyrtli1hio7tb"]
 
 [ext_resource type="Script" uid="uid://xrj7sil4u8ts" path="res://scripts/scenes/Between_fights.gd" id="1_ehg3a"]
+[ext_resource type="FontFile" uid="uid://2qrl2e1ftj04" path="res://assets/backgrounds/punch-out-nes.ttf" id="2_oe7nl"]
+[ext_resource type="Texture2D" uid="uid://bykypqxnt78wl" path="res://assets/backgrounds/Enemy_Round.png" id="3_y5log"]
+[ext_resource type="Texture2D" uid="uid://b5xa74ex6tjup" path="res://assets/backgrounds/Player_Round.png" id="4_tfnfi"]
+[ext_resource type="Texture2D" uid="uid://daryelxnsiy6j" path="res://assets/backgrounds/between_round_number.png" id="5_0gkfc"]
 
 [node name="Between_fights" type="Node2D"]
 script = ExtResource("1_ehg3a")
@@ -11,9 +15,233 @@ offset_bottom = 448.0
 color = Color(0, 0, 0, 1)
 
 [node name="circuit" type="Label" parent="."]
+visible = false
 texture_filter = 1
-offset_left = 70.0
+offset_left = 72.0
 offset_top = 4.0
-offset_right = 174.0
+offset_right = 176.0
 offset_bottom = 15.0
 theme_override_colors/font_color = Color(1, 0.662745, 0, 1)
+theme_override_fonts/font = ExtResource("2_oe7nl")
+theme_override_font_sizes/font_size = 8
+text = "Minor circuit"
+
+[node name="Enemy" type="Node2D" parent="."]
+position = Vector2(168, 16)
+
+[node name="rank" type="Label" parent="Enemy"]
+texture_filter = 1
+offset_right = 80.0
+offset_bottom = 11.0
+theme_override_colors/font_color = Color(0.345098, 0.847059, 0.329412, 1)
+theme_override_fonts/font = ExtResource("2_oe7nl")
+theme_override_font_sizes/font_size = 8
+text = "ranked: #3"
+
+[node name="name" type="Label" parent="Enemy"]
+texture_filter = 1
+offset_top = 8.0
+offset_right = 80.0
+offset_bottom = 19.0
+theme_override_colors/font_color = Color(0.988235, 0.988235, 0.988235, 1)
+theme_override_constants/line_spacing = 0
+theme_override_fonts/font = ExtResource("2_oe7nl")
+theme_override_font_sizes/font_size = 8
+text = "
+Sir Rendre"
+
+[node name="picture" type="Sprite2D" parent="Enemy"]
+position = Vector2(0, 24)
+texture = ExtResource("3_y5log")
+centered = false
+hframes = 9
+vframes = 4
+frame = 1
+
+[node name="record" type="Label" parent="Enemy"]
+texture_filter = 1
+offset_top = 112.0
+offset_right = 80.0
+offset_bottom = 123.0
+theme_override_colors/font_color = Color(0.988235, 0.988235, 0.988235, 1)
+theme_override_fonts/font = ExtResource("2_oe7nl")
+theme_override_font_sizes/font_size = 8
+text = " 1- 9  1ko"
+
+[node name="profile" type="Label" parent="Enemy"]
+texture_filter = 1
+offset_top = 128.0
+offset_right = 80.0
+offset_bottom = 139.0
+theme_override_colors/font_color = Color(0.988235, 0.988235, 0.988235, 1)
+theme_override_constants/line_spacing = 0
+theme_override_fonts/font = ExtResource("2_oe7nl")
+theme_override_font_sizes/font_size = 8
+text = "\"profile\""
+
+[node name="Statistics" type="Node2D" parent="Enemy"]
+position = Vector2(0, 110)
+
+[node name="location" type="Label" parent="Enemy/Statistics"]
+texture_filter = 1
+offset_top = 34.0
+offset_right = 80.0
+offset_bottom = 45.0
+theme_override_colors/font_color = Color(0.988235, 0.988235, 0.988235, 1)
+theme_override_constants/line_spacing = 0
+theme_override_fonts/font = ExtResource("2_oe7nl")
+theme_override_font_sizes/font_size = 8
+text = "from
+ lyon,
+    France"
+
+[node name="age" type="Label" parent="Enemy/Statistics"]
+texture_filter = 1
+offset_top = 58.0
+offset_right = 80.0
+offset_bottom = 69.0
+theme_override_colors/font_color = Color(0.988235, 0.988235, 0.988235, 1)
+theme_override_fonts/font = ExtResource("2_oe7nl")
+theme_override_font_sizes/font_size = 8
+text = "age: 22"
+
+[node name="weight" type="Label" parent="Enemy/Statistics"]
+texture_filter = 1
+offset_top = 66.0
+offset_right = 80.0
+offset_bottom = 77.0
+theme_override_colors/font_color = Color(0.988235, 0.988235, 0.988235, 1)
+theme_override_fonts/font = ExtResource("2_oe7nl")
+theme_override_font_sizes/font_size = 8
+text = "weight:144"
+
+[node name="Player" type="Node2D" parent="."]
+position = Vector2(8, 16)
+
+[node name="rank" type="Label" parent="Player"]
+texture_filter = 1
+offset_right = 80.0
+offset_bottom = 11.0
+theme_override_colors/font_color = Color(0.345098, 0.847059, 0.329412, 1)
+theme_override_fonts/font = ExtResource("2_oe7nl")
+theme_override_font_sizes/font_size = 8
+text = "ranked: #4"
+
+[node name="name" type="Label" parent="Player"]
+texture_filter = 1
+offset_top = 8.0
+offset_right = 80.0
+offset_bottom = 19.0
+theme_override_colors/font_color = Color(0.988235, 0.988235, 0.988235, 1)
+theme_override_constants/line_spacing = 0
+theme_override_fonts/font = ExtResource("2_oe7nl")
+theme_override_font_sizes/font_size = 8
+text = "
+Player"
+
+[node name="picture" type="Sprite2D" parent="Player"]
+position = Vector2(0, 24)
+texture = ExtResource("4_tfnfi")
+centered = false
+hframes = 9
+frame = 1
+
+[node name="record" type="Label" parent="Player"]
+texture_filter = 1
+offset_top = 112.0
+offset_right = 80.0
+offset_bottom = 123.0
+theme_override_colors/font_color = Color(0.988235, 0.988235, 0.988235, 1)
+theme_override_fonts/font = ExtResource("2_oe7nl")
+theme_override_font_sizes/font_size = 8
+text = " 0- 0  0ko"
+
+[node name="profile" type="Label" parent="Player"]
+texture_filter = 1
+offset_top = 128.0
+offset_right = 80.0
+offset_bottom = 139.0
+theme_override_colors/font_color = Color(0.988235, 0.988235, 0.988235, 1)
+theme_override_constants/line_spacing = 0
+theme_override_fonts/font = ExtResource("2_oe7nl")
+theme_override_font_sizes/font_size = 8
+text = "\"Profile\""
+
+[node name="Statistics" type="Node2D" parent="Player"]
+position = Vector2(0, 110)
+
+[node name="location" type="Label" parent="Player/Statistics"]
+texture_filter = 1
+offset_top = 34.0
+offset_right = 80.0
+offset_bottom = 58.0
+theme_override_colors/font_color = Color(0.988235, 0.988235, 0.988235, 1)
+theme_override_constants/line_spacing = 0
+theme_override_fonts/font = ExtResource("2_oe7nl")
+theme_override_font_sizes/font_size = 8
+text = "from
+cheboygan,
+ wisconsin"
+
+[node name="age" type="Label" parent="Player/Statistics"]
+texture_filter = 1
+offset_top = 58.0
+offset_right = 80.0
+offset_bottom = 69.0
+theme_override_colors/font_color = Color(0.988235, 0.988235, 0.988235, 1)
+theme_override_fonts/font = ExtResource("2_oe7nl")
+theme_override_font_sizes/font_size = 8
+text = "age: 18
+"
+
+[node name="weight" type="Label" parent="Player/Statistics"]
+texture_filter = 1
+offset_top = 66.0
+offset_right = 80.0
+offset_bottom = 77.0
+theme_override_colors/font_color = Color(0.988235, 0.988235, 0.988235, 1)
+theme_override_fonts/font = ExtResource("2_oe7nl")
+theme_override_font_sizes/font_size = 8
+text = "weight:122"
+
+[node name="vs" type="Label" parent="."]
+texture_filter = 1
+offset_left = 120.0
+offset_top = 88.0
+offset_right = 224.0
+offset_bottom = 99.0
+theme_override_colors/font_color = Color(0.643137, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_oe7nl")
+theme_override_font_sizes/font_size = 8
+text = "vs."
+
+[node name="push_start" type="Label" parent="."]
+texture_filter = 1
+offset_left = 104.0
+offset_top = 160.0
+offset_right = 208.0
+offset_bottom = 179.0
+theme_override_colors/font_color = Color(0.643137, 0, 0, 1)
+theme_override_constants/line_spacing = 0
+theme_override_fonts/font = ExtResource("2_oe7nl")
+theme_override_font_sizes/font_size = 8
+text = "Press
+ Space!"
+
+[node name="round" type="Label" parent="."]
+texture_filter = 1
+offset_left = 104.0
+offset_top = 240.0
+offset_right = 208.0
+offset_bottom = 259.0
+theme_override_colors/font_color = Color(0.643137, 0, 0, 1)
+theme_override_constants/line_spacing = 0
+theme_override_fonts/font = ExtResource("2_oe7nl")
+theme_override_font_sizes/font_size = 8
+text = "Round:"
+
+[node name="round_number" type="Sprite2D" parent="."]
+position = Vector2(80, 272)
+texture = ExtResource("5_0gkfc")
+centered = false
+hframes = 3

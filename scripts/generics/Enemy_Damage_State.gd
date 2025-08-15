@@ -100,6 +100,7 @@ func damage(value):
 		parent.ring.update_enemy_stam(parent.stamina)
 		parent.handle_state()
 		if parent.guard[guard_position] == 2:
+			parent.star_flag = true
 			return 2
 		return 3
 	else:

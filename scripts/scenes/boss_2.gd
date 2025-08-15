@@ -12,7 +12,10 @@ enum {
 
 var rage = 0
 
+var previous_message = -1
+
 func _ready():
+	health = 1
 	animations = $Animations
 	sprite = $Boss
 	falling_sprite = $Boss_Falling
@@ -72,10 +75,31 @@ func check_conditions(value, result, state):
 			ring.update_enemy_health(health)
 			available_hits = 1
 			rage += 1
-		if rage > 1:
+		if rage > 3:
 			schedule_state = TAUNT
 			schedule_index = 0
 	# Checks 
+
+#func between_round_setup(round_number):
+	#if ring.enemy_times_kod == 0:
+		#Global.scene_manager.current_scene.player_message = "After he\npunches,\nhe leaves\nhimeself\nwide open!\n...      \nwell, more\nthan usual"
+		#Global.scene_manager.current_scene.enemy_message = "Monsieur!\nAre you\nnot aware?\ni come\nfrom a \nlong line\nof sir\nrendre-ers"
+	#elif has_taunted && previous_message != 1:
+		#Global.scene_manager.current_scene.player_message = "that old\nsir rendre\ngot wise\nand raised\nhis guard.\nAlthough\nhe looks a\nbit winded"
+		#Global.scene_manager.current_scene.enemy_message = "I'm not \neven old!\nI'm at the\nen-#cough#\nbeginning\nof my\ncareer!"
+		#previous_message = 1
+	#elif (ring.player_times_kod > ring.enemy_times_kod ||
+	#(ring.player_times_kod == ring.enemy_times_kod && health > player.health)):
+		#Global.scene_manager.current_scene.player_message = "I think I\ncan fit in\nsome extra\nhits if I\npunch\nright as\nhe's reco-\nvering!"
+		#Global.scene_manager.current_scene.enemy_message = "I need\nthis win\nto get \nover the\nhump...  \nI can't\nlose\nanother 90"
+	#else:
+		#if ring.enemy_times_kod > ring.player_times_kod:
+			#Global.scene_manager.current_scene.player_message = "left right\nleft right\nI'm\nadvancing\non you\nfast,\n\"monsieur\""
+			#Global.scene_manager.current_scene.enemy_message = "I was over\nconfident,\ni think\ni'll\ncapitulate\nsoon!"
+		#else:
+			#Global.scene_manager.current_scene.player_message = "I'll need\nto stay on\nmy toes.\nchip away\nat this\nloser's\nstamina"
+			#Global.scene_manager.current_scene.enemy_message = "Why does\nno one\nremember\nany of my\nprevious\nvictories?"
+	#Global.scene_manager.current_scene.set_up_messages(round_number)
 
 func taunt_complete():
 	schedule_state = ENRAGED
@@ -85,7 +109,7 @@ func taunt_complete():
 	ring.update_enemy_stam(stamina)
 
 func unrage():
-	print("unrage")
+	#print("unrage")
 	rage = 0
 	if (schedule_state == ENRAGED):
 		#$Boss.material.shader_parameters.tolerance = 0.0

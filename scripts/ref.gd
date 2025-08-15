@@ -15,6 +15,7 @@ func instantiate(parent):
 	animations.advance(0)
 	animations.pause()
 	ring = parent
+	state = INACTIVE
 
 func process(delta):
 	if state == WALKING_UP:

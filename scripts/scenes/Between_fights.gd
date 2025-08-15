@@ -2,103 +2,113 @@ extends Node2D
 
 var menu_index = 0
 var fight_index = 0
-var timer = 120
-var ismoving
-var isreading
-var read_timer
-var message
-var index = 0
-var partial
+var scroll_progress = 0.0
+var scroll_active = false
+var picture_timer = 0.0
+var is_reading
+#var read_timer
+var player_message
+var enemy_message
 var mess_table = ["you undig-\nnified\namerican!\ni come from\na long line\nof sir-\nrendreres!" , "I was over-\nconfident,\ni think\ni'll\ncapitulate\nsoon!" , "I'd better\nsay au\nrevoir to\nmy family",
 "","if you\nthink you\ncan beat\nme, you're\nin de-nile\nhahaha!","","","fool! I\ntake hits\nbetter\nthan any\nother \nsoccer \nplayer!"]
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	if(menu_index < 100):
-		$Enemy/e_picture.set_frame(fight_index * 9 + 1)#$Enemy/e_picture.set_frame(GlobalScript.fight_index * 9 + 2 * GlobalScript.round + 1)
-		$Fighter/f_picture.set_frame(1)#$Fighter/f_picture.set_frame(GlobalScript.fight_index * 9 + 2 * GlobalScript.round + 1)
-		$Fighter/f_record.text = " " + str(fight_index) + "- 0  " + str(fight_index) + "ko"
-		if(menu_index % 3 == 0):
-			$Enemy/e_age.visible = true
-			$Enemy/e_weight.visible = true
-			$Enemy/e_from.visible = true
-			$Fighter/f_age.visible = true
-			$Fighter/f_weight.visible = true
-			$Fighter/f_from.visible = true
-			$Enemy/e_profile.text = "\"profile\""
-			if(menu_index == 0):
-				$Enemy/e_record.text = " 1- 8  1ko"
-				$Enemy/e_name.text = "sir rendre"
-				$Enemy/e_name2.text = ""
-				$Enemy/e_ranked.text = "ranked: #2"
-				$Enemy/e_age.text = "age: 32"
-				$Enemy/e_weight.text = "weight:144"
-				$Enemy/e_from.text = "from\n lyon,\n    france"
-			elif(menu_index == 3):
-				$Enemy/e_record.text = "13-23 10ko"
-				$Enemy/e_name.text = "sarwatt"
-				$Enemy/e_name2.text = "the great"
-				$Enemy/e_ranked.text = "ranked: #1"
-				$Enemy/e_age.text = "age: 36"
-				$Enemy/e_weight.text = "weight:234"
-				$Enemy/e_from.text = "from\n cairo,\n     egypt"
-			elif(menu_index == 6):
-				$Enemy/e_record.text = "16-5 14ko"
-				$Enemy/e_name.text = "m'babe"
-				$Enemy/e_name2.text = "futbol"
-				$Enemy/e_ranked.text = "ranked: champion"
-				$Enemy/e_age.text = "age: 26"
-				$Enemy/e_weight.text = "weight:212"
-				$Enemy/e_from.text = "from\nsao paulo,\n    brazil"
-		elif(menu_index % 3 < 3):
-			$Enemy/e_age.visible = false
-			$Enemy/e_weight.visible = false
-			$Enemy/e_from.visible = false
-			$Fighter/f_age.visible = false
-			$Fighter/f_weight.visible = false
-			$Fighter/f_from.visible = false
-			message = mess_table[1+3*fight_index]
-			isreading = true
-			partial = ''
-			index = 0
-			read_timer = 10
-	elif(menu_index == 101):
-		pass
-	elif(menu_index == 102):
-		pass
+	fight_index = Global.current_fight_index
+	#may refactor to not be an if-else but currently is the best option
+	if fight_index == 0:
+		$Enemy/record.text = " 1- 9  1ko"
+		$Enemy/name.text = "sir rendre"
+		$Enemy/rank.text = "ranked: #3"
+		$Enemy/Statistics/age.text = "age: 22"
+		$Enemy/Statistics/weight.text = "weight:144"
+		$Enemy/Statistics/location.text = "from\n lyon,\n    france"
+	elif fight_index == 1:
+		$Enemy/record.text = "13-23 10ko"
+		$Enemy/name.text = "sarwat"
+		$Enemy/rank.text = "ranked: #2"
+		$Enemy/Statistics/age.text = "age: 36"
+		$Enemy/Statistics/weight.text = "weight:241"
+		$Enemy/Statistics/location.text = "from\n cairo,\n     egypt"
+	elif fight_index == 2:
+		$Enemy/record.text = "16-5 14ko"
+		$Enemy/name.text = "m'babe\nfutbol"
+		$Enemy/rank.text = "ranked: #1"
+		$Enemy/Statistics/age.text = "age: 26"
+		$Enemy/Statistics/weight.text = "weight:217"
+		$Enemy/Statistics/location.text = "from\nsao paulo,\n    brazil"
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	timer -= 1
-	if(ismoving == true):
-		position.y -= 1
-		if(position.y <= -224):
-			ismoving = false
-			#GlobalScript.round += 1
-			get_tree().change_scene_to_file("res://scenes/fight.tscn")
-	if(timer <= 0):
-		timer = 120
-		if($Enemy/e_picture.frame == fight_index * 9 + 1):#if($Enemy/e_picture.frame == GlobalScript.fight_index * 9 + 2 * GlobalScript.round + 1):
-			$Enemy/e_picture.set_frame(fight_index * 9 + 2)
-			#$Enemy/e_picture.set_frame(GlobalScript.fight_index * 9 + 2 * GlobalScript.round + 2)
-		elif($Enemy/e_picture.frame == fight_index * 9 + 2):#elif($Enemy/e_picture.frame == GlobalScript.fight_index * 9 + 2 * GlobalScript.round + 2):
-			$Enemy/e_picture.set_frame(fight_index * 9 + 1)
-			#$Enemy/e_picture.set_frame(GlobalScript.fight_index * 9 + 2 * GlobalScript.round + 1)
-		if($Fighter/f_picture.frame == 1):#if($Fighter/f_picture.frame == GlobalScript.fight_index * 9 + 2 * GlobalScript.round + 1):
-			$Fighter/f_picture.set_frame(2)
-			#$Fighter/f_picture.set_frame(GlobalScript.fight_index * 9 + 2 * GlobalScript.round + 2)
-		elif($Fighter/f_picture.frame == 2):#elif($Fighter/f_picture.frame == GlobalScript.fight_index * 9 + 2 * GlobalScript.round + 2):
-			$Fighter/f_picture.set_frame(1)
-			#$Fighter/f_picture.set_frame(GlobalScript.fight_index * 9 + 2 * GlobalScript.round + 1)
+	handle_pictures(delta)
+	if scroll_active:
+		handle_scroll(delta)
 	if Input.is_action_just_pressed("ui_select"):
-		ismoving = true
+		if $Player/profile.visible_ratio < 1:
+			$Player/profile.visible_ratio = 1
+		elif $Enemy/profile.visible_ratio < 1:
+			$Enemy/profile.visible_ratio = 1
+			is_reading = false
+		else:
+			scroll_active = true
 		#$round_number.set_frame(GlobalScript.round)
-	if(isreading == true):
-		read_timer -= 1
-		if(read_timer <= 0):
-			partial += message[index]
-			index += 1
-			read_timer = 10
-			$Enemy/e_profile.text = partial
-			if(partial == message):
-				isreading = false
+	if(is_reading == true):
+		
+		if $Player/profile.visible_ratio < 1:
+			$Player/profile.visible_ratio += delta/3
+		elif $Enemy/profile.visible_ratio < 1:
+			$Enemy/profile.visible_ratio += delta/3
+		else:
+			is_reading = false
+		#read_timer -= 1
+		#if(read_timer <= 0):
+			#partial += message[index]
+			#index += 1
+			#read_timer = 10
+			#$Enemy/e_profile.text = partial
+			#if(partial == message):
+				#isreading = false
+
+func handle_pictures(delta):
+	picture_timer += delta
+	if picture_timer > 2:
+		picture_timer = 0.0
+	elif picture_timer > 1:
+		$Enemy/picture.set_frame(fight_index * 9 + 2)
+		$Player/picture.set_frame(2)
+	else:
+		$Enemy/picture.set_frame(fight_index * 9 + 1)
+		$Player/picture.set_frame(1)
+
+func handle_scroll(delta):
+	scroll_progress += delta
+	position.y = int(-224 * (scroll_progress/3))
+	if(position.y <= -224):
+		scroll_active = false
+		#GlobalScript.round += 1
+		if Global.scene_manager.stored_scene == null:
+			Global.scene_manager.change_scene("res://scenes/fight.tscn")
+		else:
+			Global.scene_manager.restore_scene()
+
+func set_up_messages(round_number : int):
+	$round_number.set_frame(round_number)
+	if player_message == null || enemy_message == null:
+		return
+	$Enemy/profile.text = enemy_message
+	$Enemy/profile.visible_ratio = 0
+	$Player/profile.text = player_message
+	$Player/profile.visible_ratio = 0
+	$Enemy/Statistics.visible = false
+	$Player/Statistics.visible = false
+	is_reading = true
+	
+
+#I cant
+#"stomach"
+#many hits.
+#how "low".
+#HA! Ha!
+#...
+#don't aim
+#there ok?

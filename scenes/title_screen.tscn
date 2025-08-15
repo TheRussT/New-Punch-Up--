@@ -1,0 +1,39 @@
+[gd_scene load_steps=5 format=3 uid="uid://cum51n8t6pkof"]
+
+[ext_resource type="Script" uid="uid://bmsoppwwuoap6" path="res://scripts/title_screen.gd" id="1_mgrm8"]
+[ext_resource type="Texture2D" uid="uid://gd2eh55qogv6" path="res://assets/backgrounds/Titlescreen.png" id="2_dc4i4"]
+[ext_resource type="Texture2D" uid="uid://b8njitxrlyikd" path="res://assets/backgrounds/Title_gloves.png" id="3_e54dn"]
+[ext_resource type="FontFile" uid="uid://2qrl2e1ftj04" path="res://assets/backgrounds/punch-out-nes.ttf" id="4_3yumr"]
+
+[node name="TitleScreen" type="Node2D"]
+script = ExtResource("1_mgrm8")
+
+[node name="Background" type="Sprite2D" parent="."]
+texture = ExtResource("2_dc4i4")
+centered = false
+
+[node name="Gloves" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(81, 72)
+texture = ExtResource("3_e54dn")
+centered = false
+hframes = 2
+frame = 1
+
+[node name="profile" type="Label" parent="."]
+texture_filter = 1
+offset_left = 80.0
+offset_top = 128.0
+offset_right = 168.0
+offset_bottom = 144.0
+theme_override_colors/font_color = Color(0.988235, 0.988235, 0.988235, 1)
+theme_override_constants/line_spacing = 0
+theme_override_fonts/font = ExtResource("4_3yumr")
+theme_override_font_sizes/font_size = 8
+text = "Press space
+ to start!"
+
+[node name="Fade" type="ColorRect" parent="."]
+offset_right = 256.0
+offset_bottom = 224.0
+color = Color(0, 0, 0, 0)

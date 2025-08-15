@@ -11,9 +11,13 @@ config_version=5
 [application]
 
 config/name="Punch_Up_New"
-run/main_scene="res://scenes/fight.tscn"
+run/main_scene="uid://ciexwgwyladge"
 config/features=PackedStringArray("4.4", "Mobile")
 config/icon="res://icon.svg"
+
+[autoload]
+
+Global="*res://scripts/game_management/global.gd"
 
 [display]
 

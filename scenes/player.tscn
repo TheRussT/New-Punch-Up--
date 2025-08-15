@@ -809,8 +809,9 @@ _data = {
 &"walking_up": SubResource("Animation_l71n6")
 }
 
-[node name="Player" type="Node2D"]
+[node name="Player" type="Node2D" node_paths=PackedStringArray("intro_state")]
 script = ExtResource("1_psbi0")
+intro_state = NodePath("State_Machine/Walking_Up")
 
 [node name="Sprite" type="Sprite2D" parent="."]
 position = Vector2(-17, -41)

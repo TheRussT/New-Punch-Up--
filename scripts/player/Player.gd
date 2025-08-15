@@ -3,6 +3,8 @@ extends Node2D
 var health = 96
 var stamina = 32
 
+var stamina_max = 32
+
 var input_buffer = []
 var stars = 0
 
@@ -22,6 +24,8 @@ var stamina_recovered_amount = 12
 @onready var sprite = $Sprite
 @export var enemy : Node2D
 @export var ring : Node2D
+
+@export var intro_state : State
 
 func _ready():
 	state_machine.init(self)

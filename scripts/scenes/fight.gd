@@ -1,5 +1,7 @@
 extends Node2D
 
+var round_number = 1
+
 var enemy
 var player
 @onready var ref = $Ring/Ref
@@ -20,14 +22,14 @@ var player_times_kod = 0
 var enemy_times_kod = 0
 
 var timer_speed = 0
-var time = 180.0
+var time = 1.0
 
 var enemy_ko_table = {0:[1,0,0,0,0,0,0,0,0,0,0], 1:[72,0,1,0,3], 2:[42,0,0,0,0,1,0,0,3]}
 
 func _ready() -> void:
 	ref.instantiate(self)
 	
-	var loaded_enemy = load("res://scenes/enemies/boss3.tscn")
+	var loaded_enemy = load("res://scenes/enemies/boss" + str(Global.current_fight_index + 1) + ".tscn")
 	enemy = loaded_enemy.instantiate()
 	add_child(enemy)
 	#enemy = $Enemy # Instantiate later
@@ -44,6 +46,23 @@ func _ready() -> void:
 	enemy_stam = enemy.stamina_max
 	enemy_stambar.max_value = enemy_stam
 	#enemy_stam = 1
+
+func start_round():
+	round_number += 1
+	
+	time = 180.0
+	timer_speed = 0
+	
+	enemy.state_machine.change_state(enemy.intro_state)
+	enemy.stamina = enemy.stamina_max
+	enemy_stam = enemy.stamina
+	
+	player.state_machine.change_state(player.intro_state)
+	player.stamina = player.stamina_max
+	player_stam = player.stamina
+	
+	ref.instantiate(self)
+	
 
 func _process(delta: float) -> void:
 	manage_progress_bars(delta)
@@ -75,8 +94,9 @@ func manage_progress_bars(delta):
 func process_timer(delta):
 	time -= delta * timer_speed
 	if (time <= 0):
-		#end fight
-		pass
+		time = 180
+		Global.scene_manager.change_scene("res://scenes/between_fights.tscn", false)
+		enemy.between_round_setup(round_number)
 	var time_display = int(time)
 	$Ring/Timer/Minute.set_frame(time_display/60)
 	$Ring/Timer/Decond.set_frame((time_display%60)/10)

@@ -1,4 +1,4 @@
-extends State
+extends Enemy_Damage_State
 
 @export var idle: State
 @export var falling: State
@@ -6,13 +6,20 @@ extends State
 
 # Called when the node enters the scene tree for the first time.
 func enter():
-	parent.animations.play("jaw_sent_left")
+	parent.spit.visible = true
+	if parent.recovery_hits > 0:
+		parent.recovery_hits -= 1
+		parent.animations.play("jaw_sent_left_long")
+	else:
+		parent.animations.play("jaw_sent_left")
 	parent.animations.advance(0)
 	parent.sprite.flip_h = 1
 
 func exit():
 	parent.star.visible = false
+	parent.spit.visible = false
 	parent.sprite.flip_h = 0
+	parent.spit.flip_h = 0
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func process(delta):
@@ -31,5 +38,9 @@ func check_kod():
 		parent.state_machine.change_state(stamina_loss)
 
 func check_star():
-	if parent.guard[1] == 2:
+	if parent.star_flag:
+		parent.star_flag = false
 		parent.star.visible = true
+
+func recovery_guard():
+	parent.guard = parent.left_high_recovery_guard
