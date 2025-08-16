@@ -1,20 +1,26 @@
 extends Enemy_Damage_State
 
 @export var idle: State
-#@export var high_left: State
-#@export var high_right: State
-#@export var low_left: State
-#@export var low_right: State
 @export var daze : State
-
 @export var walking_up: State
+
+@export var animation_name: String
+@export var shake_magnitude: int
+@export var shake_frames: int
+@export var can_block: bool
+@export var can_parry: bool
+@export var is_sent_right: bool
+@export var area_hit: int
+@export var punch_damage: int
+@export var available_hits: int
+@export var recovery_hits: int
 
 var next_state: State
 
 # Called when the node enters the scene tree for the first time.
 func enter():
 	next_state = idle
-	parent.animations.play("jab")
+	parent.animations.play(animation_name)
 	parent.animations.advance(0)
 
 #func exit():
@@ -30,7 +36,23 @@ func process(delta):
 	return null
 
 func damage_player():
-	var result = parent.player.damage(0x102146410)
+	var punch_info = 0
+	punch_info = punch_info | shake_magnitude
+	punch_info = punch_info << 8
+	punch_info = punch_info | shake_frames
+	punch_info = punch_info << 2
+	punch_info = punch_info | int(can_block)
+	punch_info = punch_info << 1
+	punch_info = punch_info | int(can_parry)
+	punch_info = punch_info << 1
+	punch_info = punch_info | int(is_sent_right)
+	punch_info = punch_info << 4
+	punch_info = punch_info | area_hit
+	punch_info = punch_info << 8
+	punch_info = punch_info | punch_damage
+	
+	var result = parent.damage_player(punch_info)
+	#var result = parent.player.damage(0x102146410)
 	# if punch lands avail_hits = 6, parent.changestae(daze)
 	if result == 0:
 		parent.shake_timer = 0.267
@@ -54,4 +76,7 @@ func damage_player():
 		parent.shake_timer = 0.267
 		parent.shake_magnitude = 3
 		parent.total_shake_time = 0.267
+	elif result == 5:
+		parent.available_hits = available_hits
+		parent.recovery_hits = recovery_hits
 	

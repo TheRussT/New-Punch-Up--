@@ -1,4 +1,4 @@
-extends State
+extends Enemy_Damage_State
 
 @export var daze: State
 @export var sent: State

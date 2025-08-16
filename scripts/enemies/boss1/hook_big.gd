@@ -14,6 +14,8 @@ var next_state: State
 @export var area_hit: int
 @export var punch_damage: int
 @export var miss_stamina: int
+@export var available_hits: int
+@export var recovery_hits: int
 
 # Called when the node enters the scene tree for the first time.
 func enter():
@@ -69,4 +71,6 @@ func damage_player():
 		parent.handle_state()
 		if parent.stamina < 1:
 			parent.state_machine.change_state(stamina_loss)
-	
+		else:
+			parent.available_hits = available_hits
+			parent.recovery_hits = recovery_hits

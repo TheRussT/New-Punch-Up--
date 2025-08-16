@@ -16,6 +16,7 @@ func enter():
 	parent.sprite.visible = false
 	parent.falling_sprite.visible = true
 	parent.available_hits = hits
+	parent.recovery_hits = 3
 	if insta_ko:
 		parent.guard = [0,0,0,0,0]
 	else:

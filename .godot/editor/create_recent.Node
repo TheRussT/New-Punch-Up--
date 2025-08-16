@@ -1,8 +1,8 @@
-TileMap
-Node
-Node2D
 Sprite2D
+Node2D
 AnimationPlayer
+Node
+TileMap
 ProgressBar
 Polygon2D
 AnimatedSprite2D

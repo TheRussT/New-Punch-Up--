@@ -20,6 +20,7 @@ func enter():
 		parent.stamina_regain_timer -= 0.5
 	parent.animations.play(animation)
 	parent.animations.advance(0)
+	parent.guard = parent.idle_guard
 
 func process(delta):
 	#print(delta)

@@ -3,10 +3,13 @@ extends Node2D
 @onready var animations
 @onready var state_machine = $State_Machine
 @onready var sprite = $Boss
-@onready var star = $Star
+@onready var star = $Particles/Star
+@onready var spit = $Particles/Spit
 @onready var falling_sprite
 @export var player : Node2D
 @export var ring : Node2D
+
+@export var intro_state : State
 
 var health = 96
 var stamina 
@@ -17,7 +20,11 @@ var base_x = 108
 var base_y = 86
 
 var idle_guard = [0,0,0,0,0]
-var guard = idle_guard
+var left_high_recovery_guard = [0,0,0,0,0,0]
+var right_high_recovery_guard = [0,0,0,0,0,0]
+var left_low_recovery_guard = [0,0,0,0,0,0]
+var right_low_recovery_guard = [0,0,0,0,0,0]
+var guard = [0,0,0,0,0]
 
 var shake_timer = -1
 var total_shake_time = 0
@@ -29,6 +36,9 @@ var idle_cooldown = 0.25
 var stamina_regain_timer = 0.0
 
 var available_hits = 1
+var recovery_hits = 0
+
+var star_flag = false
 
 # first schedule implementation 1 = timer, 2 = split jump addresses, 3 = jump
 var enemy_schedule
@@ -78,7 +88,7 @@ func damage_player(value):
 
 func set_guard(up_left, up_right, down_left, down_right, star, hits):
 	guard = [up_left, up_right, down_left, down_right, star]
-	available_hits = hits
+	#available_hits = hits
 
 func advance_state():
 	schedule_index += 1
@@ -111,3 +121,10 @@ func check_conditions(value, result, state):
 
 func fight_setup():
 	pass
+
+func between_round_setup(round_number : int):
+	#can maybe verify this is the between fights scene
+	
+	Global.scene_manager.current_scene.player_message = "Huh, that's\nweird. you\nshouldn't\nbe able to\nsee this\nmessage"
+	Global.scene_manager.current_scene.enemy_message = "That oaf\nof a\ndeveloper\nclearly\ndidn't\nknow what\nthey're\ndoing"
+	Global.scene_manager.current_scene.set_up_messages(round_number)

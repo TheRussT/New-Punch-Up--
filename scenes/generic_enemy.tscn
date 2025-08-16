@@ -1,8 +1,9 @@
-[gd_scene load_steps=25 format=3 uid="uid://cpx4tj35xbcij"]
+[gd_scene load_steps=26 format=3 uid="uid://cpx4tj35xbcij"]
 
 [ext_resource type="Script" uid="uid://qaw0suhaoho1" path="res://scripts/generics/general_enemy.gd" id="1_4tvi2"]
 [ext_resource type="Texture2D" uid="uid://b5gjpmwrkxhea" path="res://assets/Star.png" id="2_ph7tg"]
 [ext_resource type="Script" uid="uid://c0y76ue11d7tn" path="res://scripts/generics/State_Machine.gd" id="3_fmbhw"]
+[ext_resource type="Texture2D" uid="uid://nmib24ymgx3j" path="res://assets/enemies/spit_particle.png" id="3_ph7tg"]
 [ext_resource type="Script" uid="uid://dk1bv3dvq14sg" path="res://scripts/enemies/states/Daze.gd" id="4_nfr5l"]
 [ext_resource type="Script" uid="uid://dii8vfoe7u4l6" path="res://scripts/enemies/states/Dodge.gd" id="5_haa3b"]
 [ext_resource type="Script" uid="uid://cy4rajir0rytx" path="res://scripts/enemies/states/fallen.gd" id="6_yu6ce"]
@@ -25,14 +26,22 @@
 [ext_resource type="Script" uid="uid://bwwrcgvxey4fc" path="res://scripts/enemies/states/walking_down.gd" id="23_klr5j"]
 [ext_resource type="Script" uid="uid://cfpo2u5lniixe" path="res://scripts/enemies/states/walking_up.gd" id="24_sc2hv"]
 
-[node name="Enemy" type="Node2D"]
+[node name="Enemy" type="Node2D" node_paths=PackedStringArray("intro_state")]
 script = ExtResource("1_4tvi2")
+intro_state = NodePath("State_Machine/Intro")
 
-[node name="Star" type="Sprite2D" parent="."]
+[node name="Particles" type="Node2D" parent="."]
+
+[node name="Star" type="Sprite2D" parent="Particles"]
 visible = false
 position = Vector2(29, -5)
 texture = ExtResource("2_ph7tg")
 hframes = 3
+
+[node name="Spit" type="Sprite2D" parent="Particles"]
+texture = ExtResource("3_ph7tg")
+hframes = 4
+frame = 3
 
 [node name="State_Machine" type="Node" parent="." node_paths=PackedStringArray("starting_state")]
 script = ExtResource("3_fmbhw")

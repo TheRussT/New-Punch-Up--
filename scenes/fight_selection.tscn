@@ -1,0 +1,107 @@
+[gd_scene load_steps=7 format=3 uid="uid://dpwnsp30q53pu"]
+
+[ext_resource type="Script" uid="uid://75e2htm3qay0" path="res://scripts/scenes/fight_selection.gd" id="1_judbu"]
+[ext_resource type="Texture2D" uid="uid://cwu4cj1cccqxv" path="res://assets/backgrounds/Fightscreen.png" id="2_ku3ac"]
+[ext_resource type="Texture2D" uid="uid://bykypqxnt78wl" path="res://assets/backgrounds/Enemy_Round.png" id="3_35ve0"]
+[ext_resource type="Texture2D" uid="uid://dh1a6g7wfyfub" path="res://assets/backgrounds/Lights.png" id="4_46lnd"]
+[ext_resource type="FontFile" uid="uid://2qrl2e1ftj04" path="res://assets/backgrounds/punch-out-nes.ttf" id="5_ye1us"]
+[ext_resource type="Texture2D" uid="uid://cl5csac1bxjq8" path="res://assets/backgrounds/cursor_gloves.png" id="6_4obqt"]
+
+[node name="fight_selection" type="Node2D"]
+script = ExtResource("1_judbu")
+
+[node name="background" type="Sprite2D" parent="."]
+texture = ExtResource("2_ku3ac")
+centered = false
+
+[node name="portraits" type="Node2D" parent="."]
+
+[node name="boss1" type="Node2D" parent="portraits"]
+position = Vector2(40, 48)
+
+[node name="portrait" type="Sprite2D" parent="portraits/boss1"]
+position = Vector2(8, 8)
+texture = ExtResource("3_35ve0")
+centered = false
+hframes = 9
+vframes = 4
+frame = 1
+
+[node name="light" type="Sprite2D" parent="portraits/boss1"]
+texture = ExtResource("4_46lnd")
+centered = false
+
+[node name="boss2" type="Node2D" parent="portraits"]
+visible = false
+position = Vector2(128, 48)
+
+[node name="portrait" type="Sprite2D" parent="portraits/boss2"]
+position = Vector2(0, 8)
+texture = ExtResource("3_35ve0")
+centered = false
+hframes = 9
+vframes = 4
+frame = 10
+
+[node name="light" type="Sprite2D" parent="portraits/boss2"]
+texture = ExtResource("4_46lnd")
+centered = false
+flip_h = true
+
+[node name="boss3" type="Node2D" parent="portraits"]
+visible = false
+position = Vector2(40, 136)
+
+[node name="portrait" type="Sprite2D" parent="portraits/boss3"]
+position = Vector2(8, 0)
+texture = ExtResource("3_35ve0")
+centered = false
+hframes = 9
+vframes = 4
+frame = 19
+
+[node name="light" type="Sprite2D" parent="portraits/boss3"]
+texture = ExtResource("4_46lnd")
+centered = false
+flip_v = true
+
+[node name="boss4" type="Node2D" parent="portraits"]
+visible = false
+position = Vector2(128, 136)
+
+[node name="portrait" type="Sprite2D" parent="portraits/boss4"]
+texture = ExtResource("3_35ve0")
+centered = false
+hframes = 9
+vframes = 4
+frame = 28
+
+[node name="light" type="Sprite2D" parent="portraits/boss4"]
+texture = ExtResource("4_46lnd")
+centered = false
+flip_h = true
+flip_v = true
+
+[node name="directions" type="Label" parent="."]
+texture_filter = 1
+offset_left = 88.0
+offset_top = 8.0
+offset_right = 176.0
+offset_bottom = 24.0
+theme_override_colors/font_color = Color(0.988235, 0.988235, 0.988235, 1)
+theme_override_constants/line_spacing = 0
+theme_override_fonts/font = ExtResource("5_ye1us")
+theme_override_font_sizes/font_size = 8
+text = "Choose your
+ opponent!"
+
+[node name="cursor" type="Sprite2D" parent="."]
+position = Vector2(48, 120)
+texture = ExtResource("6_4obqt")
+centered = false
+hframes = 2
+
+[node name="Fade" type="ColorRect" parent="."]
+offset_right = 256.0
+offset_bottom = 224.0
+color = Color(0, 0, 0, 0)

@@ -59,4 +59,6 @@ func damage_player():
 			parent.state_machine.change_state(stamina_loss)
 		else:
 			parent.state_machine.change_state(daze)
-	
+	elif result == 5:
+		parent.available_hits = 3
+		parent.recovery_hits = 2

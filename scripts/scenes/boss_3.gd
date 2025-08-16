@@ -12,6 +12,7 @@ enum {
 @export var uppercut_left : State
 @export var uppercut_feint : State
 @export var uppercut_quick : State
+@export var special_dodge : State
 
 func _ready():
 	animations = $Animations
@@ -70,11 +71,12 @@ func handle_state():
 
 func check_conditions(value, result, state):
 	if result == 5:
-		if schedule_state == MAIN:
-			if schedule_index == 1 || schedule_index == 5 || schedule_index == 11:
-				schedule_index = 8
-			if schedule_index == 3:
-				schedule_index = 10
+		state_machine.change_state(special_dodge)
+		#if schedule_state == MAIN:
+			#if schedule_index == 1 || schedule_index == 5 || schedule_index == 11:
+				#schedule_index = 8
+			#if schedule_index == 3:
+				#schedule_index = 10
 	elif result == 8 || result == 6:
 		if schedule_state == MAIN:
 			schedule_index = 12

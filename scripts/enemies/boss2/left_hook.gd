@@ -12,6 +12,8 @@ var next_state: State
 @export var is_sent_right: bool
 @export var area_hit: int
 @export var punch_damage: int
+@export var available_hits: int
+@export var recovery_hits: int
 
 # Called when the node enters the scene tree for the first time.
 func enter():
@@ -64,4 +66,6 @@ func damage_player():
 		parent.shake_timer = 0.267
 		parent.shake_magnitude = 3
 		parent.total_shake_time = 0.267
-	
+	elif result == 5:
+		parent.available_hits = available_hits
+		parent.recovery_hits = recovery_hits
