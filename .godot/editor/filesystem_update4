@@ -1,7 +1,5 @@
 res://scenes/enemy.tscn
 res://scripts/shaders/boss.gdshader
-res://scripts/scenes/fight_slection.gd
-res://scripts/title_screen.gd
 res://scenes/fight.tscn
 res://scenes/enemies/boss1.tscn
 res://scenes/between_fights.tscn
@@ -11,10 +9,5 @@ res://scenes/enemies/boss2.tscn
 res://scenes/enemies/boss3.tscn
 res://scenes/scene_manager.tscn
 res://scenes/title_screen.tscn
-res://scenes/fight_slection.tscn
 res://scenes/fight_selection.tscn
-res://scripts/game_management/global.gd
-res://scripts/scenes/fight_selection.gd
-res://scripts/scenes/fight.gd
-res://scripts/player/Player.gd
-res://scripts/ref.gd
+res://scenes/enemies/boss4.tscn
