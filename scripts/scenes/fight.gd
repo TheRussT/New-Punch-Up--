@@ -22,7 +22,7 @@ var player_times_kod = 0
 var enemy_times_kod = 0
 
 var timer_speed = 0
-var time = 1.0
+var time = 180.0
 
 var enemy_ko_table = {0:[1,0,0,0,0,0,0,0,0,0,0], 1:[72,0,1,0,3], 2:[42,0,0,0,0,1,0,0,3]}
 

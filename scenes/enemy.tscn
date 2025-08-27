@@ -1302,7 +1302,7 @@ _data = {
 &"walking_up": SubResource("Animation_i4rgx")
 }
 
-[node name="Enemy" type="Node2D" node_paths=PackedStringArray("hook", "hook_big", "jab")]
+[node name="Enemy2" type="Node2D" node_paths=PackedStringArray("hook", "hook_big", "jab")]
 script = ExtResource("1_6cb6j")
 hook = NodePath("State_Machine/Hook")
 hook_big = NodePath("State_Machine/Hook_Big")

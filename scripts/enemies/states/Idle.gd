@@ -1,5 +1,7 @@
 extends Enemy_Damage_State
 
+#can probably comment out
+
 @export var high_left: State
 @export var high_right: State
 @export var low_left: State

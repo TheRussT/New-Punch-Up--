@@ -67,8 +67,9 @@ getup = NodePath("../Getup")
 script = ExtResource("7_2j5nw")
 fallen = NodePath("../Fallen")
 
-[node name="Getup" type="Node" parent="State_Machine" node_paths=PackedStringArray("fallen")]
+[node name="Getup" type="Node" parent="State_Machine" node_paths=PackedStringArray("repositioning", "fallen")]
 script = ExtResource("8_pjcpb")
+repositioning = NodePath("../Repositioning")
 fallen = NodePath("../Fallen")
 
 [node name="High_Block" type="Node" parent="State_Machine" node_paths=PackedStringArray("idle")]
@@ -85,15 +86,17 @@ script = ExtResource("11_aixvg")
 daze = NodePath("../Daze")
 sent = NodePath("../High_Sent_Right")
 
-[node name="High_Sent_Left" type="Node" parent="State_Machine" node_paths=PackedStringArray("idle", "falling")]
+[node name="High_Sent_Left" type="Node" parent="State_Machine" node_paths=PackedStringArray("idle", "falling", "stamina_loss")]
 script = ExtResource("12_byd3a")
 idle = NodePath("../Idle")
 falling = NodePath("../Falling")
+stamina_loss = NodePath("../Stamina_Loss")
 
-[node name="High_Sent_Right" type="Node" parent="State_Machine" node_paths=PackedStringArray("idle", "falling")]
+[node name="High_Sent_Right" type="Node" parent="State_Machine" node_paths=PackedStringArray("idle", "falling", "stamina_loss")]
 script = ExtResource("13_nw687")
 idle = NodePath("../Idle")
 falling = NodePath("../Falling")
+stamina_loss = NodePath("../Stamina_Loss")
 
 [node name="Idle" type="Node" parent="State_Machine" node_paths=PackedStringArray("high_left", "high_right", "low_left", "low_right", "high_block", "low_block", "dodge")]
 script = ExtResource("14_o5co5")
@@ -123,15 +126,17 @@ script = ExtResource("18_71ave")
 daze = NodePath("../Daze")
 sent = NodePath("../Low_Sent_Right")
 
-[node name="Low_Sent_Left" type="Node" parent="State_Machine" node_paths=PackedStringArray("idle", "falling")]
+[node name="Low_Sent_Left" type="Node" parent="State_Machine" node_paths=PackedStringArray("idle", "falling", "stamina_loss")]
 script = ExtResource("19_tvkw0")
 idle = NodePath("../Idle")
 falling = NodePath("../Falling")
+stamina_loss = NodePath("../Stamina_Loss")
 
-[node name="Low_Sent_Right" type="Node" parent="State_Machine" node_paths=PackedStringArray("idle", "falling")]
+[node name="Low_Sent_Right" type="Node" parent="State_Machine" node_paths=PackedStringArray("idle", "falling", "stamina_loss")]
 script = ExtResource("20_e2b1k")
 idle = NodePath("../Idle")
 falling = NodePath("../Falling")
+stamina_loss = NodePath("../Stamina_Loss")
 
 [node name="Repositioning" type="Node" parent="State_Machine" node_paths=PackedStringArray("walking_down")]
 script = ExtResource("21_p5e5s")

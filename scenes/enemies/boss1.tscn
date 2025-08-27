@@ -2052,21 +2052,6 @@ libraries = {
 &"": SubResource("AnimationLibrary_eqhtw")
 }
 
-[node name="Getup" parent="State_Machine" index="4" node_paths=PackedStringArray("repositioning")]
-repositioning = NodePath("../Repositioning")
-
-[node name="High_Sent_Left" parent="State_Machine" index="8" node_paths=PackedStringArray("stamina_loss")]
-stamina_loss = NodePath("../Stamina_Loss")
-
-[node name="High_Sent_Right" parent="State_Machine" index="9" node_paths=PackedStringArray("stamina_loss")]
-stamina_loss = NodePath("../Stamina_Loss")
-
-[node name="Low_Sent_Left" parent="State_Machine" index="15" node_paths=PackedStringArray("stamina_loss")]
-stamina_loss = NodePath("../Stamina_Loss")
-
-[node name="Low_Sent_Right" parent="State_Machine" index="16" node_paths=PackedStringArray("stamina_loss")]
-stamina_loss = NodePath("../Stamina_Loss")
-
 [node name="Stamina_Loss" parent="State_Machine" index="18"]
 hits = 8
 

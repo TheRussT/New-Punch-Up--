@@ -65,7 +65,7 @@ func damage_player():
 		parent.total_shake_time = 0.197
 		parent.guard = parent.idle_guard
 		parent.available_hits = 1
-	elif result == 3:
+	elif result == 3 || (result == 4 && !can_parry):
 		parent.shake_timer = 0.2
 		parent.shake_magnitude = 1
 		parent.total_shake_time = 0.2

@@ -7,7 +7,7 @@ var stored_scene : Node2D
 
 func _ready():
 	Global.scene_manager = self
-	current_scene = load("res://scenes/title_screen.tscn").instantiate()
+	current_scene = load("res://scenes/fight.tscn").instantiate()
 	scenes_2D.add_child(current_scene)
 
 func change_scene(new_scene : String, delete : bool = true, keep_running : bool = false):

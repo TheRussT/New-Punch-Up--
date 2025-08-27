@@ -17,25 +17,32 @@ func _ready():
 	#may refactor to not be an if-else but currently is the best option
 	if fight_index == 0:
 		$Enemy/record.text = " 1- 9  1ko"
-		$Enemy/name.text = "sir rendre"
+		$Enemy/name.text = "\nsir rendre"
 		$Enemy/rank.text = "ranked: #3"
 		$Enemy/Statistics/age.text = "age: 22"
 		$Enemy/Statistics/weight.text = "weight:144"
 		$Enemy/Statistics/location.text = "from\n lyon,\n    france"
 	elif fight_index == 1:
 		$Enemy/record.text = "13-23 10ko"
-		$Enemy/name.text = "sarwat"
+		$Enemy/name.text = "\nsarwat"
 		$Enemy/rank.text = "ranked: #2"
 		$Enemy/Statistics/age.text = "age: 36"
-		$Enemy/Statistics/weight.text = "weight:241"
+		$Enemy/Statistics/weight.text = "weight:261"
 		$Enemy/Statistics/location.text = "from\n cairo,\n     egypt"
 	elif fight_index == 2:
-		$Enemy/record.text = "16-5 14ko"
+		$Enemy/record.text = "16-5  14ko"
 		$Enemy/name.text = "m'babe\nfutbol"
 		$Enemy/rank.text = "ranked: #1"
 		$Enemy/Statistics/age.text = "age: 26"
-		$Enemy/Statistics/weight.text = "weight:217"
+		$Enemy/Statistics/weight.text = "weight:227"
 		$Enemy/Statistics/location.text = "from\nsao paulo,\n    brazil"
+	elif fight_index == 3:
+		$Enemy/record.text = "20-2  19ko"
+		$Enemy/name.text = "gelje\nsherpa"
+		$Enemy/rank.text = "champion"
+		$Enemy/Statistics/age.text = "age: 24"
+		$Enemy/Statistics/weight.text = "weight:212"
+		$Enemy/Statistics/location.text = "from\nkathmandu,\n     nepal"
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
