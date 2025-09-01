@@ -7,7 +7,7 @@ enum {
 @export var left_hook : State
 @export var uppercut : State
 @export var jab : State
-@export var left_hook_big : State
+@export var uppercut_combo : State
 @export var taunt : State
 
 var whiteout : ColorRect
@@ -33,8 +33,8 @@ func _ready():
 		0x20002],
 		TIRED: [0x100020, jab, 0x20003, 0x10060, jab, 0x20006, 0x10010, hook, 
 		0x20009, 0x30006],
-		ENRAGED: [0x10010, hook, 0x20003, 0x10040, left_hook_big, 0x20005,
-		left_hook_big, 0x30000],
+		ENRAGED: [0x10010, hook, 0x20003, 0x10040, uppercut_combo, 0x20005,
+		uppercut_combo, 0x30000],
 		BLIZZARD: [0x100c0, uppercut, 0x20003, 0x10040, hook, 0x30000],
 		TAUNT: [taunt, 0x30000]
 	}

@@ -1,0 +1,117 @@
+[gd_scene load_steps=4 format=3 uid="uid://sinss77wp1r"]
+
+[ext_resource type="Script" uid="uid://bf0a8204qpcga" path="res://scripts/scenes/win_screen.gd" id="1_2l6cc"]
+[ext_resource type="Texture2D" uid="uid://b8njitxrlyikd" path="res://assets/backgrounds/Title_gloves.png" id="2_e41g7"]
+[ext_resource type="FontFile" uid="uid://2qrl2e1ftj04" path="res://assets/backgrounds/punch-out-nes.ttf" id="3_0lrm4"]
+
+[node name="Win_screen" type="Node2D"]
+script = ExtResource("1_2l6cc")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_right = 256.0
+offset_bottom = 224.0
+color = Color(0, 0.345098, 0.972549, 1)
+
+[node name="Gloves" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(80, 8)
+texture = ExtResource("2_e41g7")
+centered = false
+hframes = 2
+
+[node name="you_win" type="Label" parent="."]
+texture_filter = 1
+offset_left = 96.0
+offset_top = 8.0
+offset_right = 160.0
+offset_bottom = 16.0
+theme_override_colors/font_color = Color(0.988235, 0.988235, 0.988235, 1)
+theme_override_constants/line_spacing = 0
+theme_override_fonts/font = ExtResource("3_0lrm4")
+theme_override_font_sizes/font_size = 8
+text = "You Win!"
+
+[node name="you_won_by" type="Label" parent="."]
+texture_filter = 1
+offset_left = 80.0
+offset_top = 56.0
+offset_right = 176.0
+offset_bottom = 64.0
+theme_override_colors/font_color = Color(0.988235, 0.988235, 0.988235, 1)
+theme_override_constants/line_spacing = 0
+theme_override_fonts/font = ExtResource("3_0lrm4")
+theme_override_font_sizes/font_size = 8
+text = "you won by: "
+
+[node name="win_method" type="Label" parent="."]
+texture_filter = 1
+offset_left = 96.0
+offset_top = 64.0
+offset_right = 192.0
+offset_bottom = 72.0
+theme_override_colors/font_color = Color(0.988235, 0.988235, 0.988235, 1)
+theme_override_constants/line_spacing = 0
+theme_override_fonts/font = ExtResource("3_0lrm4")
+theme_override_font_sizes/font_size = 8
+text = "knockout"
+
+[node name="with_a_time_of" type="Label" parent="."]
+texture_filter = 1
+offset_left = 64.0
+offset_top = 80.0
+offset_right = 184.0
+offset_bottom = 88.0
+theme_override_colors/font_color = Color(0.988235, 0.988235, 0.988235, 1)
+theme_override_constants/line_spacing = 0
+theme_override_fonts/font = ExtResource("3_0lrm4")
+theme_override_font_sizes/font_size = 8
+text = "with a time of:"
+
+[node name="time" type="Label" parent="."]
+texture_filter = 1
+offset_left = 96.0
+offset_top = 88.0
+offset_right = 216.0
+offset_bottom = 96.0
+theme_override_colors/font_color = Color(0.988235, 0.988235, 0.988235, 1)
+theme_override_constants/line_spacing = 0
+theme_override_fonts/font = ExtResource("3_0lrm4")
+theme_override_font_sizes/font_size = 8
+text = "3:00.00"
+
+[node name="round" type="Label" parent="."]
+texture_filter = 1
+offset_left = 96.0
+offset_top = 96.0
+offset_right = 216.0
+offset_bottom = 104.0
+theme_override_colors/font_color = Color(0.988235, 0.988235, 0.988235, 1)
+theme_override_constants/line_spacing = 0
+theme_override_fonts/font = ExtResource("3_0lrm4")
+theme_override_font_sizes/font_size = 8
+text = "round 1"
+
+[node name="new_record" type="Label" parent="."]
+texture_filter = 1
+offset_left = 80.0
+offset_top = 112.0
+offset_right = 200.0
+offset_bottom = 120.0
+theme_override_colors/font_color = Color(0.988235, 0.988235, 0.988235, 1)
+theme_override_constants/line_spacing = 0
+theme_override_fonts/font = ExtResource("3_0lrm4")
+theme_override_font_sizes/font_size = 8
+text = "new record!"
+
+[node name="continue" type="Label" parent="."]
+texture_filter = 1
+offset_left = 80.0
+offset_top = 200.0
+offset_right = 200.0
+offset_bottom = 216.0
+theme_override_colors/font_color = Color(0.988235, 0.988235, 0.988235, 1)
+theme_override_constants/line_spacing = 0
+theme_override_fonts/font = ExtResource("3_0lrm4")
+theme_override_font_sizes/font_size = 8
+text = "press space
+to continue!"

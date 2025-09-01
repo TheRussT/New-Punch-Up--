@@ -94,13 +94,22 @@ func manage_progress_bars(delta):
 func process_timer(delta):
 	time -= delta * timer_speed
 	if (time <= 0):
-		time = 180
-		Global.scene_manager.change_scene("res://scenes/between_fights.tscn", false)
-		enemy.between_round_setup(round_number)
-	var time_display = int(time)
-	$Ring/Timer/Minute.set_frame(time_display/60)
-	$Ring/Timer/Decond.set_frame((time_display%60)/10)
-	$Ring/Timer/Second.set_frame(time_display%10)
+		if round_number == 3:
+			handle_decision()
+		else:
+			time = 180
+			Global.scene_manager.change_scene("res://scenes/between_fights.tscn", false)
+			enemy.between_round_setup(round_number)
+	else:
+		var time_display = int(time)
+		$Ring/Timer/Minute.set_frame(time_display/60)
+		$Ring/Timer/Decond.set_frame((time_display%60)/10)
+		$Ring/Timer/Second.set_frame(time_display%10)
+
+func handle_decision():
+	if player_times_kod > enemy_times_kod || (player_times_kod
+	== enemy_times_kod && player.health > enemy.health):
+		Global.scene_manager.change_scene("res://scenes/win_screen.tscn")
 
 func handle_stars(value):
 	if value == 0:
