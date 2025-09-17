@@ -1,7 +1,7 @@
 extends "res://scripts/generics/general_enemy.gd"
 
 enum {
-	MAIN, LOW, TIRED, ENRAGED, BLIZZARD, TAUNT
+	MAIN, LOW, BLIZZARD, POST_BLIZZ, TAUNT
 }
 @export var hook : State
 @export var left_hook : State
@@ -9,8 +9,13 @@ enum {
 @export var jab : State
 @export var uppercut_combo : State
 @export var taunt : State
+@export var stamina_loss : State
 
 var whiteout : ColorRect
+
+var blizzard_count = 1
+var is_stamina_blizzard = false
+var blizzard_hits = 0
 
 var previous_message = -1
 
@@ -31,48 +36,48 @@ func _ready():
 		0x20702, 0x100c0, left_hook, 0x2080a, uppercut, 0x30000],
 		LOW: [0x10020, jab, 0x10080, left_hook, 0x20005, 0x10040, jab, 0x10030, hook, 
 		0x20002],
-		TIRED: [0x100020, jab, 0x20003, 0x10060, jab, 0x20006, 0x10010, hook, 
-		0x20009, 0x30006],
-		ENRAGED: [0x10010, hook, 0x20003, 0x10040, uppercut_combo, 0x20005,
-		uppercut_combo, 0x30000],
 		BLIZZARD: [0x100c0, uppercut, 0x20003, 0x10040, hook, 0x30000],
-		TAUNT: [taunt, 0x30000]
+		TAUNT: [taunt, 0x30000],
+		POST_BLIZZ: [stamina_loss, 0x30000]
 	}
+	ko_table = {0:[1,0,0,0,0,0,0,0,0,0,0], 1:[84,3], 2:[72,0,3], 3:[64,1,0,3], 4:[56,0,1,0,3], 5:[48,0,0,1,0,0,0,3], 6:[24,0,1,0,0,0,0,0,0,3]}
 	state_machine.init(self)
 	handle_state_schedule()
 
 func handle_state():
-	pass
-	#if player.stamina < 1:
-		#if schedule_state != PLAYER_TIRED:
-			#schedule_index = 0
-		#schedule_state = PLAYER_TIRED
-		##
-		##handle_state_schedule()
-	#else:
-		#if schedule_state == PLAYER_TIRED:
-			#schedule_state = MAIN
-		#if schedule_state == ENRAGED:
-			#pass
-		#elif stamina < 10:
-			#if schedule_state != TIRED:
-				#schedule_index = 0
-			#schedule_state = TIRED
-		#elif stamina > 11 || schedule_state != TIRED:
-			#if health > 48 && schedule_state == LOW:
-				#schedule_state = MAIN
-				#schedule_index = 0
-			#elif health <= 48 && schedule_index == MAIN:
-				#schedule_state = MAIN
-				#schedule_index = 0
-			#
+	if player.stamina < 1:
+		if schedule_state != BLIZZARD:
+			if schedule_state != TAUNT:
+				schedule_index = 0
+				is_stamina_blizzard = true
+			schedule_state = TAUNT
+		#
+		#handle_state_schedule()
+	else:
+		if schedule_state == BLIZZARD:
+			if is_stamina_blizzard:
+				schedule_state = MAIN
+				schedule_index = 0
+				undo_blizzard()
+		if schedule_state == POST_BLIZZ:
+			schedule_state = MAIN
+			schedule_index = 0
+		if schedule_state == MAIN && health <= 48:
+			schedule_state = LOW
+			schedule_index = 0
+		elif health > 48 && schedule_state == LOW:
+			schedule_state = MAIN
+			schedule_index = 0
+			
 
 func check_conditions(value, result, state):
-	if schedule_state == BLIZZARD:
-		if (value >> 9) & 1 == 1 && result < 4: #low shot
-			health -= 2
-			ring.update_enemy_health(health)
-			available_hits = 1
+	if schedule_state == BLIZZARD && result < 4:
+		print("blizzard hit\n")
+		blizzard_hits += 1
+		available_hits = 1
+		if blizzard_hits > 2:
+			blizzard_hits = 0
+			undo_blizzard()
 
 	# Checks 
 
@@ -104,10 +109,18 @@ func taunt_complete():
 	$Boss.material.set_shader_parameter("tolerance", 1.0)
 	idle_guard = [-1,-1,-1,-1,-1]
 
+func undo_blizzard():
+	$Boss.material.set_shader_parameter("tolerance", 0)
+	whiteout.color.a = 0
+	idle_guard = [8,8,8,8,3]
+	schedule_state = POST_BLIZZ
+	schedule_index = 0
+
 func fight_setup():
 	ring.background.texture = load("res://assets/backgrounds/Boxing_Ring_4_FinalNES.png")
 	whiteout = $Whiteout
 	whiteout.reparent(ring, false)
+	ring.enemy_ko_table = ko_table
 
 func set_shader_color(color : Color):
 	$Boss.material.set_shader_parameter("replace_color", color)

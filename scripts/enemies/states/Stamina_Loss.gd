@@ -11,10 +11,10 @@ extends Enemy_Damage_State
 
 # Called when the node enters the scene tree for the first time.
 func enter():
-	parent.animations.play("stamina_loss")
-	parent.animations.advance(0)
 	parent.sprite.visible = false
 	parent.falling_sprite.visible = true
+	parent.animations.play("stamina_loss")
+	parent.animations.advance(0)
 	parent.available_hits = hits
 	parent.recovery_hits = 3
 	if insta_ko:

@@ -244,7 +244,7 @@ tracks/0/path = NodePath("Ref_Sprite:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45, 0.5, 0.55, 0.6, 0.65, 0.7, 0.75, 0.8, 0.85, 0.9, 0.95, 1, 1.05, 1.1, 1.15, 1.2, 1.25, 1.3),
+"times": PackedFloat32Array(0, 0.0333333, 0.0666667, 0.1, 0.133333, 0.183333, 0.233333, 0.283333, 0.333333, 0.383333, 0.433333, 0.483333, 0.533333, 0.583333, 0.633333, 0.683333, 0.733333, 0.783333, 0.833333, 0.883333, 0.933333, 0.983333, 1.03333, 1.08333, 1.13333, 1.18333, 1.23333),
 "transitions": PackedFloat32Array(1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06),
 "update": 1,
 "values": [Vector2(114, 121), Vector2(118, 121), Vector2(122, 121), Vector2(126, 121), Vector2(130, 121), Vector2(134, 121), Vector2(138, 121), Vector2(142, 121), Vector2(146, 121), Vector2(150, 121), Vector2(154, 121), Vector2(158, 121), Vector2(162, 121), Vector2(166, 121), Vector2(170, 121), Vector2(174, 121), Vector2(178, 121), Vector2(182, 121), Vector2(186, 121), Vector2(190, 121), Vector2(194, 121), Vector2(198, 121), Vector2(202, 121), Vector2(206, 121), Vector2(210, 121), Vector2(214, 121), Vector2(218, 121)]
@@ -256,7 +256,7 @@ tracks/1/path = NodePath("Ref_Sprite:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45, 0.5, 0.55, 0.6, 0.65, 0.7, 0.75, 0.8, 0.85, 0.9, 0.95, 1, 1.05, 1.1, 1.15, 1.2, 1.25, 1.3),
+"times": PackedFloat32Array(-0.0166667, 0.0166667, 0.05, 0.0833333, 0.133333, 0.183333, 0.233333, 0.283333, 0.333333, 0.383333, 0.433333, 0.483333, 0.533333, 0.583333, 0.633333, 0.683333, 0.733333, 0.783333, 0.833333, 0.883333, 0.933333, 0.983333, 1.03333, 1.08333, 1.13333, 1.18333, 1.23333),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
 "values": [0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0]
@@ -264,7 +264,7 @@ tracks/1/keys = {
 
 [sub_resource type="Animation" id="Animation_f43n0"]
 resource_name = "walking_out"
-length = 1.4
+length = 0.933337
 step = 0.0166667
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -273,7 +273,7 @@ tracks/0/path = NodePath("Ref_Sprite:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45, 0.5, 0.55, 0.6, 0.65, 0.7, 0.75, 0.8, 0.85, 0.9, 0.95, 1, 1.05, 1.1, 1.15, 1.2, 1.25, 1.3),
+"times": PackedFloat32Array(0, 0.0333333, 0.0666667, 0.1, 0.133333, 0.166667, 0.2, 0.233333, 0.266667, 0.3, 0.333333, 0.366667, 0.4, 0.433333, 0.466667, 0.5, 0.533333, 0.566667, 0.6, 0.633333, 0.666667, 0.7, 0.733333, 0.766667, 0.8, 0.833333, 0.866667),
 "transitions": PackedFloat32Array(1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06),
 "update": 0,
 "values": [Vector2(218, 121), Vector2(214, 121), Vector2(210, 121), Vector2(206, 121), Vector2(202, 121), Vector2(198, 121), Vector2(194, 121), Vector2(190, 121), Vector2(186, 121), Vector2(182, 121), Vector2(178, 121), Vector2(174, 121), Vector2(170, 121), Vector2(166, 121), Vector2(162, 121), Vector2(158, 121), Vector2(154, 121), Vector2(150, 121), Vector2(146, 121), Vector2(142, 121), Vector2(138, 121), Vector2(134, 121), Vector2(130, 121), Vector2(126, 121), Vector2(122, 121), Vector2(118, 121), Vector2(114, 121)]
@@ -285,7 +285,7 @@ tracks/1/path = NodePath("Ref_Sprite:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45, 0.5, 0.55, 0.6, 0.65, 0.7, 0.75, 0.8, 0.85, 0.9, 0.95, 1, 1.05, 1.1, 1.15, 1.2, 1.25, 1.3),
+"times": PackedFloat32Array(0, 0.0333333, 0.0666667, 0.1, 0.133333, 0.166667, 0.2, 0.233333, 0.266667, 0.3, 0.333333, 0.366667, 0.4, 0.433333, 0.466667, 0.5, 0.533333, 0.566667, 0.6, 0.633333, 0.666667, 0.7, 0.733333, 0.766666, 0.8, 0.833333, 0.866667),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
 "values": [0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0]
@@ -375,7 +375,7 @@ sources/0 = SubResource("TileSetAtlasSource_fgfty")
 script = ExtResource("1_5mf5x")
 
 [node name="Player" parent="." instance=ExtResource("3_5mf5x")]
-z_index = 1
+z_index = 2
 position = Vector2(120, 173)
 
 [node name="Ring" type="Node2D" parent="."]
@@ -475,6 +475,7 @@ z_index = 1
 script = ExtResource("3_57w1i")
 
 [node name="Ref_Sprite" type="Sprite2D" parent="Ring/Ref"]
+z_index = 1
 position = Vector2(218, 121)
 texture = ExtResource("3_qogor")
 centered = false

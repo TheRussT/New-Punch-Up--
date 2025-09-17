@@ -37,6 +37,7 @@ func _ready():
 		uppercut, 0x30000],
 		PLAYER_TIRED: [0x10010, hook, 0x20003, 0x10040, hook, 0x30000]
 	}
+	ko_table = {0:[1,0,0,0,0,0,0,0,0,0,0], 1:[1,0,0,0,0,0,0,0,0,0,0]}
 	state_machine.init(self)
 	handle_state_schedule()
 
@@ -96,3 +97,4 @@ func check_conditions(value, result, state):
 
 func fight_setup():
 	ring.background.texture = load("res://assets/backgrounds/Boxing_Ring_3_FinalNES.png")
+	ring.enemy_ko_table = ko_table

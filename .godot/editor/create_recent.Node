@@ -1,5 +1,6 @@
-ColorRect
 Sprite2D
+Control
+ColorRect
 Node2D
 AnimationPlayer
 Node

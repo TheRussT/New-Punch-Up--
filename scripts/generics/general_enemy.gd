@@ -42,6 +42,7 @@ var star_flag = false
 
 # first schedule implementation 1 = timer, 2 = split jump addresses, 3 = jump
 var enemy_schedule
+var ko_table 
 var schedule_timer = 0
 var schedule_index = 0
 

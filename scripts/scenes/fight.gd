@@ -24,7 +24,7 @@ var enemy_times_kod = 0
 var timer_speed = 0
 var time = 180.0
 
-var enemy_ko_table = {0:[1,0,0,0,0,0,0,0,0,0,0], 1:[72,0,1,0,3], 2:[42,0,0,0,0,1,0,0,3]}
+var enemy_ko_table = {0:[1,0,0,0,0,0,0,0,0,0,0], 1:[2,0,1,0,3], 2:[4,0,0,0,0,1,0,0,3]}
 
 func _ready() -> void:
 	ref.instantiate(self)
@@ -110,6 +110,12 @@ func handle_decision():
 	if player_times_kod > enemy_times_kod || (player_times_kod
 	== enemy_times_kod && player.health > enemy.health):
 		Global.scene_manager.change_scene("res://scenes/win_screen.tscn")
+		Global.scene_manager.current_scene.display_screen(0.0, 2)
+		if Global.fights_available < Global.current_fight_index + 2:
+			Global.fights_available = Global.current_fight_index + 2
+	else:
+		pass
+		#lose screen
 
 func handle_stars(value):
 	if value == 0:

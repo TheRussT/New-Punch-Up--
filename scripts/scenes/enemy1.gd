@@ -19,6 +19,7 @@ var has_taunted = false
 var previous_message = -1
 
 func _ready():
+	health = 1
 	animations = $Animations
 	sprite = $Boss
 	falling_sprite = $Boss_Falling
@@ -42,6 +43,7 @@ func _ready():
 		PLAYER_TIRED: [0x10010, hook, 0x20003, 0x10040, hook, 0x30000],
 		TAUNT: [taunt, 0x30000]
 	}
+	ko_table = {0:[1,0,0,0,0,0,0,0,0,0,0], 1:[72,0,1,0,3], 2:[46,0,0,0,0,1,0,0,3], 3:[32,0,1,0,0,0,0,1,0,3], 4:[1,0,0,0,0,0,0,0,0,2,0]}
 	state_machine.init(self)
 	handle_state_schedule()
 
@@ -190,3 +192,4 @@ func taunt_complete():
 
 func fight_setup():
 	ring.background.texture = load("res://assets/backgrounds/Boxing_Ring_1_FinalNES.png")
+	ring.enemy_ko_table = ko_table

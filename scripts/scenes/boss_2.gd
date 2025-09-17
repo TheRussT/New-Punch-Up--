@@ -38,6 +38,7 @@ func _ready():
 		PLAYER_TIRED: [0x10010, hook, 0x20003, 0x10040, hook, 0x30000],
 		TAUNT: [taunt, 0x30000]
 	}
+	ko_table = {0:[1,0,0,0,0,0,0,0,0,0,0], 1:[80,0,0,3], 2:[64,0,0,1,0,3], 3:[56,0,1,0,1,0,1,0,3], 4:[48,3]}
 	state_machine.init(self)
 	handle_state_schedule()
 
@@ -61,7 +62,7 @@ func handle_state():
 			if health > 48 && schedule_state == LOW:
 				schedule_state = MAIN
 				schedule_index = 0
-			elif health <= 48 && schedule_index == MAIN:
+			elif health <= 48 && schedule_state == MAIN:
 				schedule_state = MAIN
 				schedule_index = 0
 			
@@ -75,7 +76,7 @@ func check_conditions(value, result, state):
 			ring.update_enemy_health(health)
 			available_hits = 1
 			rage += 1
-		if rage > 3:
+		if rage > 2:
 			schedule_state = TAUNT
 			schedule_index = 0
 	# Checks 
@@ -121,3 +122,4 @@ func unrage():
 
 func fight_setup():
 	ring.background.texture = load("res://assets/backgrounds/Boxing_Ring_2_FinalNES.png")
+	ring.enemy_ko_table = ko_table

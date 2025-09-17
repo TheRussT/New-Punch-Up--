@@ -1,5 +1,9 @@
 res://scenes/enemy.tscn
 res://scripts/shaders/boss.gdshader
+res://scripts/scenes/fight.gd
+res://scripts/ref.gd
+res://scripts/scenes/Scene_Manager.gd
+res://scripts/scenes/win_screen.gd
 res://scenes/fight.tscn
 res://scenes/enemies/boss1.tscn
 res://scenes/between_fights.tscn
@@ -11,7 +15,12 @@ res://scenes/scene_manager.tscn
 res://scenes/title_screen.tscn
 res://scenes/fight_selection.tscn
 res://scenes/enemies/boss4.tscn
-res://scripts/scenes/fight.gd
-res://scripts/scenes/win_screen.gd
 res://scenes/win_screen.tscn
+res://scripts/scenes/enemy1.gd
+res://scripts/game_management/global.gd
+res://scripts/generics/general_enemy.gd
+res://scripts/scenes/boss_2.gd
+res://scripts/scenes/boss_3.gd
 res://scripts/scenes/boss_4.gd
+res://scripts/enemies/states/Stamina_Loss.gd
+res://scripts/player/Player.gd

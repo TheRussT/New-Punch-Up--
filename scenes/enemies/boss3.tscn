@@ -4,8 +4,8 @@
 [ext_resource type="Script" uid="uid://bnkd6531jqt0" path="res://scripts/scenes/boss_3.gd" id="2_1ohky"]
 [ext_resource type="Shader" uid="uid://do160ashhfwf8" path="res://scripts/shaders/boss.gdshader" id="2_wwowf"]
 [ext_resource type="Texture2D" uid="uid://r2agvtnbla24" path="res://assets/enemies/mbabeNES.png" id="3_fwups"]
-[ext_resource type="Texture2D" uid="uid://b23hcaiax65u7" path="res://assets/enemies/Sarwatt_falling_final.png" id="4_1ohky"]
 [ext_resource type="Script" uid="uid://bvlxrnnc52qs2" path="res://scripts/enemies/boss2/jab.gd" id="5_84vdx"]
+[ext_resource type="Texture2D" uid="uid://ba2nmy6hsx3ax" path="res://assets/enemies/mbabe_falling.png" id="5_kltfi"]
 [ext_resource type="Script" uid="uid://dtyl45bcje1dq" path="res://scripts/enemies/boss1/Hook.gd" id="6_kltfi"]
 [ext_resource type="Script" uid="uid://bbcwrpvtcxemv" path="res://scripts/enemies/boss2/left_hook.gd" id="7_ke3bc"]
 [ext_resource type="Script" uid="uid://btjfidniady10" path="res://scripts/enemies/boss3/feint.gd" id="9_84vdx"]
@@ -621,76 +621,6 @@ tracks/2/keys = {
 }]
 }
 
-[sub_resource type="Animation" id="Animation_fly47"]
-resource_name = "falling_belly_left"
-length = 1.3
-step = 0.0166667
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Boss_Falling:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.0333333, 0.0666667, 0.1, 0.133333, 0.166667, 0.2, 0.233333, 0.266667, 0.3, 0.333333, 0.366667, 0.4, 0.433333, 0.466667, 0.5, 0.533333, 0.566667, 0.6, 0.633333, 0.666667, 0.7, 0.733333, 0.766667, 0.8, 0.9, 0.933333, 0.966667, 1, 1.03333, 1.08333, 1.13333, 1.16667, 1.2, 1.23333, 1.26667),
-"transitions": PackedFloat32Array(1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06),
-"update": 0,
-"values": [Vector2(-31, -5), Vector2(-30, -6), Vector2(-29, -7), Vector2(-29, -9), Vector2(-31, -10), Vector2(-33, -11), Vector2(-35, -13), Vector2(-34, -14), Vector2(-33, -15), Vector2(-33, -17), Vector2(-35, -18), Vector2(-37, -19), Vector2(-39, -21), Vector2(-38, -22), Vector2(-37, -23), Vector2(-37, -25), Vector2(-39, -26), Vector2(-41, -27), Vector2(-43, -29), Vector2(-42, -30), Vector2(-41, -31), Vector2(-41, -33), Vector2(-43, -34), Vector2(-45, -35), Vector2(-47, -37), Vector2(-51, -42), Vector2(-53, -50), Vector2(-55, -55), Vector2(-57, -58), Vector2(-59, -60), Vector2(-61, -61), Vector2(-63, -60), Vector2(-65, -58), Vector2(-67, -55), Vector2(-69, -50), Vector2(-69, -45)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Boss_Falling:frame")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.9),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [1, 0, 1, 0, 1, 0, 1, 0, 10]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Boss_Falling:flip_h")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-
-[sub_resource type="Animation" id="Animation_1h7u0"]
-resource_name = "falling_belly_right"
-length = 1.3
-step = 0.0166667
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Boss_Falling:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.0333333, 0.0666667, 0.1, 0.133333, 0.166667, 0.2, 0.233333, 0.266667, 0.3, 0.333333, 0.366667, 0.4, 0.433333, 0.466667, 0.5, 0.533333, 0.566667, 0.6, 0.633333, 0.666667, 0.7, 0.733333, 0.766667, 0.8, 0.9, 0.933333, 0.966667, 1, 1.03333, 1.08333, 1.13333, 1.16667, 1.2, 1.23333, 1.26667),
-"transitions": PackedFloat32Array(1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06),
-"update": 0,
-"values": [Vector2(16, -5), Vector2(15, -6), Vector2(14, -7), Vector2(14, -9), Vector2(16, -10), Vector2(18, -11), Vector2(20, -13), Vector2(19, -14), Vector2(18, -15), Vector2(18, -17), Vector2(20, -18), Vector2(22, -19), Vector2(24, -21), Vector2(23, -22), Vector2(22, -23), Vector2(22, -25), Vector2(24, -26), Vector2(26, -27), Vector2(28, -29), Vector2(27, -30), Vector2(26, -31), Vector2(26, -33), Vector2(28, -34), Vector2(30, -35), Vector2(32, -37), Vector2(36, -42), Vector2(38, -50), Vector2(40, -55), Vector2(42, -58), Vector2(44, -60), Vector2(46, -61), Vector2(48, -60), Vector2(50, -58), Vector2(52, -55), Vector2(54, -50), Vector2(54, -45)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Boss_Falling:frame")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.9),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [1, 0, 1, 0, 1, 0, 1, 0, 10]
-}
-
 [sub_resource type="Animation" id="Animation_ix880"]
 resource_name = "falling_down"
 length = 0.400002
@@ -717,12 +647,12 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [2]
+"values": [3]
 }
 
 [sub_resource type="Animation" id="Animation_g60ra"]
 resource_name = "falling_left"
-length = 0.566669
+length = 0.633336
 step = 0.0166667
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -731,10 +661,10 @@ tracks/0/path = NodePath("Boss_Falling:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.0333333, 0.1, 0.166667, 0.216667, 0.283333, 0.366667, 0.416667, 0.483333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [10]
+"values": [0, 2, 1, 0, 2, 1, 0, 2, 1]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -743,10 +673,10 @@ tracks/1/path = NodePath("Boss_Falling:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.0333333, 0.0666667, 0.1, 0.133333, 0.166667, 0.2, 0.233333, 0.266667, 0.316667, 0.366667, 0.4, 0.433333, 0.466667, 0.5, 0.533333),
-"transitions": PackedFloat32Array(1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06),
+"times": PackedFloat32Array(0, 0.0333333, 0.0666667, 0.1, 0.133333, 0.166667, 0.2, 0.233333, 0.266667, 0.316667, 0.366667, 0.4, 0.433333, 0.466667, 0.5, 0.533333, 0.566667, 0.6),
+"transitions": PackedFloat32Array(1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06),
 "update": 0,
-"values": [Vector2(-45, -18), Vector2(-47, -26), Vector2(-49, -33), Vector2(-51, -39), Vector2(-53, -44), Vector2(-55, -48), Vector2(-57, -51), Vector2(-59, -53), Vector2(-61, -54), Vector2(-62, -54), Vector2(-63, -54), Vector2(-64, -53), Vector2(-65, -51), Vector2(-66, -48), Vector2(-67, -45), Vector2(-68, -42)]
+"values": [Vector2(-45, 0), Vector2(-47, -8), Vector2(-49, -15), Vector2(-51, -21), Vector2(-53, -26), Vector2(-55, -30), Vector2(-57, -33), Vector2(-59, -35), Vector2(-61, -36), Vector2(-63, -36), Vector2(-65, -36), Vector2(-67, -35), Vector2(-71, -33), Vector2(-73, -30), Vector2(-75, -27), Vector2(-77, -24), Vector2(-78, -20), Vector2(-79, -16)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -758,36 +688,7 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [true]
-}
-
-[sub_resource type="Animation" id="Animation_vkngc"]
-resource_name = "falling_right"
-length = 0.566669
-step = 0.0166667
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Boss_Falling:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [10]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Boss_Falling:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.0333333, 0.0666667, 0.1, 0.133333, 0.166667, 0.2, 0.233333, 0.266667, 0.316667, 0.366667, 0.4, 0.433333, 0.466667, 0.5, 0.533333),
-"transitions": PackedFloat32Array(1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06),
-"update": 0,
-"values": [Vector2(30, -18), Vector2(32, -26), Vector2(34, -33), Vector2(36, -39), Vector2(38, -44), Vector2(40, -48), Vector2(42, -51), Vector2(44, -53), Vector2(46, -54), Vector2(47, -54), Vector2(48, -54), Vector2(49, -53), Vector2(50, -51), Vector2(51, -48), Vector2(52, -45), Vector2(53, -42)]
+"values": [false]
 }
 
 [sub_resource type="Animation" id="Animation_xvpt4"]
@@ -2159,6 +2060,129 @@ tracks/2/keys = {
 }]
 }
 
+[sub_resource type="Animation" id="Animation_fly47"]
+resource_name = "falling_right"
+length = 0.633336
+step = 0.0166667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Boss_Falling:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 0.1, 0.166667, 0.216667, 0.283333, 0.366667, 0.416667, 0.483333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 2, 1, 0, 2, 1, 0, 2, 1]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Boss_Falling:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 0.0666667, 0.1, 0.133333, 0.166667, 0.2, 0.233333, 0.266667, 0.316667, 0.366667, 0.4, 0.433333, 0.466667, 0.5, 0.533333, 0.566667, 0.6),
+"transitions": PackedFloat32Array(1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06),
+"update": 0,
+"values": [Vector2(5, 0), Vector2(7, -8), Vector2(9, -15), Vector2(11, -21), Vector2(13, -26), Vector2(15, -30), Vector2(17, -33), Vector2(19, -35), Vector2(21, -36), Vector2(23, -36), Vector2(25, -36), Vector2(27, -35), Vector2(31, -33), Vector2(33, -30), Vector2(35, -27), Vector2(37, -24), Vector2(38, -20), Vector2(39, -16)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Boss_Falling:flip_h")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_1h7u0"]
+resource_name = "falling_belly_right"
+length = 0.633336
+step = 0.0166667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Boss_Falling:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 0.1, 0.166667, 0.216667, 0.283333, 0.366667, 0.416667, 0.483333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 2, 1, 0, 2, 1, 0, 2, 1]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Boss_Falling:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 0.0666667, 0.1, 0.133333, 0.166667, 0.2, 0.233333, 0.266667, 0.316667, 0.366667, 0.4, 0.433333, 0.466667, 0.5, 0.533333, 0.566667, 0.6),
+"transitions": PackedFloat32Array(1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06),
+"update": 0,
+"values": [Vector2(5, 10), Vector2(7, 3), Vector2(9, -3), Vector2(11, -8), Vector2(13, -12), Vector2(15, -15), Vector2(17, -17), Vector2(19, -18), Vector2(21, -19), Vector2(23, -19), Vector2(25, -19), Vector2(27, -18), Vector2(31, -17), Vector2(33, -15), Vector2(35, -13), Vector2(37, -11), Vector2(38, -9), Vector2(39, -6)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Boss_Falling:flip_h")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_vkngc"]
+resource_name = "falling_belly_left"
+length = 0.633336
+step = 0.0166667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Boss_Falling:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 0.1, 0.166667, 0.216667, 0.283333, 0.366667, 0.416667, 0.483333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 2, 1, 0, 2, 1, 0, 2, 1]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Boss_Falling:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 0.0666667, 0.1, 0.133333, 0.166667, 0.2, 0.233333, 0.266667, 0.316667, 0.366667, 0.4, 0.433333, 0.466667, 0.5, 0.533333, 0.566667, 0.6),
+"transitions": PackedFloat32Array(1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06),
+"update": 0,
+"values": [Vector2(-45, 10), Vector2(-47, 3), Vector2(-49, -3), Vector2(-51, -8), Vector2(-53, -12), Vector2(-55, -15), Vector2(-57, -17), Vector2(-59, -18), Vector2(-61, -19), Vector2(-63, -19), Vector2(-65, -19), Vector2(-67, -18), Vector2(-71, -17), Vector2(-73, -15), Vector2(-75, -13), Vector2(-77, -11), Vector2(-78, -9), Vector2(-79, -6)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Boss_Falling:flip_h")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_8smsw"]
 _data = {
 &"RESET": SubResource("Animation_u2fvd"),
@@ -2172,11 +2196,11 @@ _data = {
 &"daze": SubResource("Animation_fk162"),
 &"dodge": SubResource("Animation_l4bl1"),
 &"dodge_big": SubResource("Animation_x8un4"),
-&"falling_belly_left": SubResource("Animation_fly47"),
+&"falling_belly_left": SubResource("Animation_vkngc"),
 &"falling_belly_right": SubResource("Animation_1h7u0"),
 &"falling_down": SubResource("Animation_ix880"),
 &"falling_left": SubResource("Animation_g60ra"),
-&"falling_right": SubResource("Animation_vkngc"),
+&"falling_right": SubResource("Animation_fly47"),
 &"getting_up": SubResource("Animation_xvpt4"),
 &"hook": SubResource("Animation_1ky7l"),
 &"hook_feint": SubResource("Animation_wcngm"),
@@ -2229,11 +2253,10 @@ vframes = 2
 
 [node name="Boss_Falling" type="Sprite2D" parent="." index="2"]
 visible = false
-texture = ExtResource("4_1ohky")
+texture = ExtResource("5_kltfi")
 centered = false
-hframes = 6
-vframes = 2
-frame = 9
+hframes = 4
+frame = 1
 
 [node name="Animations" type="AnimationPlayer" parent="." index="3"]
 libraries = {

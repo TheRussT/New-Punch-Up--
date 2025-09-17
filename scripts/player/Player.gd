@@ -1,7 +1,7 @@
 extends Node2D
 
 var health = 96
-var stamina = 32
+var stamina = 2
 
 var stamina_max = 32
 
