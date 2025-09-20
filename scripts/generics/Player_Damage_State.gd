@@ -6,6 +6,7 @@ extends State
 func damage(value):
 	parent.health -= value & 255
 	parent.stamina -= value >> 32 & 255
+	parent.stamina_recovery_progress = 0
 	# update here as needed
 	if value >> 12 & 1 == 1:
 		# right

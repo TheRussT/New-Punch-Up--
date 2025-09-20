@@ -19,7 +19,7 @@ var has_taunted = false
 var previous_message = -1
 
 func _ready():
-	health = 1
+	health = 96
 	animations = $Animations
 	sprite = $Boss
 	falling_sprite = $Boss_Falling
@@ -193,3 +193,8 @@ func taunt_complete():
 func fight_setup():
 	ring.background.texture = load("res://assets/backgrounds/Boxing_Ring_1_FinalNES.png")
 	ring.enemy_ko_table = ko_table
+	
+	player.stamina_max = 24
+	player.stamina = 24
+	player.stamina_recovery_threshold = 60
+	player.stamina_recovered_amount = 20

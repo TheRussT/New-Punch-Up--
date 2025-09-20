@@ -1,4 +1,4 @@
-[gd_scene load_steps=57 format=3 uid="uid://bn3yc07ohxg3k"]
+[gd_scene load_steps=58 format=3 uid="uid://bn3yc07ohxg3k"]
 
 [ext_resource type="PackedScene" uid="uid://cpx4tj35xbcij" path="res://scenes/generic_enemy.tscn" id="1_a7c7x"]
 [ext_resource type="Script" uid="uid://bnkd6531jqt0" path="res://scripts/scenes/boss_3.gd" id="2_1ohky"]
@@ -56,7 +56,7 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [9]
+"values": [0]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
@@ -1587,39 +1587,63 @@ step = 0.0166667
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Boss_Falling:frame")
+tracks/0/path = NodePath("Boss_Falling:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.0666667, 0.1, 0.15, 0.216667, 0.3, 0.466667, 0.7, 0.933333),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [8, 9, 8, 9, 8, 9, 8, 9, 8]
+"values": [false]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Boss_Falling:position")
+tracks/1/path = NodePath("Boss:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.0333333, 0.0666667, 0.483333, 0.516667, 0.55, 0.583333, 0.616667, 0.683333, 0.716667, 0.75, 0.783333, 0.816667, 0.85, 0.916667, 0.95, 0.983333, 1.01667, 1.05, 1.08333),
-"transitions": PackedFloat32Array(1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06),
-"update": 0,
-"values": [Vector2(0, 0), Vector2(2, -1), Vector2(4, -2), Vector2(2, 0), Vector2(0, 0), Vector2(-2, 0), Vector2(-4, 0), Vector2(-6, 0), Vector2(-4, 0), Vector2(-2, 0), Vector2(0, 0), Vector2(2, 0), Vector2(4, 0), Vector2(6, 0), Vector2(4, 0), Vector2(2, 0), Vector2(0, 0), Vector2(-2, 0), Vector2(-4, 0), Vector2(-6, 0)]
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2(0, 0)]
 }
-tracks/2/type = "method"
+tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath(".")
+tracks/2/path = NodePath("Boss:frame")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [14]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Boss:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/4/type = "method"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "values": [{
-"args": [],
-"method": &"unrage"
+"args": [0, 0, 0, 0, 0, 1],
+"method": &"set_guard"
 }]
 }
 
@@ -2086,7 +2110,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.0333333, 0.0666667, 0.1, 0.133333, 0.166667, 0.2, 0.233333, 0.266667, 0.316667, 0.366667, 0.4, 0.433333, 0.466667, 0.5, 0.533333, 0.566667, 0.6),
 "transitions": PackedFloat32Array(1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06),
 "update": 0,
-"values": [Vector2(5, 0), Vector2(7, -8), Vector2(9, -15), Vector2(11, -21), Vector2(13, -26), Vector2(15, -30), Vector2(17, -33), Vector2(19, -35), Vector2(21, -36), Vector2(23, -36), Vector2(25, -36), Vector2(27, -35), Vector2(31, -33), Vector2(33, -30), Vector2(35, -27), Vector2(37, -24), Vector2(38, -20), Vector2(39, -16)]
+"values": [Vector2(5, 0), Vector2(7, -10), Vector2(9, -19), Vector2(11, -27), Vector2(13, -34), Vector2(15, -40), Vector2(17, -45), Vector2(19, -48), Vector2(21, -50), Vector2(23, -50), Vector2(25, -50), Vector2(27, -49), Vector2(31, -47), Vector2(33, -44), Vector2(35, -41), Vector2(37, -38), Vector2(38, -34), Vector2(39, -30)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -2183,6 +2207,47 @@ tracks/2/keys = {
 "values": [false]
 }
 
+[sub_resource type="Animation" id="Animation_b011k"]
+resource_name = "falling_big"
+length = 0.633336
+step = 0.0166667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Boss_Falling:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 0.1, 0.166667, 0.216667, 0.283333, 0.366667, 0.416667, 0.483333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 2, 1, 0, 2, 1, 0, 2, 1]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Boss_Falling:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 0.0666667, 0.1, 0.133333, 0.166667, 0.2, 0.233333, 0.266667, 0.316667, 0.366667, 0.4, 0.433333, 0.466667, 0.5, 0.533333, 0.566667, 0.6),
+"transitions": PackedFloat32Array(1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06),
+"update": 0,
+"values": [Vector2(-45, 0), Vector2(-47, -8), Vector2(-49, -15), Vector2(-51, -21), Vector2(-53, -26), Vector2(-55, -30), Vector2(-57, -33), Vector2(-59, -35), Vector2(-61, -36), Vector2(-63, -36), Vector2(-65, -36), Vector2(-67, -35), Vector2(-71, -33), Vector2(-73, -30), Vector2(-75, -27), Vector2(-77, -24), Vector2(-78, -20), Vector2(-79, -16)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Boss_Falling:flip_h")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_8smsw"]
 _data = {
 &"RESET": SubResource("Animation_u2fvd"),
@@ -2198,6 +2263,7 @@ _data = {
 &"dodge_big": SubResource("Animation_x8un4"),
 &"falling_belly_left": SubResource("Animation_vkngc"),
 &"falling_belly_right": SubResource("Animation_1h7u0"),
+&"falling_big": SubResource("Animation_b011k"),
 &"falling_down": SubResource("Animation_ix880"),
 &"falling_left": SubResource("Animation_g60ra"),
 &"falling_right": SubResource("Animation_fly47"),
@@ -2256,12 +2322,14 @@ visible = false
 texture = ExtResource("5_kltfi")
 centered = false
 hframes = 4
-frame = 1
 
 [node name="Animations" type="AnimationPlayer" parent="." index="3"]
 libraries = {
 &"": SubResource("AnimationLibrary_8smsw")
 }
+
+[node name="State_Machine" parent="." index="4" node_paths=PackedStringArray("starting_state")]
+starting_state = NodePath("Intro")
 
 [node name="Stamina_Loss" parent="State_Machine" index="18"]
 hits = 1
@@ -2336,7 +2404,7 @@ idle = NodePath("../Idle")
 walking_up = NodePath("../Walking_Up")
 animation_name = "uppercut_left"
 shake_magnitude = 3
-shake_frames = 28
+shake_frames = 2
 area_hit = 5
 punch_damage = 18
 

@@ -1,4 +1,4 @@
-extends State
+extends Player_Damage_State
 
 @export var idle: State
 

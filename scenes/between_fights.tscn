@@ -165,7 +165,7 @@ theme_override_colors/font_color = Color(0.988235, 0.988235, 0.988235, 1)
 theme_override_constants/line_spacing = 0
 theme_override_fonts/font = ExtResource("2_oe7nl")
 theme_override_font_sizes/font_size = 8
-text = "\"Profile\""
+text = "\"profile\""
 
 [node name="Statistics" type="Node2D" parent="Player"]
 position = Vector2(0, 110)

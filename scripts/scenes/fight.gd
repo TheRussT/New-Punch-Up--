@@ -9,22 +9,24 @@ var player
 @onready var player_heathbar = $Ring/Player_Heathbar
 var player_health = 96
 @onready var player_stambar = $Ring/Player_Stambar
-var player_stam = 32
+var player_stam : int
 @onready var enemy_heathbar = $Ring/Enemy_Heathbar
-var enemy_health
+var enemy_health : int
 @onready var enemy_stambar = $Ring/Enemy_Stambar
-var enemy_stam
+var enemy_stam : int
 @onready var star_animations = $Ring/Stars/Animations
 
 @onready var background = $Ring/Background
 
 var player_times_kod = 0
+var player_times_kod_round = 0
 var enemy_times_kod = 0
+var enemy_times_kod_round = 0
 
 var timer_speed = 0
 var time = 180.0
 
-var enemy_ko_table = {0:[1,0,0,0,0,0,0,0,0,0,0], 1:[2,0,1,0,3], 2:[4,0,0,0,0,1,0,0,3]}
+var enemy_ko_table = {0:[1,0,0,0,0,0,0,0,0,0,0], 1:[1,0,0,0,0,0,0,0,0,0,0]}
 
 func _ready() -> void:
 	ref.instantiate(self)
@@ -40,6 +42,7 @@ func _ready() -> void:
 	enemy.ring = self
 	enemy.fight_setup()
 	
+	player_stam = player.stamina_max
 	player_stambar.max_value = player_stam
 	
 	enemy_health = enemy.health
@@ -48,6 +51,7 @@ func _ready() -> void:
 	#enemy_stam = 1
 
 func start_round():
+	$Ring/Round_Number.set_frame(round_number)
 	round_number += 1
 	
 	time = 180.0

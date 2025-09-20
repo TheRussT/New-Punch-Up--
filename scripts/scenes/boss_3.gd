@@ -18,7 +18,7 @@ func _ready():
 	animations = $Animations
 	sprite = $Boss
 	falling_sprite = $Boss_Falling
-	stamina = 16
+	stamina = 1
 	stamina_max = 16
 	stamina_next = 12
 	idle_cooldown = 0.05
@@ -94,7 +94,17 @@ func check_conditions(value, result, state):
 			#schedule_state = TAUNT
 			#schedule_index = 0
 	# Checks 
+func between_round_setup(round_number):
+	Global.scene_manager.current_scene.player_message = "I'll wear\nyou down\neventually\nm'babe.\nyou can't\ndodge\nforever!"
+	Global.scene_manager.current_scene.enemy_message = "Ha! I take\nhits\nbetter\nthan any\nother\nfutbol\nplayer"
+	Global.scene_manager.current_scene.set_up_messages(round_number)
+
 
 func fight_setup():
 	ring.background.texture = load("res://assets/backgrounds/Boxing_Ring_3_FinalNES.png")
 	ring.enemy_ko_table = ko_table
+	
+	player.stamina_max = 16
+	player.stamina = 16
+	player.stamina_recovery_threshold = 40
+	player.stamina_recovered_amount = 12

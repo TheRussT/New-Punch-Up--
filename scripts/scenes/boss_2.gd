@@ -12,10 +12,12 @@ enum {
 
 var rage = 0
 
+var has_taunted = false
 var previous_message = -1
 
+
 func _ready():
-	health = 1
+	health = 96
 	animations = $Animations
 	sprite = $Boss
 	falling_sprite = $Boss_Falling
@@ -81,28 +83,22 @@ func check_conditions(value, result, state):
 			schedule_index = 0
 	# Checks 
 
-#func between_round_setup(round_number):
-	#if ring.enemy_times_kod == 0:
-		#Global.scene_manager.current_scene.player_message = "After he\npunches,\nhe leaves\nhimeself\nwide open!\n...      \nwell, more\nthan usual"
-		#Global.scene_manager.current_scene.enemy_message = "Monsieur!\nAre you\nnot aware?\ni come\nfrom a \nlong line\nof sir\nrendre-ers"
-	#elif has_taunted && previous_message != 1:
-		#Global.scene_manager.current_scene.player_message = "that old\nsir rendre\ngot wise\nand raised\nhis guard.\nAlthough\nhe looks a\nbit winded"
-		#Global.scene_manager.current_scene.enemy_message = "I'm not \neven old!\nI'm at the\nen-#cough#\nbeginning\nof my\ncareer!"
-		#previous_message = 1
-	#elif (ring.player_times_kod > ring.enemy_times_kod ||
-	#(ring.player_times_kod == ring.enemy_times_kod && health > player.health)):
-		#Global.scene_manager.current_scene.player_message = "I think I\ncan fit in\nsome extra\nhits if I\npunch\nright as\nhe's reco-\nvering!"
-		#Global.scene_manager.current_scene.enemy_message = "I need\nthis win\nto get \nover the\nhump...  \nI can't\nlose\nanother 90"
-	#else:
-		#if ring.enemy_times_kod > ring.player_times_kod:
-			#Global.scene_manager.current_scene.player_message = "left right\nleft right\nI'm\nadvancing\non you\nfast,\n\"monsieur\""
-			#Global.scene_manager.current_scene.enemy_message = "I was over\nconfident,\ni think\ni'll\ncapitulate\nsoon!"
-		#else:
-			#Global.scene_manager.current_scene.player_message = "I'll need\nto stay on\nmy toes.\nchip away\nat this\nloser's\nstamina"
-			#Global.scene_manager.current_scene.enemy_message = "Why does\nno one\nremember\nany of my\nprevious\nvictories?"
-	#Global.scene_manager.current_scene.set_up_messages(round_number)
+func between_round_setup(round_number):
+	if schedule_state == ENRAGED:
+		Global.scene_manager.current_scene.player_message = "Wow! I\nsure\nworked\nthat guy\nup..."
+		Global.scene_manager.current_scene.enemy_message = "Rrgh #huf#\nrgh"
+	if has_taunted:
+		Global.scene_manager.current_scene.player_message = "When he\ngets angry\nhe gets\nsloppy and\nloses\nfocus!"
+		Global.scene_manager.current_scene.enemy_message = "I cant\n\"stomach\"\nmany hits.\nhow \"low\".\nHA! Ha!\n...\ndon't aim\nthere ok?"
+	else:
+		Global.scene_manager.current_scene.player_message = "I think I\ncan\nexploit\nhis soft\nunderbelly\nhe's\ndefinitely\ntrying to\nguard it"
+		Global.scene_manager.current_scene.enemy_message = "If you \nthink you\ncan beat\nme, you're\nin de-nile\nHahaha!"
+		previous_message = 1
+	Global.scene_manager.current_scene.set_up_messages(round_number)
+	unrage()
 
 func taunt_complete():
+	has_taunted = true
 	schedule_state = ENRAGED
 	$State_Machine/Idle.animation = "idle_up"
 	schedule_index = 0
@@ -123,3 +119,8 @@ func unrage():
 func fight_setup():
 	ring.background.texture = load("res://assets/backgrounds/Boxing_Ring_2_FinalNES.png")
 	ring.enemy_ko_table = ko_table
+	
+	player.stamina_max = 32
+	player.stamina = 32
+	player.stamina_recovery_threshold = 32
+	player.stamina_recovered_amount = 16

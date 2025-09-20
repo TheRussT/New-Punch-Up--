@@ -39,7 +39,7 @@ func process(delta):
 			parent.ring.player_got_up()
 			parent.health = 96
 			parent.ring.update_player_health(parent.health)
-			parent.stamina = 24
+			parent.stamina = parent.stamina_recovered_amount
 			parent.ring.update_player_stam(parent.stamina)
 			return walking_up
 	return null

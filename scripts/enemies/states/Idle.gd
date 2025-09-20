@@ -16,7 +16,7 @@ var animation = "idle"
 
 func enter():
 	#print(parent.idle_guard)
-	if parent.schedule_timer < parent.idle_cooldown * 120:
+	if parent.schedule_timer < parent.idle_cooldown * 120 && parent.schedule_timer >= 0:
 		parent.schedule_timer = parent.idle_cooldown * 120
 	if parent.stamina_regain_timer > 0.5:
 		parent.stamina_regain_timer -= 0.5

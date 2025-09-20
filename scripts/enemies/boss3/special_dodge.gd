@@ -5,7 +5,7 @@ extends Enemy_Damage_State
 # Called when the node enters the scene tree for the first time.
 func enter():
 	if parent.recovery_hits > 0:
-		print("big dodge")
+		#print("big dodge")
 		parent.recovery_hits -= 1
 		parent.animations.play("dodge_big")
 	else:

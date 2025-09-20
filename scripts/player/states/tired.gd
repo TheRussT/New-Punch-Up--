@@ -8,6 +8,8 @@ extends Player_Damage_State
 func enter():
 	parent.animations.play("tired")
 	parent.animations.advance(0)
+	if parent.sprite.material.get_shader_parameter("tolerance") == 0.0:
+		parent.sprite.material.set_shader_parameter("tolerance", 0.1)
 
 func process(delta):
 	if parent.input_buffer.size() != 0:

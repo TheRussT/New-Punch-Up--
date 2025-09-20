@@ -13,6 +13,7 @@ extends Player_Damage_State
 
 func enter():
 	if parent.stamina <= 0:
+		parent.enemy.handle_state()
 		parent.state_machine.change_state(tired)
 	else:
 		parent.animations.play("idle")

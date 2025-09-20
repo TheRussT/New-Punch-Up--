@@ -6,7 +6,7 @@ extends State
 func enter():
 	parent.animations.play("walking_up")
 	parent.animations.advance(0)
-	
+	parent.ring.set_timer_speed(0)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func process(delta):

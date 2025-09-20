@@ -89,7 +89,7 @@ func handle_pictures(delta):
 
 func handle_scroll(delta):
 	scroll_progress += delta
-	position.y = int(-224 * (scroll_progress/3))
+	position.y = int(-224 * (scroll_progress))
 	if(position.y <= -224):
 		scroll_active = false
 		#GlobalScript.round += 1
@@ -110,12 +110,3 @@ func set_up_messages(round_number : int):
 	$Player/Statistics.visible = false
 	is_reading = true
 	
-
-#I cant
-#"stomach"
-#many hits.
-#how "low".
-#HA! Ha!
-#...
-#don't aim
-#there ok?

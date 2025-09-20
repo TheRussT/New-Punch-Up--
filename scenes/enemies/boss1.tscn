@@ -2052,6 +2052,9 @@ libraries = {
 &"": SubResource("AnimationLibrary_eqhtw")
 }
 
+[node name="State_Machine" parent="." index="4" node_paths=PackedStringArray("starting_state")]
+starting_state = NodePath("Intro")
+
 [node name="Stamina_Loss" parent="State_Machine" index="18"]
 hits = 8
 
