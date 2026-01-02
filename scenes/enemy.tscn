@@ -1394,7 +1394,7 @@ script = ExtResource("13_rogs8")
 idle = NodePath("../Idle")
 walking_up = NodePath("../Walking_Up")
 
-[node name="Idle" type="Node" parent="State_Machine" node_paths=PackedStringArray("high_left", "high_right", "low_left", "low_right", "high_block", "low_block", "jab", "hook", "dodge")]
+[node name="Idle" type="Node" parent="State_Machine" node_paths=PackedStringArray("high_left", "high_right", "low_left", "low_right", "high_block", "low_block", "dodge")]
 script = ExtResource("13_kfpcm")
 high_left = NodePath("../High_Hit_Left")
 high_right = NodePath("../High_Hit_Right")
@@ -1402,8 +1402,6 @@ low_left = NodePath("../Low_Hit_Left")
 low_right = NodePath("../Low_Hit_Right")
 high_block = NodePath("../High_Block")
 low_block = NodePath("../Low_Block")
-jab = NodePath("../Jab")
-hook = NodePath("../Hook")
 dodge = NodePath("../Dodge")
 
 [node name="Jab" type="Node" parent="State_Machine" node_paths=PackedStringArray("idle", "daze", "walking_up")]

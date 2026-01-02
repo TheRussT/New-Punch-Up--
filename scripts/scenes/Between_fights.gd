@@ -9,11 +9,39 @@ var is_reading
 #var read_timer
 var player_message
 var enemy_message
-var mess_table = ["you undig-\nnified\namerican!\ni come from\na long line\nof sir-\nrendreres!" , "I was over-\nconfident,\ni think\ni'll\ncapitulate\nsoon!" , "I'd better\nsay au\nrevoir to\nmy family",
-"","if you\nthink you\ncan beat\nme, you're\nin de-nile\nhahaha!","","","fool! I\ntake hits\nbetter\nthan any\nother \nsoccer \nplayer!"]
+#var mess_table = ["you undig-\nnified\namerican!\ni come from\na long line\nof sir-\nrendreres!" , "I was over-\nconfident,\ni think\ni'll\ncapitulate\nsoon!" , "I'd better\nsay au\nrevoir to\nmy family",
+#"","if you\nthink you\ncan beat\nme, you're\nin de-nile\nhahaha!","","","fool! I\ntake hits\nbetter\nthan any\nother \nsoccer \nplayer!"]
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	fight_index = Global.current_fight_index
+	
+	# can store the message and only change upon win/loss but this isnt
+	# that inefficient
+	var wins = Global.wins
+	var record_text = ""
+	if (wins < 10):
+		record_text += " "
+	if (wins > 99):
+		wins = 99
+	record_text += str(wins)
+	record_text += "-"
+	var losses = Global.losses
+	if (losses < 10):
+		record_text += " "
+	if (losses > 99):
+		losses = 99
+	record_text += str(losses)
+	record_text += " "
+	
+	var kos = Global.kos
+	if (kos < 10):
+		record_text += " "
+	if (kos > 99):
+		kos = 99
+	record_text += str(kos)
+	record_text += "ko"
+	$Player/record.text = record_text
+	
 	#may refactor to not be an if-else but currently is the best option
 	if fight_index == 0:
 		$Enemy/record.text = " 1- 9  1ko"

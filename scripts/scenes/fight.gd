@@ -65,6 +65,9 @@ func start_round():
 	player.stamina = player.stamina_max
 	player_stam = player.stamina
 	
+	player_times_kod_round = 0
+	enemy_times_kod_round = 0
+	
 	ref.instantiate(self)
 	
 
@@ -113,12 +116,14 @@ func process_timer(delta):
 func handle_decision():
 	if player_times_kod > enemy_times_kod || (player_times_kod
 	== enemy_times_kod && player.health > enemy.health):
+		Global.wins += 1;
 		Global.scene_manager.change_scene("res://scenes/win_screen.tscn")
 		Global.scene_manager.current_scene.display_screen(0.0, 2)
 		if Global.fights_available < Global.current_fight_index + 2:
 			Global.fights_available = Global.current_fight_index + 2
 	else:
-		pass
+		Global.losses += 1;
+		Global.scene_manager.change_scene("res://scenes/loss_screen.tscn")
 		#lose screen
 
 func handle_stars(value):
@@ -149,10 +154,12 @@ func update_enemy_stam(value):
 
 func handle_player_kod():
 	player_times_kod += 1
+	player_times_kod_round += 1
 	ref.player_activated()
 
 func handle_enemy_kod():
 	enemy_times_kod += 1
+	enemy_times_kod_round += 1
 	ref.enemy_activated()
 
 func player_got_up():

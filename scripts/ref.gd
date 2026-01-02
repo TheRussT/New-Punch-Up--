@@ -21,7 +21,7 @@ func process(delta):
 	if state == WALKING_UP:
 		if !animations.is_playing():
 			if is_player_kod:
-				if ring.player_times_kod < 3:
+				if ring.player_times_kod_round < 3:
 					state = COUNT
 					animations.play("count")
 					ring.player.activate(0) # activate
@@ -29,7 +29,7 @@ func process(delta):
 					state = TKO
 					animations.play("tko")
 			else:
-				if ring.enemy_times_kod < 3:
+				if ring.enemy_times_kod_round < 3:
 					state = COUNT
 					animations.play("count")
 				else:
@@ -49,8 +49,11 @@ func process(delta):
 	elif state == KO:
 		if !animations.is_playing():
 			if is_player_kod:
-				pass #lose
+				Global.losses += 1
+				Global.scene_manager.change_scene("res://scenes/loss_screen.tscn")
 			else:
+				Global.wins += 1
+				Global.kos += 1
 				Global.scene_manager.change_scene("res://scenes/win_screen.tscn")
 				Global.scene_manager.current_scene.display_screen(ring.time + 180 * (ring.round_number - 1), 0)
 				if Global.fights_available < Global.current_fight_index + 2:
@@ -58,8 +61,11 @@ func process(delta):
 	elif state == TKO:
 		if !animations.is_playing():
 			if is_player_kod:
-				pass #lose
+				Global.losses += 1
+				Global.scene_manager.change_scene("res://scenes/loss_screen.tscn")
 			else:
+				Global.wins += 1
+				Global.kos += 1
 				Global.scene_manager.change_scene("res://scenes/win_screen.tscn")
 				Global.scene_manager.current_scene.display_screen(ring.time + 180 * (ring.round_number - 1), 1)
 				if Global.fights_available < Global.current_fight_index + 2:

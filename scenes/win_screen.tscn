@@ -12,6 +12,7 @@ script = ExtResource("1_2l6cc")
 offset_right = 256.0
 offset_bottom = 224.0
 color = Color(0, 0.345098, 0.972549, 1)
+metadata/_edit_use_anchors_ = true
 
 [node name="Gloves" type="Sprite2D" parent="."]
 position = Vector2(80, 8)
@@ -36,6 +37,7 @@ theme_override_constants/line_spacing = 0
 theme_override_fonts/font = ExtResource("3_0lrm4")
 theme_override_font_sizes/font_size = 8
 text = "You Win!"
+metadata/_edit_use_anchors_ = true
 
 [node name="you_won_by" type="Label" parent="."]
 texture_filter = 1
@@ -48,6 +50,7 @@ theme_override_constants/line_spacing = 0
 theme_override_fonts/font = ExtResource("3_0lrm4")
 theme_override_font_sizes/font_size = 8
 text = "you won by: "
+metadata/_edit_use_anchors_ = true
 
 [node name="win_method" type="Label" parent="."]
 texture_filter = 1
@@ -60,15 +63,18 @@ theme_override_constants/line_spacing = 0
 theme_override_fonts/font = ExtResource("3_0lrm4")
 theme_override_font_sizes/font_size = 8
 text = "knonckout"
+metadata/_edit_use_anchors_ = true
 
 [node name="ko_info" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
+metadata/_edit_use_anchors_ = true
 
 [node name="with_a_time_of" type="Label" parent="ko_info"]
 texture_filter = 1
+layout_mode = 0
 offset_left = 64.0
 offset_top = 80.0
 offset_right = 184.0
@@ -78,9 +84,11 @@ theme_override_constants/line_spacing = 0
 theme_override_fonts/font = ExtResource("3_0lrm4")
 theme_override_font_sizes/font_size = 8
 text = "with a time of:"
+metadata/_edit_use_anchors_ = true
 
 [node name="time" type="Label" parent="ko_info"]
 texture_filter = 1
+layout_mode = 0
 offset_left = 96.0
 offset_top = 88.0
 offset_right = 216.0
@@ -90,9 +98,11 @@ theme_override_constants/line_spacing = 0
 theme_override_fonts/font = ExtResource("3_0lrm4")
 theme_override_font_sizes/font_size = 8
 text = "3:00.00"
+metadata/_edit_use_anchors_ = true
 
 [node name="round" type="Label" parent="ko_info"]
 texture_filter = 1
+layout_mode = 0
 offset_left = 96.0
 offset_top = 96.0
 offset_right = 216.0
@@ -102,10 +112,12 @@ theme_override_constants/line_spacing = 0
 theme_override_fonts/font = ExtResource("3_0lrm4")
 theme_override_font_sizes/font_size = 8
 text = "round 1"
+metadata/_edit_use_anchors_ = true
 
 [node name="new_record" type="Label" parent="ko_info"]
 visible = false
 texture_filter = 1
+layout_mode = 0
 offset_left = 80.0
 offset_top = 112.0
 offset_right = 200.0
@@ -128,8 +140,10 @@ theme_override_fonts/font = ExtResource("3_0lrm4")
 theme_override_font_sizes/font_size = 8
 text = "press space
 to continue!"
+metadata/_edit_use_anchors_ = true
 
 [node name="Fade" type="ColorRect" parent="."]
 offset_right = 256.0
 offset_bottom = 224.0
 color = Color(0, 0, 0, 0)
+metadata/_edit_use_anchors_ = true

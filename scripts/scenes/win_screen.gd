@@ -42,4 +42,14 @@ func display_screen(time_total, win_type):
 	var seconds = milliseconds_remaining / 100
 	var milliseconds = milliseconds_remaining % 100
 	
-	$ko_info/time.text = str(minutes) + ":" + str(seconds) + "." + str(milliseconds)
+	var seconds_string = ""
+	if (seconds < 10):
+		seconds_string = seconds_string + "0"
+	seconds_string = seconds_string + str(seconds)
+	
+	var milliseconds_string = ""
+	if (milliseconds < 10):
+		milliseconds_string = milliseconds_string + "0"
+	milliseconds_string = milliseconds_string + str(milliseconds)
+	
+	$ko_info/time.text = str(minutes) + ":" + seconds_string + "." + milliseconds_string

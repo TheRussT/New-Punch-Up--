@@ -1,0 +1,45 @@
+[gd_scene load_steps=4 format=3 uid="uid://dyp44iifjmhm6"]
+
+[ext_resource type="Script" uid="uid://b3vwt2v34hjw7" path="res://scripts/scenes/loss_screen.gd" id="1_ydadx"]
+[ext_resource type="Texture2D" uid="uid://cmhcj5dwj7syk" path="res://assets/backgrounds/Lossscreen.png" id="2_mwy8c"]
+[ext_resource type="FontFile" uid="uid://2qrl2e1ftj04" path="res://assets/backgrounds/punch-out-nes.ttf" id="3_bc3b8"]
+
+[node name="loss_screen" type="Node2D"]
+script = ExtResource("1_ydadx")
+
+[node name="Background" type="Sprite2D" parent="."]
+texture = ExtResource("2_mwy8c")
+centered = false
+
+[node name="you_win" type="Label" parent="."]
+texture_filter = 1
+offset_left = 96.0
+offset_top = 8.0
+offset_right = 160.0
+offset_bottom = 16.0
+theme_override_colors/font_color = Color(0.988235, 0.988235, 0.988235, 1)
+theme_override_constants/line_spacing = 0
+theme_override_fonts/font = ExtResource("3_bc3b8")
+theme_override_font_sizes/font_size = 8
+text = "You Lose"
+metadata/_edit_use_anchors_ = true
+
+[node name="continue" type="Label" parent="."]
+texture_filter = 1
+offset_left = 80.0
+offset_top = 200.0
+offset_right = 200.0
+offset_bottom = 216.0
+theme_override_colors/font_color = Color(0.988235, 0.988235, 0.988235, 1)
+theme_override_constants/line_spacing = 0
+theme_override_fonts/font = ExtResource("3_bc3b8")
+theme_override_font_sizes/font_size = 8
+text = " continue?
+press space"
+metadata/_edit_use_anchors_ = true
+
+[node name="Fade" type="ColorRect" parent="."]
+offset_right = 256.0
+offset_bottom = 224.0
+color = Color(0, 0, 0, 0)
+metadata/_edit_use_anchors_ = true

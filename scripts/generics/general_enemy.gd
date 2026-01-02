@@ -34,6 +34,7 @@ var shake_function_progress = 0
 var idle_cooldown = 0.25
 
 var stamina_regain_timer = 0.0
+var stamina_regain_threshold = 3
 
 var available_hits = 1
 var recovery_hits = 0
