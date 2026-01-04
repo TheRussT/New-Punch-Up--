@@ -16,7 +16,7 @@ func enter():
 	timer = 0.0
 
 func exit():
-	parent.animations.speed_scale = 1
+	parent.animations.speed_scale = parent.animation_speed
 	parent.position.x = parent.base_x
 	parent.position.y = parent.base_y
 	parent.ring.player_got_up()

@@ -33,8 +33,22 @@ var shake_function_progress = 0
 
 var idle_cooldown = 0.25
 
-var stamina_regain_timer = 0.0
-var stamina_regain_threshold = 3
+# new stamina controls
+var stamina_gain_rate = 1 # per second
+# bits:  is player OTR  is OTR
+#       |      0      |    0   |
+# maps to 0 = true neutral 1 = disadvantage 2 = advantage 3 = both are OTR
+var advantage_state = 0
+var animation_speed = 1
+var stamina_regain_amount = 0.0
+#var stamina_regain_threshold = 3
+var OTR_buffer = 0
+var OTR_max = 32
+
+var recent_strays = 0
+var recent_combos = 0
+var recent_player_dodges = 0
+var recent_player_parries = 0
 
 var available_hits = 1
 var recovery_hits = 0
@@ -64,6 +78,8 @@ func _process(delta):
 		handle_shake(delta)
 	else:
 		state_machine.process(delta)
+	
+	# print(recent_strays)
 
 func handle_shake(delta):
 	if shake_timer <= 0:
@@ -123,6 +139,68 @@ func check_conditions(value, result, state):
 
 func fight_setup():
 	pass
+
+func change_stamina(value : int, handles_stamina_loss : bool = false):
+	if advantage_state & 1: #on the ropes
+		if value > 0: #gaining stamina
+			OTR_buffer += value
+			#could have it flash when enemy is close to recovering
+			if OTR_buffer >= OTR_max:
+				#OTR_buffer = 0
+				exit_OTR()
+				stamina += 16
+				ring.update_enemy_stam(stamina)
+				#undo ring settings
+		else: #losing stamina
+			stamina += value
+			ring.update_enemy_stam(stamina)
+			# can turn off so enemy buffers only receive positive changes
+			OTR_buffer += value
+			if OTR_buffer < 0:
+				OTR_buffer = 0
+	else:
+		stamina += value
+		ring.update_enemy_stam(stamina)
+		if stamina <= 16:
+			enter_OTR()
+			# do ring settings
+		elif stamina > stamina_max:
+			stamina = stamina_max
+	if handles_stamina_loss:
+		if stamina < 1:
+			state_machine.change_state($State_Machine/Stamina_Loss)
+
+func enter_OTR():
+	OTR_buffer = 0
+	advantage_state |= 1
+	animation_speed = 0.92
+	animations.speed_scale = animation_speed
+
+func exit_OTR():
+	print("parent OTR exit")
+	advantage_state &= 6
+	animation_speed = 1
+	animations.speed_scale = animation_speed
+
+func exit_stamina_loss():
+	advantage_state &= 3
+	exit_OTR()
+	stamina = 0
+	change_stamina(stamina_next)
+
+func add_stray():
+	recent_strays += 1
+	print("adding - strays are now " + str(recent_strays))
+	await get_tree().create_timer(5).timeout
+	recent_strays -= 1
+	print("removing - strays are now " + str(recent_strays))
+
+func add_combo():
+	recent_combos += 1
+	print("adding - combos are now " + str(recent_combos))
+	await get_tree().create_timer(5).timeout
+	recent_combos -= 1
+	print("removing - combos are now " + str(recent_combos))
 
 func between_round_setup(round_number : int):
 	#can maybe verify this is the between fights scene

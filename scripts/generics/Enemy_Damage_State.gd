@@ -13,35 +13,32 @@ func damage(value):
 		else:
 			pass
 		parent.guard = parent.idle_guard
+		parent.change_stamina(-1, true)
 		return 8
 	elif parent.guard[guard_position] == 7:
-		parent.stamina -= 1
-		parent.ring.update_enemy_stam(parent.stamina)
-		parent.handle_state()
 		if guard_position < 2:
 			damage_react(32, 2, parent.get_child(4).get_child(5))
 		elif guard_position < 4:
 			damage_react(32, 2, parent.get_child(4).get_child(12)) #14
 		else:
 			pass
-		if parent.stamina < 1:
-			parent.state_machine.change_state(parent.get_child(4).get_child(18))
-		else:
-			parent.guard = parent.idle_guard
+		#if parent.stamina < 1:
+			#parent.state_machine.change_state(parent.get_child(4).get_child(18))
+		#else:
+			#parent.guard = parent.idle_guard
+		parent.change_stamina(-3, true)
 		return 7
 	elif parent.guard[guard_position] == 6:
 		damage_react(8, 0, parent.get_child(4).get_child(1))
 		parent.guard = parent.idle_guard
 		return 6
 	elif parent.guard[guard_position] == 5:
-		parent.stamina -= 1
-		parent.ring.update_enemy_stam(parent.stamina)
-		parent.handle_state()
 		damage_react(12, 0, parent.get_child(4).get_child(1))
-		if parent.stamina < 1:
-			parent.state_machine.change_state(parent.get_child(4).get_child(18))
-		else:
-			parent.guard = parent.idle_guard
+		#if parent.stamina < 1:
+			#parent.state_machine.change_state(parent.get_child(4).get_child(18))
+		#else:
+			#parent.guard = parent.idle_guard
+		parent.change_stamina(-3, true)
 		return 5
 	elif parent.guard[guard_position] == 4:
 		if guard_position < 2:
@@ -75,9 +72,7 @@ func damage(value):
 				parent.shake_timer = 0.333
 				parent.total_shake_time = 0.333
 				return 0
-			parent.stamina -= (value & 255)/8
-			parent.ring.update_enemy_stam(parent.stamina)
-			parent.handle_state()
+			parent.change_stamina(-(value & 255)/2)
 			return 3
 			
 		if parent.guard[guard_position] == 0:
@@ -94,11 +89,11 @@ func damage(value):
 			parent.shake_timer = 0.05
 			parent.total_shake_time = 0.05
 			parent.shake_magnitude = 2
-			#parent.handle_state()
+			parent.change_stamina(-1 - parent.recent_combos / 4)
+			parent.add_combo()
 			return 1
-		parent.stamina -= 1
-		parent.ring.update_enemy_stam(parent.stamina)
-		parent.handle_state()
+		parent.change_stamina(-4 - min(parent.recent_strays, 4))
+		parent.add_stray()
 		if parent.guard[guard_position] == 2:
 			parent.star_flag = true
 			return 2

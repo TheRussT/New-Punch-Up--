@@ -1,13 +1,30 @@
-[gd_scene load_steps=46 format=3 uid="uid://bwcvjl1dnklih"]
+[gd_scene load_steps=49 format=3 uid="uid://bwcvjl1dnklih"]
 
 [ext_resource type="PackedScene" uid="uid://cpx4tj35xbcij" path="res://scenes/generic_enemy.tscn" id="1_0wh14"]
 [ext_resource type="Script" uid="uid://d32hnd7by6p4b" path="res://scripts/scenes/enemy1.gd" id="2_7vm6n"]
 [ext_resource type="Texture2D" uid="uid://di8fidndwhodx" path="res://assets/enemies/SirRendrefinalNES.png" id="3_gwncw"]
+[ext_resource type="Shader" uid="uid://do160ashhfwf8" path="res://scripts/shaders/boss.gdshader" id="3_s6kl7"]
 [ext_resource type="Texture2D" uid="uid://cjixtmx40ga4j" path="res://assets/enemies/Sir Rendre_falling_finalNES.png" id="4_wpsue"]
 [ext_resource type="Script" uid="uid://ci21xin6150ge" path="res://scripts/enemies/boss1/Jab.gd" id="5_rmc3d"]
 [ext_resource type="Script" uid="uid://dtyl45bcje1dq" path="res://scripts/enemies/boss1/Hook.gd" id="6_jeprl"]
 [ext_resource type="Script" uid="uid://dral8eeglnw7r" path="res://scripts/enemies/boss1/hook_big.gd" id="7_2s8eg"]
 [ext_resource type="Script" uid="uid://nm3wu3vo0nl" path="res://scripts/enemies/boss1/taunt.gd" id="8_6038y"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0dc05"]
+shader = ExtResource("3_s6kl7")
+shader_parameter/target_color = Color(0, 0, 0, 1)
+shader_parameter/replace_color = Color(0.894118, 1, 0.345098, 1)
+shader_parameter/target_color2 = Color(0, 0, 0, 1)
+shader_parameter/replace_color2 = Color(0, 0, 0, 1)
+shader_parameter/tolerance = 0.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_s6kl7"]
+shader = ExtResource("3_s6kl7")
+shader_parameter/target_color = Color(0, 0, 0, 1)
+shader_parameter/replace_color = Color(0.972549, 0.470588, 0.972549, 1)
+shader_parameter/target_color2 = Color(0, 0, 0, 1)
+shader_parameter/replace_color2 = Color(0, 0, 0, 1)
+shader_parameter/tolerance = 0.0
 
 [sub_resource type="Animation" id="Animation_lw6sq"]
 length = 0.001
@@ -2034,6 +2051,7 @@ position = Vector2(29, 6)
 frame = 0
 
 [node name="Boss" type="Sprite2D" parent="." index="1"]
+material = SubResource("ShaderMaterial_0dc05")
 texture = ExtResource("3_gwncw")
 centered = false
 hframes = 12
@@ -2041,6 +2059,7 @@ vframes = 3
 
 [node name="Boss_Falling" type="Sprite2D" parent="." index="2"]
 visible = false
+material = SubResource("ShaderMaterial_s6kl7")
 texture = ExtResource("4_wpsue")
 centered = false
 hframes = 6
@@ -2051,6 +2070,7 @@ frame = 9
 libraries = {
 &"": SubResource("AnimationLibrary_eqhtw")
 }
+speed_scale = 4.0
 
 [node name="State_Machine" parent="." index="4" node_paths=PackedStringArray("starting_state")]
 starting_state = NodePath("Intro")

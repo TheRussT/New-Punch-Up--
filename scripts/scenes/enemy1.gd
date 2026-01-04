@@ -23,9 +23,9 @@ func _ready():
 	animations = $Animations
 	sprite = $Boss
 	falling_sprite = $Boss_Falling
-	stamina = 12
-	stamina_max = 12
-	stamina_next = 9
+	stamina = 64
+	stamina_max = 64
+	stamina_next = 48
 	guard = [3,3,3,3,3]
 	idle_guard = [3,3,3,3,3]
 	left_high_recovery_guard = [3,3,3,3,3,1]
@@ -153,7 +153,7 @@ func check_conditions(value, result, state):
 				if total_idle_hits > 8:
 					var temp_star = idle_guard[4]
 					idle_guard = [8,8,8,8,temp_star]
-					stamina_regain_timer = -1000
+					#stamina_regain_timer = -1000
 					$State_Machine/Idle.animation = "idle_up"
 					schedule_state = TAUNT
 					schedule_timer = -1
@@ -198,3 +198,19 @@ func fight_setup():
 	player.stamina = 24
 	player.stamina_recovery_threshold = 60
 	player.stamina_recovered_amount = 20
+
+
+func enter_OTR():
+	OTR_buffer = 0
+	advantage_state |= 1
+	animation_speed = 0.92
+	animations.speed_scale = animation_speed
+	$Boss.material.set_shader_parameter("replace_color", Color("e40058"))
+	$Boss.material.set_shader_parameter("tolerance", 0.1)
+
+func exit_OTR():
+	print("OTR exit")
+	advantage_state &= 2
+	animation_speed = 1
+	animations.speed_scale = animation_speed
+	$Boss.material.set_shader_parameter("tolerance", 0.0)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=58 format=3 uid="uid://bn3yc07ohxg3k"]
+[gd_scene load_steps=59 format=3 uid="uid://bn3yc07ohxg3k"]
 
 [ext_resource type="PackedScene" uid="uid://cpx4tj35xbcij" path="res://scenes/generic_enemy.tscn" id="1_a7c7x"]
 [ext_resource type="Script" uid="uid://bnkd6531jqt0" path="res://scripts/scenes/boss_3.gd" id="2_1ohky"]
@@ -16,6 +16,14 @@
 shader = ExtResource("2_wwowf")
 shader_parameter/target_color = Color(0, 0, 0, 1)
 shader_parameter/replace_color = Color(0.235294, 0.737255, 0.988235, 1)
+shader_parameter/target_color2 = Color(0, 0, 0, 1)
+shader_parameter/replace_color2 = Color(0, 0, 0, 1)
+shader_parameter/tolerance = 0.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_84vdx"]
+shader = ExtResource("2_wwowf")
+shader_parameter/target_color = Color(0, 0, 0, 1)
+shader_parameter/replace_color = Color(0.972549, 0.470588, 0.972549, 1)
 shader_parameter/target_color2 = Color(0, 0, 0, 1)
 shader_parameter/replace_color2 = Color(0, 0, 0, 1)
 shader_parameter/tolerance = 0.0
@@ -2287,6 +2295,7 @@ vframes = 2
 
 [node name="Boss_Falling" type="Sprite2D" parent="." index="2"]
 visible = false
+material = SubResource("ShaderMaterial_84vdx")
 texture = ExtResource("5_kltfi")
 centered = false
 hframes = 4

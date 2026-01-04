@@ -149,6 +149,8 @@ func update_enemy_health(value):
 func update_player_stam(value):
 	player_stam = value
 
+
+
 func update_enemy_stam(value):
 	enemy_stam = value
 

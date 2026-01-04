@@ -19,5 +19,7 @@ func enter():
 func process(delta):
 	if !parent.animations.is_playing():
 		parent.available_hits = 0
+		if parent.stamina < 1:
+			parent.exit_stamina_loss()
 		return idle
 	return null

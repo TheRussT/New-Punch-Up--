@@ -21,7 +21,7 @@ func _ready():
 	stamina = 8
 	stamina_max = 8
 	stamina_next = 1
-	stamina_regain_threshold = 1000
+	#stamina_regain_threshold = 1000
 	idle_cooldown = 0.05
 	base_x = 100
 	base_y = 88

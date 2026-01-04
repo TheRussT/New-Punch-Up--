@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://dlj06bmwedjwi"]
+[gd_scene load_steps=27 format=3 uid="uid://dlj06bmwedjwi"]
 
 [ext_resource type="Script" uid="uid://k3gm1lif0mn2" path="res://scripts/scenes/fight.gd" id="1_5mf5x"]
 [ext_resource type="Texture2D" uid="uid://bqs3v8xt7ur8n" path="res://assets/backgrounds/Boxing_Ring_1_FinalNES.png" id="2_57w1i"]
@@ -14,6 +14,12 @@
 bg_color = Color(0.0862745, 0.0862745, 0.0862745, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_57w1i"]
+bg_color = Color(0.988235, 0.988235, 0.988235, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bjlyo"]
+bg_color = Color(0.988235, 0.988235, 0.988235, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b8bj8"]
 bg_color = Color(0.988235, 0.988235, 0.988235, 1)
 
 [sub_resource type="Animation" id="Animation_rejdh"]
@@ -421,8 +427,9 @@ offset_right = 186.0
 offset_bottom = 28.0
 scale = Vector2(-1, -1)
 theme_override_styles/background = SubResource("StyleBoxFlat_qogor")
-theme_override_styles/fill = SubResource("StyleBoxFlat_57w1i")
+theme_override_styles/fill = SubResource("StyleBoxFlat_bjlyo")
 max_value = 96.0
+step = 1.0
 value = 96.0
 show_percentage = false
 
@@ -432,7 +439,7 @@ offset_top = 22.0
 offset_right = 194.0
 offset_bottom = 25.0
 theme_override_styles/background = SubResource("StyleBoxFlat_qogor")
-theme_override_styles/fill = SubResource("StyleBoxFlat_57w1i")
+theme_override_styles/fill = SubResource("StyleBoxFlat_b8bj8")
 max_value = 96.0
 value = 96.0
 show_percentage = false

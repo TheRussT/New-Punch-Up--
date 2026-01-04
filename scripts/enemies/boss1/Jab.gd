@@ -48,17 +48,12 @@ func damage_player():
 		parent.shake_magnitude = 1
 		parent.total_shake_time = 0.2
 	elif result == 4: #32 frames
-		parent.stamina -= 2
-		parent.ring.update_enemy_stam(parent.stamina)
-		parent.handle_state()
+		parent.state_machine.change_state(daze)
+		parent.change_stamina(-2, true)
 		parent.shake_timer = 0.267
 		parent.shake_magnitude = 3
 		parent.total_shake_time = 0.267
 		parent.available_hits = 2
-		if parent.stamina < 1:
-			parent.state_machine.change_state(stamina_loss)
-		else:
-			parent.state_machine.change_state(daze)
 	elif result == 5:
 		parent.available_hits = 3
 		parent.recovery_hits = 2

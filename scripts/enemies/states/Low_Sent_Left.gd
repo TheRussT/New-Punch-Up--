@@ -27,6 +27,8 @@ func process(delta):
 	return null
 
 func check_kod():
+	if parent.advantage_state & 4:
+		parent.exit_stamina_loss()
 	if parent.health <= 0:
 		falling.fall_type = 3
 		parent.state_machine.change_state(falling)

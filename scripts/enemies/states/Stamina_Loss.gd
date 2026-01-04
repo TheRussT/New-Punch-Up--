@@ -11,11 +11,14 @@ extends Enemy_Damage_State
 
 # Called when the node enters the scene tree for the first time.
 func enter():
-	print("entered stamina loss")
 	parent.sprite.visible = false
 	parent.falling_sprite.visible = true
 	parent.animations.play("stamina_loss")
-	parent.animations.advance(0)
+	parent.sprite.material.set_shader_parameter("replace_color", Color("f878f8"))
+	parent.sprite.material.set_shader_parameter("tolerance", 0.1)
+	parent.falling_sprite.material.set_shader_parameter("tolerance", 0.1)
+	parent.advantage_state |= 4
+	#parent.animations.advance(0)
 	parent.available_hits = hits
 	parent.recovery_hits = 3
 	if insta_ko:
@@ -26,13 +29,11 @@ func enter():
 func exit():
 	parent.sprite.visible = true
 	parent.falling_sprite.visible = false
-	if parent.stamina_next > 6:
-		parent.stamina_next -= 2
-	parent.stamina = parent.stamina_next
-	parent.ring.update_enemy_stam(parent.stamina)
+	parent.falling_sprite.material.set_shader_parameter("tolerance", 0.0)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func process(delta):
 	if !parent.animations.is_playing():
+		parent.exit_stamina_loss()
 		return idle
 	return null
