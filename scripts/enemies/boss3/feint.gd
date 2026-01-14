@@ -11,7 +11,7 @@ func enter():
 
 func process(delta):
 	if !parent.animations.is_playing():
-		parent.handle_state()
+		#parent.handle_state()
 		return idle
 	return null
 

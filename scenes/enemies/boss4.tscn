@@ -2885,6 +2885,9 @@ final_shake_frames = 32
 is_sent_right = true
 area_hit = 5
 punch_damage = 20
+available_hits = 7
+recovery_hits = 2
+stamina_taken = 4
 
 [node name="Whiteout" type="ColorRect" parent="." index="5"]
 z_index = -1

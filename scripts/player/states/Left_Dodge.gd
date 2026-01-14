@@ -17,18 +17,23 @@ func process(delta):
 func damage(value):
 	if parent.animations.get_current_animation_position() > 0.1 && (value >> 11) & 1 == 0:
 		if (parent.stamina < 1):
+			#print("stamina recovery progress = " + str(parent.stamina_recovery_progress) +
+			#" + " + str(value & 255))
 			parent.stamina_recovery_progress += value & 255
 			#print(parent.stamina_recovery_progress)
 			if parent.stamina_recovery_threshold <= parent.stamina_recovery_progress:
-				if parent.sprite.material.get_shader_parameter("tolerance") == 0.1:
-					parent.sprite.material.set_shader_parameter("tolerance", 0.0)
-				parent.stamina = parent.stamina_recovered_amount
-				parent.stamina_recovery_progress = 0
-				parent.enemy.handle_state()
+				#if parent.sprite.material.get_shader_parameter("tolerance") == 0.1:
+					#parent.sprite.material.set_shader_parameter("tolerance", 0.0)
+				#parent.stamina = parent.stamina_recovered_amount
+				#parent.stamina_recovery_progress = 0
+				#parent.enemy.handle_state()
+				parent.exit_tired()
+		else:
+			parent.change_stamina(1)
 		return 5
 	else:
 		parent.health -= value & 255
-		parent.stamina -= value >> 32
+		parent.change_stamina(-((value >> 32) & 255))
 		parent.stamina_recovery_progress = 0
 	# update here as needed
 		if (value >> 12 & 1) == 1:

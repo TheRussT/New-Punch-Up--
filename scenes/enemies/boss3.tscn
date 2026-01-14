@@ -2298,6 +2298,7 @@ visible = false
 material = SubResource("ShaderMaterial_84vdx")
 texture = ExtResource("5_kltfi")
 centered = false
+offset = Vector2(92, 20)
 hframes = 4
 
 [node name="Animations" type="AnimationPlayer" parent="." index="3"]
@@ -2344,6 +2345,7 @@ shake_frames = 28
 is_sent_right = true
 area_hit = 4
 punch_damage = 18
+stamina_taken = 3
 
 [node name="Left_Hook" type="Node" parent="State_Machine" index="24" node_paths=PackedStringArray("idle", "walking_up")]
 script = ExtResource("7_ke3bc")

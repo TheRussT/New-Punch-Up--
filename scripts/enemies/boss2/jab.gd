@@ -14,6 +14,7 @@ extends Enemy_Damage_State
 @export var punch_damage: int
 @export var available_hits: int
 @export var recovery_hits: int
+@export var stamina_taken: int
 
 var next_state: State
 
@@ -31,12 +32,14 @@ func enter():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func process(delta):
 	if !parent.animations.is_playing():
-		parent.handle_state()
+		#parent.handle_state()
 		return next_state
 	return null
 
 func damage_player():
 	var punch_info = 0
+	punch_info = punch_info | stamina_taken
+	punch_info = punch_info << 8
 	punch_info = punch_info | shake_magnitude
 	punch_info = punch_info << 8
 	punch_info = punch_info | shake_frames
@@ -70,13 +73,12 @@ func damage_player():
 		parent.shake_magnitude = 1
 		parent.total_shake_time = 0.2
 	elif result == 4:
-		parent.stamina -= 2
-		parent.ring.update_enemy_stam(parent.stamina)
-		parent.handle_state()
+		parent.change_stamina(-6)
 		parent.shake_timer = 0.267
 		parent.shake_magnitude = 3
 		parent.total_shake_time = 0.267
 	elif result == 5:
+		parent.change_stamina(-2)
 		parent.available_hits = available_hits
 		parent.recovery_hits = recovery_hits
 	

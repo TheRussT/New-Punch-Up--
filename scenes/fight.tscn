@@ -429,7 +429,6 @@ scale = Vector2(-1, -1)
 theme_override_styles/background = SubResource("StyleBoxFlat_qogor")
 theme_override_styles/fill = SubResource("StyleBoxFlat_bjlyo")
 max_value = 96.0
-step = 1.0
 value = 96.0
 show_percentage = false
 

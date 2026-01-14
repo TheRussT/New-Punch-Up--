@@ -7,8 +7,8 @@ func enter():
 	parent.animations.play("low_block")
 	parent.animations.advance(0)
 
-func exit():
-	parent.handle_state()
+#func exit():
+	#parent.handle_state()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func process(delta):

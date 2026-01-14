@@ -8,6 +8,7 @@ extends Player_Damage_State
 func enter():
 	parent.animations.play("tired")
 	parent.animations.advance(0)
+	parent.sprite.material.set_shader_parameter("replace_color", Color("f878f8"))
 	if parent.sprite.material.get_shader_parameter("tolerance") == 0.0:
 		parent.sprite.material.set_shader_parameter("tolerance", 0.1)
 

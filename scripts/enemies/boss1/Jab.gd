@@ -30,7 +30,7 @@ func process(delta):
 	return null
 
 func damage_player():
-	var result = parent.damage_player(0x10214640d)
+	var result = parent.damage_player(0x20214640d)
 	# if punch lands avail_hits = 6, parent.changestae(daze)
 	if result == 0: #32 frames
 		parent.shake_timer = 0.267
@@ -49,7 +49,7 @@ func damage_player():
 		parent.total_shake_time = 0.2
 	elif result == 4: #32 frames
 		parent.state_machine.change_state(daze)
-		parent.change_stamina(-2, true)
+		parent.change_stamina(-6, true)
 		parent.shake_timer = 0.267
 		parent.shake_magnitude = 3
 		parent.total_shake_time = 0.267
@@ -57,3 +57,4 @@ func damage_player():
 	elif result == 5:
 		parent.available_hits = 3
 		parent.recovery_hits = 2
+		parent.change_stamina(-2, true)

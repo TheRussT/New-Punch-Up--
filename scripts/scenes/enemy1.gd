@@ -1,7 +1,7 @@
 extends "res://scripts/generics/general_enemy.gd"
 
 enum {
-	MAIN, MAIN_TIRED, LOW, LOW_TIRED, PLAYER_TIRED, TAUNT
+	MAIN, OTR, PLAYER_OTR, PLAYER_TIRED, TAUNT
 }
 @export var hook : State
 @export var hook_big : State
@@ -35,11 +35,8 @@ func _ready():
 	schedule_state = MAIN
 	enemy_schedule = {MAIN: [0x10200, 0x10040, jab, 0x10080, hook, 0x100c0, jab, 
 		0x10040, 0x20109, 0x10050, hook, 0x30001],
-		LOW: [0x10080, hook, 0x20003, 0x10020, hook, 0x20006, 0x10060, jab, 
-		0x10090, jab, 0x20008],
-		MAIN_TIRED: [0x1000c0, jab, 0x20003, 0x10060, jab, 0x20006, 0x10010, hook_big, 
-		0x20009, 0x30006],
-		LOW_TIRED: [0x10010, hook, 0x20003, 0x10080, hook, 0x20003], #last was hook big
+		PLAYER_OTR: [0x10050, 0x10030, hook, 0x20104, 0x10010, jab, 0x20007, 0x10040, hook],
+		OTR: [0x1000f0, jab, 0x20003, 0x10010, hook, 0x30000],
 		PLAYER_TIRED: [0x10010, hook, 0x20003, 0x10040, hook, 0x30000],
 		TAUNT: [taunt, 0x30000]
 	}
@@ -48,55 +45,30 @@ func _ready():
 	handle_state_schedule()
 
 func handle_state():
-	#if we dont have stamina, change state to stamina_loss
-	#if player has no stamina change state to player tired
-	#elif 
+	#if different points in the schedule index is needed just make variable for it
+	var prior_state = schedule_state
 	if player.stamina < 1:
-		if schedule_state != PLAYER_TIRED:
-			schedule_index = 0
 		schedule_state = PLAYER_TIRED
-		#handle_state_schedule()
+		print("player tired")
 	else:
 		if schedule_state == PLAYER_TIRED:
 			schedule_state = MAIN
+			print("Main from player tired")
 		if schedule_state == TAUNT && has_taunted == true:
 			schedule_state = MAIN
-		if health > 48:
-			if schedule_state == LOW:
-				schedule_state = MAIN
-				schedule_index = 0
-				#handle_state_schedule()
-			if schedule_state == LOW_TIRED:
-				schedule_state = MAIN_TIRED
-				schedule_index = 0
-				#handle_state_schedule()
-			if stamina < 5 && schedule_state == MAIN:
-				schedule_state = MAIN_TIRED
-				schedule_index = 0
-				#handle_state_schedule()
-			if stamina > 7 && schedule_state == MAIN_TIRED:
-				schedule_state = MAIN
-				schedule_index = 0
-				#handle_state_schedule()
-		elif health <= 48:
-			if schedule_state == MAIN:
-				schedule_state = LOW
-				schedule_index = 0
-				#handle_state_schedule()
-			if schedule_state == MAIN_TIRED:
-				schedule_state = LOW_TIRED
-				schedule_index = 0
-				#handle_state_schedule()
-			if stamina < 5 && schedule_state == LOW:
-				schedule_state = LOW_TIRED
-				schedule_index = 0
-				#handle_state_schedule()
-			if stamina > 7 && schedule_state == LOW_TIRED:
-				schedule_state = LOW
-				schedule_index = 0
-				#handle_state_schedule()
-	#handle_state_schedule()
-	#print("schedule: " + str(schedule_state) + " index: " + str(schedule_index))
+			print("Main from taunt")
+		if advantage_state == 1:
+			schedule_state = OTR
+			print("OTR")
+		elif advantage_state == 2:
+			schedule_state = PLAYER_OTR
+			print("player OTR")
+		else:
+			print("Main from else")
+	if prior_state != schedule_state:
+		schedule_index = 0
+		handle_state_schedule()
+		print("New schedule")
 
 func check_conditions(value, result, state):
 	if !has_taunted:
@@ -189,15 +161,16 @@ func between_round_setup(round_number):
 
 func taunt_complete():
 	has_taunted = true
+	handle_state()
 
 func fight_setup():
 	ring.background.texture = load("res://assets/backgrounds/Boxing_Ring_1_FinalNES.png")
 	ring.enemy_ko_table = ko_table
 	
-	player.stamina_max = 24
-	player.stamina = 24
-	player.stamina_recovery_threshold = 60
-	player.stamina_recovered_amount = 20
+	#player.stamina_max = 24
+	#player.stamina = 24
+	player.stamina_recovery_threshold = 24
+	player.stamina_recovered_amount = 48
 
 
 func enter_OTR():
@@ -207,10 +180,12 @@ func enter_OTR():
 	animations.speed_scale = animation_speed
 	$Boss.material.set_shader_parameter("replace_color", Color("e40058"))
 	$Boss.material.set_shader_parameter("tolerance", 0.1)
+	handle_state()
 
 func exit_OTR():
-	print("OTR exit")
+	#print("OTR exit")
 	advantage_state &= 2
 	animation_speed = 1
 	animations.speed_scale = animation_speed
 	$Boss.material.set_shader_parameter("tolerance", 0.0)
+	handle_state()

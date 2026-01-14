@@ -23,12 +23,12 @@ func damage(value):
 		parent.shake_timer = 0.2
 		parent.shake_magnitude = 3
 		parent.total_shake_time = 0.2
-		parent.stamina -= ((value >> 32) / 2) + 1
+		parent.change_stamina(-(((value >> 32) / 4) + 1))
 		
 		return 3
 	else:
 		parent.health -= value & 255
-		parent.stamina -= value >> 32
+		parent.change_stamina(-((value >> 32) & 255))
 		parent.stamina_recovery_progress = 0
 	# update here as needed
 		if (value >> 12 & 1) == 1:

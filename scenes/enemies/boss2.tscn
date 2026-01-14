@@ -2353,6 +2353,7 @@ area_hit = 6
 punch_damage = 14
 available_hits = 4
 recovery_hits = 2
+stamina_taken = 3
 
 [node name="Hook_Big" type="Node" parent="State_Machine" index="23" node_paths=PackedStringArray("idle", "stamina_loss", "walking_up")]
 script = ExtResource("6_sy0km")
@@ -2367,6 +2368,7 @@ punch_damage = 18
 miss_stamina = 1
 available_hits = 1
 recovery_hits = 1
+stamina_taken = 5
 
 [node name="Left_Big_Hook" type="Node" parent="State_Machine" index="24" node_paths=PackedStringArray("idle", "stamina_loss", "walking_up")]
 script = ExtResource("9_sy0km")
@@ -2380,6 +2382,7 @@ punch_damage = 20
 miss_stamina = 1
 available_hits = 1
 recovery_hits = 1
+stamina_taken = 6
 
 [node name="Left_Hook" type="Node" parent="State_Machine" index="25" node_paths=PackedStringArray("idle", "walking_up")]
 script = ExtResource("9_s2sne")
@@ -2391,6 +2394,7 @@ area_hit = 12
 punch_damage = 16
 available_hits = 4
 recovery_hits = 2
+stamina_taken = 3
 
 [node name="Taunt" type="Node" parent="State_Machine" index="26" node_paths=PackedStringArray("idle")]
 script = ExtResource("10_02x4q")

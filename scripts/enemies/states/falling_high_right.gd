@@ -9,6 +9,7 @@ func enter():
 	parent.available_hits = 0
 	parent.sprite.visible = false
 	parent.falling_sprite.visible = true
+	parent.exit_OTR()
 	if fall_type == 0:
 		parent.animations.play("falling_right")
 	elif fall_type == 1:

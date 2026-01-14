@@ -18,7 +18,7 @@ func enter():
 	parent.sprite.material.set_shader_parameter("tolerance", 0.1)
 	parent.falling_sprite.material.set_shader_parameter("tolerance", 0.1)
 	parent.advantage_state |= 4
-	#parent.animations.advance(0)
+	parent.animations.advance(0)
 	parent.available_hits = hits
 	parent.recovery_hits = 3
 	if insta_ko:

@@ -23,6 +23,7 @@ func damage(value):
 	if parent.animations.get_current_animation_position() > 0.0833:
 		if (value >> 13 & 1) == 1:
 			parent.initiate_shake_f(0.267,1)
+			parent.change_stamina(4)
 			return 4
 		else:
 			if value >> 14 & 1 == 1:
@@ -30,7 +31,7 @@ func damage(value):
 				return 3
 				
 	parent.health -= value & 255
-	parent.stamina -= value >> 32
+	parent.change_stamina(-((value >> 32) & 255))
 	parent.stamina_recovery_progress = 0
 	# update here as needed
 	if (value >> 12 & 1) == 1:

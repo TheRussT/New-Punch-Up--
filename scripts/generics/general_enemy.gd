@@ -149,23 +149,21 @@ func change_stamina(value : int, handles_stamina_loss : bool = false):
 				#OTR_buffer = 0
 				exit_OTR()
 				stamina += 16
-				ring.update_enemy_stam(stamina)
 				#undo ring settings
 		else: #losing stamina
 			stamina += value
-			ring.update_enemy_stam(stamina)
 			# can turn off so enemy buffers only receive positive changes
 			OTR_buffer += value
 			if OTR_buffer < 0:
 				OTR_buffer = 0
 	else:
 		stamina += value
-		ring.update_enemy_stam(stamina)
 		if stamina <= 16:
 			enter_OTR()
 			# do ring settings
 		elif stamina > stamina_max:
 			stamina = stamina_max
+	ring.update_enemy_stam(stamina)
 	if handles_stamina_loss:
 		if stamina < 1:
 			state_machine.change_state($State_Machine/Stamina_Loss)
@@ -177,7 +175,7 @@ func enter_OTR():
 	animations.speed_scale = animation_speed
 
 func exit_OTR():
-	print("parent OTR exit")
+	#print("parent OTR exit")
 	advantage_state &= 6
 	animation_speed = 1
 	animations.speed_scale = animation_speed
@@ -190,17 +188,27 @@ func exit_stamina_loss():
 
 func add_stray():
 	recent_strays += 1
-	print("adding - strays are now " + str(recent_strays))
+	#print("adding - strays are now " + str(recent_strays))
 	await get_tree().create_timer(5).timeout
 	recent_strays -= 1
-	print("removing - strays are now " + str(recent_strays))
+	#print("removing - strays are now " + str(recent_strays))
 
 func add_combo():
 	recent_combos += 1
-	print("adding - combos are now " + str(recent_combos))
+	#print("adding - combos are now " + str(recent_combos))
 	await get_tree().create_timer(5).timeout
 	recent_combos -= 1
-	print("removing - combos are now " + str(recent_combos))
+	#print("removing - combos are now " + str(recent_combos))
+
+func add_player_parries():
+	recent_player_parries += 1
+	await get_tree().create_timer(8).timeout
+	recent_player_parries -= 1
+
+func add_player_dodges():
+	recent_player_dodges += 1
+	await get_tree().create_timer(5).timeout
+	recent_player_dodges -= 1
 
 func between_round_setup(round_number : int):
 	#can maybe verify this is the between fights scene

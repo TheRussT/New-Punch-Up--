@@ -63,6 +63,7 @@ func start_round():
 	
 	player.state_machine.change_state(player.intro_state)
 	player.stamina = player.stamina_max
+	
 	player_stam = player.stamina
 	
 	player_times_kod_round = 0
@@ -87,16 +88,17 @@ func manage_progress_bars(delta):
 			enemy_heathbar.value = enemy_health
 		else:
 			enemy_heathbar.value += (enemy_health - enemy_heathbar.value) * 5 * delta
-	if player_stam != player_stambar.value:
-		if abs(player_stam - player_stambar.value) < 1:
-			player_stambar.value = player_stam
-		else:
-			player_stambar.value += (player_stam - player_stambar.value) * 5 * delta
-	if enemy_stam != enemy_stambar.value:
-		if abs(enemy_stam - enemy_stambar.value) < 1:
-			enemy_stambar.value = enemy_stam
-		else:
-			enemy_stambar.value += (enemy_stam - enemy_stambar.value) * 5 * delta
+	#if player_stam != player_stambar.value:
+		#if abs(player_stam - player_stambar.value) < 1:
+			#player_stambar.value = player_stam
+		#else:
+			#player_stambar.value += (player_stam - player_stambar.value) * 5 * delta
+			#print("amount suptracted: " + str((player_stam - player_stambar.value) * 5 * delta))
+	#if enemy_stam != enemy_stambar.value:
+		#if abs(enemy_stam - enemy_stambar.value) < 1:
+			#enemy_stambar.value = enemy_stam
+		#else:
+			#enemy_stambar.value += (enemy_stam - enemy_stambar.value) * 5 * delta
 
 func process_timer(delta):
 	time -= delta * timer_speed
@@ -148,11 +150,25 @@ func update_enemy_health(value):
 
 func update_player_stam(value):
 	player_stam = value
+	player_stambar.value = player_stam
+	#print("changing " + str(player_stam) + " out of " + str(player_stambar.max_value))
 
 
+func player_enter_OTR():
+	#anything needed with the ring
+	enemy.advantage_state |= 2
+	enemy.handle_state()
+
+func player_exit_OTR():
+	enemy.advantage_state &= 13
+	enemy.handle_state()
+
+func player_tired():
+	enemy.handle_state()
 
 func update_enemy_stam(value):
 	enemy_stam = value
+	enemy_stambar.value = enemy_stam
 
 func handle_player_kod():
 	player_times_kod += 1
