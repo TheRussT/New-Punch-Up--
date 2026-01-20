@@ -59,6 +59,7 @@ func damage(value):
 		elif guard_position == 3:
 			damage_react(14, 3, parent.get_child(4).get_child(13)) # low left 15
 		else:
+			parent.available_hits = 1
 			damage_react(32, 4, parent.get_child(4).get_child(6)) # high left
 			#if parent.guard_position == 0 set inst ko flag
 			

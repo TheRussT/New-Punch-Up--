@@ -11,6 +11,8 @@ func enter():
 		parent.recovery_hits -= 1
 		parent.animations.play("jaw_sent_left_long")
 	else:
+		parent.animations.speed_scale = 1 + 0.5 * parent.consecutive_recovery_hits
+		parent.consecutive_recovery_hits += 1
 		parent.animations.play("jaw_sent_left")
 	parent.animations.advance(0)
 	parent.sprite.flip_h = 1
@@ -20,6 +22,7 @@ func exit():
 	parent.spit.visible = false
 	parent.sprite.flip_h = 0
 	parent.spit.flip_h = 0
+	parent.animations.speed_scale = parent.animation_speed
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func process(delta):

@@ -13,10 +13,10 @@ var next_state: State
 @export var is_sent_right: bool
 @export var area_hit: int
 @export var punch_damage: int
-@export var miss_stamina: int
 @export var available_hits: int
 @export var recovery_hits: int
 @export var stamina_taken: int
+@export var miss_stamina: int
 
 # Called when the node enters the scene tree for the first time.
 func enter():
@@ -69,9 +69,6 @@ func damage_player():
 		parent.shake_magnitude = 3
 		parent.total_shake_time = 0.267
 	elif result == 5:
-		parent.change_stamina(-miss_stamina)
-		if parent.stamina < 1:
-			parent.state_machine.change_state(stamina_loss)
-		else:
-			parent.available_hits = available_hits
-			parent.recovery_hits = recovery_hits
+		parent.available_hits = available_hits
+		parent.recovery_hits = recovery_hits
+		parent.player_dodge(miss_stamina)

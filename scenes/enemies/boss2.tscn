@@ -16,8 +16,8 @@
 shader = ExtResource("3_s2sne")
 shader_parameter/target_color = Color(0, 0, 0, 1)
 shader_parameter/replace_color = Color(1, 0, 0, 1)
-shader_parameter/target_color2 = Color(0, 0, 0, 1)
-shader_parameter/replace_color2 = Color(0, 0, 0, 1)
+shader_parameter/target_color2 = Color(0.470588, 0.470588, 0.470588, 1)
+shader_parameter/replace_color2 = Color(0.737255, 0.737255, 0.737255, 1)
 shader_parameter/tolerance = 0.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_sy0km"]
@@ -2340,6 +2340,7 @@ area_hit = 4
 punch_damage = 10
 available_hits = 3
 recovery_hits = 1
+stamina_taken = 4
 
 [node name="Hook" type="Node" parent="State_Machine" index="22" node_paths=PackedStringArray("idle", "walking_up")]
 script = ExtResource("5_02x4q")
@@ -2365,7 +2366,6 @@ shake_frames = 30
 is_sent_right = true
 area_hit = 6
 punch_damage = 18
-miss_stamina = 1
 available_hits = 1
 recovery_hits = 1
 stamina_taken = 5

@@ -70,10 +70,7 @@ func damage_player():
 		parent.shake_magnitude = 3
 		parent.total_shake_time = 0.267
 	elif result == 5:
-		parent.change_stamina(-miss_stamina)
-		if parent.stamina < 1:
-			parent.state_machine.change_state(stamina_loss)
-		else:
-			parent.available_hits = available_hits
-			parent.recovery_hits = recovery_hits
+		parent.available_hits = available_hits
+		parent.recovery_hits = recovery_hits
+		parent.player_dodge(miss_stamina)
 	

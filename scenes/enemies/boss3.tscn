@@ -2322,6 +2322,7 @@ can_block = true
 can_parry = true
 area_hit = 4
 punch_damage = 8
+stamina_taken = 3
 
 [node name="Hook" type="Node" parent="State_Machine" index="22" node_paths=PackedStringArray("idle", "walking_up")]
 script = ExtResource("6_kltfi")
@@ -2334,6 +2335,7 @@ is_sent_right = true
 area_hit = 4
 punch_damage = 12
 recovery_hits = 1
+stamina_taken = 4
 
 [node name="Hook_Quick" type="Node" parent="State_Machine" index="23" node_paths=PackedStringArray("idle", "walking_up")]
 script = ExtResource("6_kltfi")
@@ -2356,6 +2358,7 @@ shake_frames = 28
 area_hit = 4
 punch_damage = 14
 recovery_hits = 1
+stamina_taken = 4
 
 [node name="Hook_Feint" type="Node" parent="State_Machine" index="25" node_paths=PackedStringArray("idle", "follow_up")]
 script = ExtResource("9_84vdx")
@@ -2373,6 +2376,7 @@ shake_frames = 28
 is_sent_right = true
 area_hit = 5
 punch_damage = 24
+stamina_taken = 5
 
 [node name="Uppercut_Left" type="Node" parent="State_Machine" index="27" node_paths=PackedStringArray("idle", "walking_up")]
 script = ExtResource("10_kltfi")
@@ -2383,6 +2387,7 @@ shake_magnitude = 3
 shake_frames = 2
 area_hit = 5
 punch_damage = 18
+stamina_taken = 6
 
 [node name="Uppercut_Quick" type="Node" parent="State_Machine" index="28" node_paths=PackedStringArray("idle", "walking_up")]
 script = ExtResource("10_kltfi")

@@ -11,10 +11,14 @@ extends Enemy_Damage_State
 @export var dodge: State
 
 var animation = "idle"
+var time_lowered = 0
 
 func enter():
 	#print(parent.idle_guard)
+	time_lowered = parent.idle_time_guard_lowered - 0.04 * parent.consecutive_idle_hits
 	parent.stamina_gain_rate = 2
+	
+	parent.consecutive_recovery_hits = 0
 	
 	if parent.schedule_timer < parent.idle_cooldown * 120 && parent.schedule_timer >= 0:
 		parent.schedule_timer = parent.idle_cooldown * 120
@@ -22,7 +26,7 @@ func enter():
 		#parent.stamina_regain_timer -= 0.5
 	parent.animations.play(animation)
 	parent.animations.advance(0)
-	parent.guard = parent.idle_guard
+	parent.guard = parent.idle_guard_low
 
 func exit():
 	parent.stamina_gain_rate = 1
@@ -35,5 +39,9 @@ func process(delta):
 		if parent.stamina_regain_amount >= 0:
 			parent.stamina_regain_amount -= 1
 			parent.change_stamina(1)
+	if time_lowered > 0:
+		time_lowered -= delta
+	else:
+		parent.guard = parent.idle_guard
 	if parent.schedule_timer <= 0:
 		parent.advance_state()

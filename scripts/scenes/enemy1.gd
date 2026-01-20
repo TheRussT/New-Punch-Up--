@@ -10,8 +10,6 @@ enum {
 
 var consecutive_jabs = 0
 var consecutive_hooks = 0
-var consecutive_idle_hits = 0
-var consecutive_recovery_hits = 0
 var total_idle_hits = 0
 var in_combo = false
 
@@ -27,7 +25,9 @@ func _ready():
 	stamina_max = 64
 	stamina_next = 48
 	guard = [3,3,3,3,3]
-	idle_guard = [3,3,3,3,3]
+	idle_guard = [8,8,8,8,3]
+	idle_guard_low = [3,3,3,3,3]
+	idle_time_guard_lowered = 0.2
 	left_high_recovery_guard = [3,3,3,3,3,1]
 	right_high_recovery_guard = [3,3,3,3,3,1]
 	left_low_recovery_guard = [3,3,3,3,3,1]
@@ -35,7 +35,7 @@ func _ready():
 	schedule_state = MAIN
 	enemy_schedule = {MAIN: [0x10200, 0x10040, jab, 0x10080, hook, 0x100c0, jab, 
 		0x10040, 0x20109, 0x10050, hook, 0x30001],
-		PLAYER_OTR: [0x10050, 0x10030, hook, 0x20104, 0x10010, jab, 0x20007, 0x10040, hook],
+		PLAYER_OTR: [0x10050, 0x10030, hook, 0x20104, 0x10010, jab, 0x20007, 0x10040, hook, 0x30000],
 		OTR: [0x1000f0, jab, 0x20003, 0x10010, hook, 0x30000],
 		PLAYER_TIRED: [0x10010, hook, 0x20003, 0x10040, hook, 0x30000],
 		TAUNT: [taunt, 0x30000]
@@ -64,79 +64,90 @@ func handle_state():
 			schedule_state = PLAYER_OTR
 			print("player OTR")
 		else:
+			schedule_state = MAIN
 			print("Main from else")
 	if prior_state != schedule_state:
-		schedule_index = 0
+		if schedule_state == MAIN:
+			schedule_index = 1
+		else:
+			schedule_index = 0
 		handle_state_schedule()
 		print("New schedule")
 
 func check_conditions(value, result, state):
-	if !has_taunted:
-		for i in 4:
-			if idle_guard[i] == 2:
-				idle_guard[i] = 3 
-		if result == 1:
-			in_combo = true
-			consecutive_idle_hits = 0
-		if result > 3:
-			consecutive_idle_hits = 0
-	if (result == 3 || result == 2):
-		if !has_taunted && in_combo:
-			in_combo = false
-			if (value >> 8 & 7) < 2:
-				idle_guard[0] = 8
-				idle_guard[1] = 8
-				idle_guard[2] = 3
-				idle_guard[3] = 3
-			else:
-				idle_guard[0] = 8
-				idle_guard[1] = 8
-				idle_guard[2] = 3
-				idle_guard[3] = 3
-		if (state == $State_Machine/High_Sent_Left || state == $State_Machine/High_Sent_Right
-		 || state == $State_Machine/Low_Sent_Left || state == $State_Machine/Low_Sent_Right):
-			consecutive_idle_hits = 0
-			consecutive_recovery_hits += 1
-			if consecutive_recovery_hits > 1:
-				left_high_recovery_guard = [2,2,2,2,3,1]
-				right_high_recovery_guard = [2,2,2,2,3,1]
-				left_low_recovery_guard = [2,2,2,2,3,1]
-				right_low_recovery_guard = [2,2,2,2,3,1]
-		else:
-			if !has_taunted && state == $State_Machine/Idle:
-				#print("cons idle hit")
-				consecutive_idle_hits += 1
-				total_idle_hits += 1
-				if consecutive_idle_hits > 0 && consecutive_idle_hits % 3 == 0:
-					if (value >> 8 & 7) < 2:
-						idle_guard[0] = 8
-						idle_guard[1] = 8
-						idle_guard[2] = 3
-						idle_guard[3] = 3
-					else:
-						idle_guard[0] = 3
-						idle_guard[1] = 3
-						idle_guard[2] = 8
-						idle_guard[3] = 8
-				if consecutive_idle_hits == 8:
-					for i in 4:
-						if idle_guard[i] == 3:
-							idle_guard[i] = 2
-				if total_idle_hits > 8:
-					var temp_star = idle_guard[4]
-					idle_guard = [8,8,8,8,temp_star]
-					#stamina_regain_timer = -1000
-					$State_Machine/Idle.animation = "idle_up"
-					schedule_state = TAUNT
-					schedule_timer = -1
-					schedule_index = 0
-			else:
-				consecutive_idle_hits = 0
-			consecutive_recovery_hits = 0
-			left_high_recovery_guard = [3,3,3,3,3,1]
-			right_high_recovery_guard = [3,3,3,3,3,1]
-			left_low_recovery_guard = [3,3,3,3,3,1]
-			right_low_recovery_guard = [3,3,3,3,3,1]
+	pass
+	if state == $State_Machine/Idle && (result == 2 || result == 3):
+		total_idle_hits += 1
+		if !has_taunted && total_idle_hits > 8:
+			schedule_state = TAUNT
+			schedule_timer = -1
+			schedule_index = 0
+	#if !has_taunted:
+		#for i in 4:
+			#if idle_guard[i] == 2:
+				#idle_guard[i] = 3 
+		#if result == 1:
+			#in_combo = true
+			#consecutive_idle_hits = 0
+		#if result > 3:
+			#consecutive_idle_hits = 0
+	#if (result == 3 || result == 2):
+		#if !has_taunted && in_combo:
+			#in_combo = false
+			#if (value >> 8 & 7) < 2:
+				#idle_guard[0] = 8
+				#idle_guard[1] = 8
+				#idle_guard[2] = 3
+				#idle_guard[3] = 3
+			#else:
+				#idle_guard[0] = 8
+				#idle_guard[1] = 8
+				#idle_guard[2] = 3
+				#idle_guard[3] = 3
+		#if (state == $State_Machine/High_Sent_Left || state == $State_Machine/High_Sent_Right
+		 #|| state == $State_Machine/Low_Sent_Left || state == $State_Machine/Low_Sent_Right):
+			#consecutive_idle_hits = 0
+			#consecutive_recovery_hits += 1
+			#if consecutive_recovery_hits > 1:
+				#left_high_recovery_guard = [2,2,2,2,3,1]
+				#right_high_recovery_guard = [2,2,2,2,3,1]
+				#left_low_recovery_guard = [2,2,2,2,3,1]
+				#right_low_recovery_guard = [2,2,2,2,3,1]
+		#else:
+			#if !has_taunted && state == $State_Machine/Idle:
+				##print("cons idle hit")
+				#consecutive_idle_hits += 1
+				#total_idle_hits += 1
+				#if consecutive_idle_hits > 0 && consecutive_idle_hits % 3 == 0:
+					#if (value >> 8 & 7) < 2:
+						#idle_guard[0] = 8
+						#idle_guard[1] = 8
+						#idle_guard[2] = 3
+						#idle_guard[3] = 3
+					#else:
+						#idle_guard[0] = 3
+						#idle_guard[1] = 3
+						#idle_guard[2] = 8
+						#idle_guard[3] = 8
+				#if consecutive_idle_hits == 8:
+					#for i in 4:
+						#if idle_guard[i] == 3:
+							#idle_guard[i] = 2
+				#if total_idle_hits > 8:
+					#var temp_star = idle_guard[4]
+					#idle_guard = [8,8,8,8,temp_star]
+					##stamina_regain_timer = -1000
+					#$State_Machine/Idle.animation = "idle_up"
+					#schedule_state = TAUNT
+					#schedule_timer = -1
+					#schedule_index = 0
+			#else:
+				#consecutive_idle_hits = 0
+			#consecutive_recovery_hits = 0
+			#left_high_recovery_guard = [3,3,3,3,3,1]
+			#right_high_recovery_guard = [3,3,3,3,3,1]
+			#left_low_recovery_guard = [3,3,3,3,3,1]
+			#right_low_recovery_guard = [3,3,3,3,3,1]
 
 func between_round_setup(round_number):
 	if ring.enemy_times_kod == 0:
@@ -161,6 +172,8 @@ func between_round_setup(round_number):
 
 func taunt_complete():
 	has_taunted = true
+	$State_Machine/Idle.animation = "idle_up"
+	
 	handle_state()
 
 func fight_setup():

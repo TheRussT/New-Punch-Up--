@@ -20,11 +20,9 @@ func process(delta):
 
 func damage(value):
 	if value >> 14 & 1 == 1:
-		parent.shake_timer = 0.2
-		parent.shake_magnitude = 3
-		parent.total_shake_time = 0.2
+		parent.initiate_shake_f(0.2,2)
 		parent.change_stamina(-(((value >> 32) / 4) + 1))
-		
+		parent.input_buffer.erase("ui_up")
 		return 3
 	else:
 		parent.health -= value & 255

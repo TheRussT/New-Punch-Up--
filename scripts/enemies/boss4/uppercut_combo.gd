@@ -16,6 +16,7 @@ extends Enemy_Damage_State
 @export var available_hits: int
 @export var recovery_hits: int
 @export var stamina_taken: int
+@export var miss_stamina: int
 
 var next_state: State
 var hit_count := 0
@@ -76,6 +77,11 @@ func damage_player():
 		#parent.shake_timer = 0.4
 		#parent.shake_magnitude = 3
 		#parent.total_shake_time = 0.4
+	elif result == 5:
+		parent.player_dodge(miss_stamina)
+		if hit_count == number_of_hits:
+			parent.available_hits = available_hits
+			parent.recovery_hits = recovery_hits
 
 func check_if_player_kod():
 	if next_state == walking_up:

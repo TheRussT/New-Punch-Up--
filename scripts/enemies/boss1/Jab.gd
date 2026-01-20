@@ -49,7 +49,7 @@ func damage_player():
 		parent.total_shake_time = 0.2
 	elif result == 4: #32 frames
 		parent.state_machine.change_state(daze)
-		parent.change_stamina(-6, true)
+		parent.player_parry()
 		parent.shake_timer = 0.267
 		parent.shake_magnitude = 3
 		parent.total_shake_time = 0.267
@@ -57,4 +57,4 @@ func damage_player():
 	elif result == 5:
 		parent.available_hits = 3
 		parent.recovery_hits = 2
-		parent.change_stamina(-2, true)
+		parent.player_dodge(2)

@@ -1,9 +1,9 @@
-[gd_scene load_steps=27 format=3 uid="uid://dlj06bmwedjwi"]
+[gd_scene load_steps=25 format=3 uid="uid://dlj06bmwedjwi"]
 
 [ext_resource type="Script" uid="uid://k3gm1lif0mn2" path="res://scripts/scenes/fight.gd" id="1_5mf5x"]
-[ext_resource type="Texture2D" uid="uid://bqs3v8xt7ur8n" path="res://assets/backgrounds/Boxing_Ring_1_FinalNES.png" id="2_57w1i"]
 [ext_resource type="PackedScene" uid="uid://dqyhbm5jgsaui" path="res://scenes/player.tscn" id="3_5mf5x"]
 [ext_resource type="Script" uid="uid://qjk7bgi88ekw" path="res://scripts/ref.gd" id="3_57w1i"]
+[ext_resource type="Texture2D" uid="uid://cc3lnsi8rj4pp" path="res://assets/backgrounds/Boxing_Ring_v2_1.png" id="3_bjlyo"]
 [ext_resource type="Texture2D" uid="uid://cj3eyir3gde5s" path="res://assets/backgrounds/ref.png" id="3_qogor"]
 [ext_resource type="Texture2D" uid="uid://dlxotyl28axk1" path="res://assets/backgrounds/Round_number.png" id="4_i268b"]
 [ext_resource type="Texture2D" uid="uid://dn5uyh1bdrbuv" path="res://assets/stars.png" id="5_f43n0"]
@@ -11,15 +11,9 @@
 [ext_resource type="Texture2D" uid="uid://df4m5lm8h5rg" path="res://assets/backgrounds/crowd.png" id="9_tyxkw"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qogor"]
-bg_color = Color(0.0862745, 0.0862745, 0.0862745, 1)
+bg_color = Color(0, 0, 0, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_57w1i"]
-bg_color = Color(0.988235, 0.988235, 0.988235, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bjlyo"]
-bg_color = Color(0.988235, 0.988235, 0.988235, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b8bj8"]
 bg_color = Color(0.988235, 0.988235, 0.988235, 1)
 
 [sub_resource type="Animation" id="Animation_rejdh"]
@@ -389,7 +383,7 @@ z_index = -1
 
 [node name="Background" type="Sprite2D" parent="Ring"]
 position = Vector2(128, 120)
-texture = ExtResource("2_57w1i")
+texture = ExtResource("3_bjlyo")
 
 [node name="Round_Number" type="Sprite2D" parent="Ring"]
 position = Vector2(240, 20)
@@ -398,49 +392,26 @@ centered = false
 hframes = 3
 
 [node name="Enemy_Heathbar" type="ProgressBar" parent="Ring"]
-offset_left = 132.0
-offset_top = 11.0
-offset_right = 194.0
-offset_bottom = 21.0
+offset_left = 179.0
+offset_top = 27.0
+offset_right = 237.0
+offset_bottom = 33.0
+scale = Vector2(-1, -1)
 theme_override_styles/background = SubResource("StyleBoxFlat_qogor")
 theme_override_styles/fill = SubResource("StyleBoxFlat_57w1i")
 max_value = 96.0
-value = 96.0
+value = 48.0
 show_percentage = false
 
 [node name="Player_Heathbar" type="ProgressBar" parent="Ring"]
-offset_left = 124.0
-offset_top = 21.0
-offset_right = 186.0
-offset_bottom = 31.0
-scale = Vector2(-1, -1)
+offset_left = 77.0
+offset_top = 13.0
+offset_right = 135.0
+offset_bottom = 19.0
 theme_override_styles/background = SubResource("StyleBoxFlat_qogor")
 theme_override_styles/fill = SubResource("StyleBoxFlat_57w1i")
 max_value = 96.0
-value = 96.0
-show_percentage = false
-
-[node name="Player_Stambar" type="ProgressBar" parent="Ring"]
-offset_left = 124.0
-offset_top = 25.0
-offset_right = 186.0
-offset_bottom = 28.0
-scale = Vector2(-1, -1)
-theme_override_styles/background = SubResource("StyleBoxFlat_qogor")
-theme_override_styles/fill = SubResource("StyleBoxFlat_bjlyo")
-max_value = 96.0
-value = 96.0
-show_percentage = false
-
-[node name="Enemy_Stambar" type="ProgressBar" parent="Ring"]
-offset_left = 132.0
-offset_top = 22.0
-offset_right = 194.0
-offset_bottom = 25.0
-theme_override_styles/background = SubResource("StyleBoxFlat_qogor")
-theme_override_styles/fill = SubResource("StyleBoxFlat_b8bj8")
-max_value = 96.0
-value = 96.0
+value = 48.0
 show_percentage = false
 
 [node name="Stars" type="Node2D" parent="Ring"]
@@ -461,18 +432,18 @@ libraries = {
 [node name="Timer" type="Node2D" parent="Ring"]
 
 [node name="Minute" type="Sprite2D" parent="Ring/Timer"]
-position = Vector2(218, 14)
+position = Vector2(217, 14)
 texture = ExtResource("6_i268b")
 hframes = 10
 frame = 3
 
 [node name="Decond" type="Sprite2D" parent="Ring/Timer"]
-position = Vector2(232, 14)
+position = Vector2(233, 14)
 texture = ExtResource("6_i268b")
 hframes = 10
 
 [node name="Second" type="Sprite2D" parent="Ring/Timer"]
-position = Vector2(240, 14)
+position = Vector2(241, 14)
 texture = ExtResource("6_i268b")
 hframes = 10
 

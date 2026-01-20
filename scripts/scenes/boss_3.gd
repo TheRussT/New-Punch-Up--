@@ -26,6 +26,8 @@ func _ready():
 	base_x = 100
 	base_y = 88
 	idle_guard = [6,6,6,6,3]
+	idle_guard_low = [5,5,5,5,3]
+	idle_time_guard_lowered = 0.02
 	guard = [6,6,6,6,3]
 	schedule_state = MAIN
 	#MAIN: [0x100a0, hook, 0x10080, jab, 0x10040, hook_feint, 0x20207, 0x10080, 0x30002,

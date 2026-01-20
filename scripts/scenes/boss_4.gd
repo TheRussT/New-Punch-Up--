@@ -30,6 +30,8 @@ func _ready():
 	base_x = 102
 	base_y = 98
 	idle_guard = [8,8,8,8,3]
+	idle_guard_low = [3,3,3,3,3]
+	idle_time_guard_lowered = 0.04
 	guard = [3,3,3,3,3]
 	schedule_state = MAIN
 	enemy_schedule = {MAIN: [0x10030, hook, 0x10040, hook, 0x100c0, uppercut, 

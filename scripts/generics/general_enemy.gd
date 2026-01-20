@@ -12,14 +12,15 @@ extends Node2D
 @export var intro_state : State
 
 var health = 96
-var stamina 
-var stamina_max
+var stamina = 64
+var stamina_max = 64
 var stamina_next 
 
 var base_x = 108
 var base_y = 86
 
 var idle_guard = [0,0,0,0,0]
+var idle_guard_low = [0,0,0,0,0]
 var left_high_recovery_guard = [0,0,0,0,0,0]
 var right_high_recovery_guard = [0,0,0,0,0,0]
 var left_low_recovery_guard = [0,0,0,0,0,0]
@@ -32,6 +33,11 @@ var shake_magnitude = 0
 var shake_function_progress = 0
 
 var idle_cooldown = 0.25
+
+var idle_time_guard_lowered = 0
+var consecutive_idle_hits = 0
+
+var consecutive_recovery_hits = 0
 
 # new stamina controls
 var stamina_gain_rate = 1 # per second
@@ -96,9 +102,14 @@ func damage(value):
 	var state = state_machine.current_state
 	var result = state_machine.damage(value)
 	if result >= 0:
-		check_conditions(value, result, state)
 		ring.update_enemy_health(health)
-		ring.update_enemy_stam(stamina)
+		if result < 4: 
+			if state == $State_Machine/Idle:
+				consecutive_idle_hits += 1
+			else:
+				consecutive_idle_hits = 0
+		check_conditions(value, result, state)
+		#ring.update_enemy_stam(stamina)
 	return result
 
 func damage_player(value):
@@ -199,6 +210,14 @@ func add_combo():
 	await get_tree().create_timer(5).timeout
 	recent_combos -= 1
 	#print("removing - combos are now " + str(recent_combos))
+
+func player_parry():
+	change_stamina(-6 - 2 * recent_player_parries, true)
+	add_player_parries()
+
+func player_dodge(value):
+	change_stamina(-value - recent_player_dodges, true)
+	add_player_dodges()
 
 func add_player_parries():
 	recent_player_parries += 1

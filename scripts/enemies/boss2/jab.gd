@@ -15,6 +15,7 @@ extends Enemy_Damage_State
 @export var available_hits: int
 @export var recovery_hits: int
 @export var stamina_taken: int
+@export var miss_stamina: int
 
 var next_state: State
 
@@ -78,7 +79,7 @@ func damage_player():
 		parent.shake_magnitude = 3
 		parent.total_shake_time = 0.267
 	elif result == 5:
-		parent.change_stamina(-2)
 		parent.available_hits = available_hits
 		parent.recovery_hits = recovery_hits
+		parent.player_dodge(miss_stamina)
 	

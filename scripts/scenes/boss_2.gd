@@ -21,12 +21,14 @@ func _ready():
 	animations = $Animations
 	sprite = $Boss
 	falling_sprite = $Boss_Falling
-	stamina = 24
-	stamina_max = 24
-	stamina_next = 18
+	stamina = 64
+	stamina_max = 64
+	stamina_next = 48
 	base_x = 100
 	base_y = 88
 	idle_guard = [8,8,8,8,3]
+	idle_guard_low = [3,3,3,3,3]
+	idle_time_guard_lowered = 0.08
 	guard = [8,8,8,8,3]
 	schedule_state = MAIN
 	enemy_schedule = {MAIN: [0x100d0, jab, 0x10040, jab, 0x100c0, hook, 
@@ -120,7 +122,7 @@ func fight_setup():
 	ring.background.texture = load("res://assets/backgrounds/Boxing_Ring_2_FinalNES.png")
 	ring.enemy_ko_table = ko_table
 	
-	player.stamina_max = 32
-	player.stamina = 32
+	player.stamina_max = 64
+	player.stamina = 64
 	player.stamina_recovery_threshold = 32
 	player.stamina_recovered_amount = 16

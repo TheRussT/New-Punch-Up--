@@ -2833,6 +2833,7 @@ area_hit = 4
 punch_damage = 12
 available_hits = 2
 recovery_hits = 1
+stamina_taken = 3
 
 [node name="Hook" type="Node" parent="State_Machine" index="22" node_paths=PackedStringArray("idle", "walking_up")]
 script = ExtResource("6_nwd4q")
@@ -2846,6 +2847,8 @@ area_hit = 6
 punch_damage = 16
 available_hits = 3
 recovery_hits = 1
+stamina_taken = 4
+miss_stamina = 1
 
 [node name="Left_Hook" type="Node" parent="State_Machine" index="23" node_paths=PackedStringArray("idle", "walking_up")]
 script = ExtResource("7_uy5af")
@@ -2853,10 +2856,13 @@ idle = NodePath("../Idle")
 walking_up = NodePath("../Walking_Up")
 shake_magnitude = 3
 shake_frames = 30
+can_block = true
 area_hit = 13
 punch_damage = 16
 available_hits = 3
 recovery_hits = 1
+stamina_taken = 5
+miss_stamina = 1
 
 [node name="Uppercut" type="Node" parent="State_Machine" index="24" node_paths=PackedStringArray("idle", "walking_up")]
 script = ExtResource("9_o28jp")
@@ -2868,6 +2874,10 @@ shake_frames = 28
 is_sent_right = true
 area_hit = 5
 punch_damage = 16
+available_hits = 4
+recovery_hits = 1
+stamina_taken = 6
+miss_stamina = 2
 
 [node name="Taunt" type="Node" parent="State_Machine" index="25" node_paths=PackedStringArray("idle")]
 script = ExtResource("10_gew7u")
@@ -2888,6 +2898,7 @@ punch_damage = 20
 available_hits = 7
 recovery_hits = 2
 stamina_taken = 4
+miss_stamina = 3
 
 [node name="Whiteout" type="ColorRect" parent="." index="5"]
 z_index = -1

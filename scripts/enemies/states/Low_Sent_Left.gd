@@ -11,12 +11,15 @@ func enter():
 		parent.recovery_hits -= 1
 		parent.animations.play("belly_sent_left_long")
 	else:
+		parent.animations.speed_scale = 1 + 0.5 * parent.consecutive_recovery_hits
+		parent.consecutive_recovery_hits += 1
 		parent.animations.play("belly_sent_left")
 	parent.animations.advance(0)
 
 func exit():
 	parent.star.visible = false
 	#parent.spit.visible = false
+	parent.animations.speed_scale = parent.animation_speed
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func process(delta):

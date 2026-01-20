@@ -21,9 +21,10 @@ func process(delta):
 
 func damage(value):
 	if parent.animations.get_current_animation_position() > 0.0833:
+		parent.input_buffer.erase("ui_up")
 		if (value >> 13 & 1) == 1:
 			parent.initiate_shake_f(0.267,1)
-			parent.change_stamina(4)
+			parent.change_stamina(3)
 			return 4
 		else:
 			if value >> 14 & 1 == 1:

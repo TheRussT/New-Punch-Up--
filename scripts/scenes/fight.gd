@@ -57,6 +57,9 @@ func start_round():
 	time = 180.0
 	timer_speed = 0
 	
+	enemy.advantage_state = 0
+	player.advantage_state = 0
+	
 	enemy.state_machine.change_state(enemy.intro_state)
 	enemy.stamina = enemy.stamina_max
 	enemy_stam = enemy.stamina
@@ -65,6 +68,11 @@ func start_round():
 	player.stamina = player.stamina_max
 	
 	player_stam = player.stamina
+	
+	enemy.exit_OTR()
+	player.exit_OTR()
+	update_player_stam(player.stamina)
+	update_enemy_stam(enemy.stamina)
 	
 	player_times_kod_round = 0
 	enemy_times_kod_round = 0
