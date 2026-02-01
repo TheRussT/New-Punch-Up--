@@ -14,7 +14,7 @@ func enter():
 	parent.sprite.visible = false
 	parent.falling_sprite.visible = true
 	parent.animations.play("stamina_loss")
-	parent.sprite.material.set_shader_parameter("replace_color", Color("f878f8"))
+	#parent.sprite.material.set_shader_parameter("replace_color", Color("f878f8"))
 	parent.sprite.material.set_shader_parameter("tolerance", 0.1)
 	parent.falling_sprite.material.set_shader_parameter("tolerance", 0.1)
 	parent.advantage_state |= 4

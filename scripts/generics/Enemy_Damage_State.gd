@@ -14,6 +14,7 @@ func damage(value):
 			pass
 		parent.guard = parent.idle_guard
 		parent.change_stamina(-1, true)
+		parent.event_action(1)
 		return 8
 	elif parent.guard[guard_position] == 7:
 		if guard_position < 2:
@@ -27,10 +28,12 @@ func damage(value):
 		#else:
 			#parent.guard = parent.idle_guard
 		parent.change_stamina(-3, true)
+		parent.event_action(6)
 		return 7
 	elif parent.guard[guard_position] == 6:
 		damage_react(8, 0, parent.get_child(4).get_child(1))
 		parent.guard = parent.idle_guard
+		parent.event_action(1)
 		return 6
 	elif parent.guard[guard_position] == 5:
 		damage_react(12, 0, parent.get_child(4).get_child(1))
@@ -39,6 +42,7 @@ func damage(value):
 		#else:
 			#parent.guard = parent.idle_guard
 		parent.change_stamina(-3, true)
+		parent.event_action(6)
 		return 5
 	elif parent.guard[guard_position] == 4:
 		if guard_position < 2:
@@ -74,10 +78,11 @@ func damage(value):
 				parent.total_shake_time = 0.333
 				return 0
 			parent.change_stamina(-(value & 255)/2)
+			parent.event_big_action(6)
 			return 3
 			
 		if parent.guard[guard_position] == 0:
-			parent.get_child(4).get_child(3).fall_type = 4
+			#parent.get_child(4).get_child(3).fall_type = 4
 			parent.health -= parent.health
 		#if parent.guard[guard_position] == 1:
 			#parent.available_hits = 4
@@ -87,12 +92,15 @@ func damage(value):
 			parent.shake_magnitude = 4
 			return 0
 		if parent.available_hits > 1:
+			parent.event_big_action(1)
 			parent.shake_timer = 0.05
 			parent.total_shake_time = 0.05
 			parent.shake_magnitude = 2
 			parent.change_stamina(-1 - parent.recent_combos / 4)
 			parent.add_combo()
 			return 1
+		parent.event_big_action(4)
+		parent.health -= 1
 		parent.change_stamina(-4 - min(parent.recent_strays, 4))
 		parent.add_stray()
 		if parent.guard[guard_position] == 2:
@@ -107,3 +115,4 @@ func damage_react(time, magnitude, state):
 	parent.shake_magnitude = magnitude
 	parent.total_shake_time = parent.shake_timer
 	parent.state_machine.change_state(state)
+	print("in damage react")

@@ -172,7 +172,7 @@ func change_stamina(value):
 func enter_OTR():
 	OTR_buffer = 0
 	advantage_state |= 1
-	$Sprite.material.set_shader_parameter("replace_color", Color("e40058"))
+	$Sprite.material.set_shader_parameter("replace_color", Color("f878f8"))
 	$Sprite.material.set_shader_parameter("tolerance", 0.1)
 	ring.player_enter_OTR()
 	#inform ring

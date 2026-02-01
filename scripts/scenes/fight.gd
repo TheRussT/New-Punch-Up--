@@ -8,11 +8,11 @@ var player
 
 @onready var player_heathbar = $Ring/Player_Heathbar
 var player_health = 96
-@onready var player_stambar = $Ring/Player_Stambar
+#@onready var player_stambar = $Ring/Player_Stambar
 var player_stam : int
 @onready var enemy_heathbar = $Ring/Enemy_Heathbar
 var enemy_health : int
-@onready var enemy_stambar = $Ring/Enemy_Stambar
+#@onready var enemy_stambar = $Ring/Enemy_Stambar
 var enemy_stam : int
 @onready var star_animations = $Ring/Stars/Animations
 
@@ -43,11 +43,11 @@ func _ready() -> void:
 	enemy.fight_setup()
 	
 	player_stam = player.stamina_max
-	player_stambar.max_value = player_stam
+	generate_player_stam(player_stam)
 	
 	enemy_health = enemy.health
 	enemy_stam = enemy.stamina_max
-	enemy_stambar.max_value = enemy_stam
+	generate_enemy_stam(enemy_stam)
 	#enemy_stam = 1
 
 func start_round():
@@ -87,15 +87,15 @@ func _process(delta: float) -> void:
 
 func manage_progress_bars(delta):
 	if player_health != player_heathbar.value:
-		if abs(player_health - player_heathbar.value) < 1:
-			player_heathbar.value = player_health
+		if player_health < player_heathbar.value:
+			player_heathbar.value -= 1
 		else:
-			player_heathbar.value += (player_health - player_heathbar.value) * 5 * delta
+			player_heathbar.value += 1
 	if enemy_health != enemy_heathbar.value:
-		if abs(enemy_health - enemy_heathbar.value) < 1:
-			enemy_heathbar.value = enemy_health
+		if enemy_health < enemy_heathbar.value:
+			enemy_heathbar.value -= 1
 		else:
-			enemy_heathbar.value += (enemy_health - enemy_heathbar.value) * 5 * delta
+			enemy_heathbar.value += 1
 	#if player_stam != player_stambar.value:
 		#if abs(player_stam - player_stambar.value) < 1:
 			#player_stambar.value = player_stam
@@ -119,7 +119,9 @@ func process_timer(delta):
 			enemy.between_round_setup(round_number)
 	else:
 		var time_display = int(time)
+		@warning_ignore("integer_division")
 		$Ring/Timer/Minute.set_frame(time_display/60)
+		@warning_ignore("integer_division")
 		$Ring/Timer/Decond.set_frame((time_display%60)/10)
 		$Ring/Timer/Second.set_frame(time_display%10)
 
@@ -152,15 +154,141 @@ func handle_stars(value):
 
 func update_player_health(value):
 	player_health = value
+	#player_heathbar.value = value
 
 func update_enemy_health(value):
 	enemy_health = value
+	#enemy_heathbar.value = value
 
 func update_player_stam(value):
+	var change = value - player_stam
+	#print("stamina now " + str(value) + " meaning change of " + str(change))
 	player_stam = value
-	player_stambar.value = player_stam
-	#print("changing " + str(player_stam) + " out of " + str(player_stambar.max_value))
+	if change == 0:
+		return
+	if change < -4:
+		$Ring/Player_Stambar/Animations.play("lose_large")
+	elif change < -2:
+		$Ring/Player_Stambar/Animations.play("lose_large")
+	elif change < 0:
+		$Ring/Player_Stambar/Animations.play("lose_small")
+	elif change < 3:
+		$Ring/Player_Stambar/Animations.play("gain_small")
+	elif change < 5:
+		$Ring/Player_Stambar/Animations.play("gain_large")
+	else:
+		$Ring/Player_Stambar/Animations.play("gain_large")
 
+func update_enemy_stam(value):
+	var change = value - enemy_stam
+	enemy_stam = value
+	if change == 0:
+		return
+	if change < -4:
+		$Ring/Enemy_Stambar/Animations.play("lose_large")
+	elif change < -2:
+		$Ring/Enemy_Stambar/Animations.play("lose_large")
+	elif change < 0:
+		$Ring/Enemy_Stambar/Animations.play("lose_small")
+	elif change < 3:
+		$Ring/Enemy_Stambar/Animations.play("gain_small")
+	elif change < 5:
+		$Ring/Enemy_Stambar/Animations.play("gain_large")
+	else:
+		$Ring/Enemy_Stambar/Animations.play("gain_large")
+
+func generate_player_stam(value):
+	#print("called " + str(value))
+	set_player_stam_color(Color("a81000"))
+	$Ring/Player_Stambar/l1.visible = false
+	$Ring/Player_Stambar/l2.visible = false
+	$Ring/Player_Stambar/l3.visible = false
+	$Ring/Player_Stambar/l4.visible = false
+	$Ring/Player_Stambar/l5.visible = false
+	$Ring/Player_Stambar/l6.visible = false
+	$Ring/Player_Stambar/l7.visible = false
+	$Ring/Player_Stambar/l8.visible = false
+	if value > 0 && value < 47:
+		$Ring/Player_Stambar/l1.visible = true
+	if value > 8 && value < 55:
+		$Ring/Player_Stambar/l2.visible = true
+	if value > 16:
+		$Ring/Player_Stambar/l3.visible = true
+	if value > 24:
+		$Ring/Player_Stambar/l4.visible = true
+	if value > 32:
+		$Ring/Player_Stambar/l5.visible = true
+	if value > 40:
+		$Ring/Player_Stambar/l6.visible = true
+	if value > 48:
+		$Ring/Player_Stambar/l7.visible = true
+	if value > 56:
+		$Ring/Player_Stambar/l8.visible = true
+
+func generate_enemy_stam(value):
+	#probably a better way to do this
+	set_enemy_stam_color(Color("a81000"))
+	$Ring/Enemy_Stambar/l1.visible = false
+	$Ring/Enemy_Stambar/l2.visible = false
+	$Ring/Enemy_Stambar/l3.visible = false
+	$Ring/Enemy_Stambar/l4.visible = false
+	$Ring/Enemy_Stambar/l5.visible = false
+	$Ring/Enemy_Stambar/l6.visible = false
+	$Ring/Enemy_Stambar/l7.visible = false
+	$Ring/Enemy_Stambar/l8.visible = false
+	if value > 0 && value < 47:
+		$Ring/Enemy_Stambar/l1.visible = true
+	if value > 8 && value < 55:
+		$Ring/Enemy_Stambar/l2.visible = true
+	if value > 16:
+		$Ring/Enemy_Stambar/l3.visible = true
+	if value > 24:
+		$Ring/Enemy_Stambar/l4.visible = true
+	if value > 32:
+		$Ring/Enemy_Stambar/l5.visible = true
+	if value > 40:
+		$Ring/Enemy_Stambar/l6.visible = true
+	if value > 48:
+		$Ring/Enemy_Stambar/l7.visible = true
+	if value > 56:
+		$Ring/Enemy_Stambar/l8.visible = true
+
+func generate_player_stam_from_animation(offset):
+	generate_player_stam(player_stam + offset)
+	#print($Ring/Player_Stambar/Animations.is_playing())
+	if player_stam < 16 && !$Ring/Player_Stambar/Animations.is_playing():
+		if player.OTR_buffer > 12:
+			$Ring/Player_Stambar/Animations.play("flash_fast")
+		else:
+			$Ring/Player_Stambar/Animations.play("flash")
+
+func generate_enemy_stam_from_animation(offset):
+	generate_enemy_stam(enemy_stam + offset)
+	if enemy_stam < 16 && !$Ring/Enemy_Stambar/Animations.is_playing():
+		if enemy.OTR_buffer > enemy.OTR_max - 4:
+			$Ring/Enemy_Stambar/Animations.play("flash_fast")
+		else:
+			$Ring/Enemy_Stambar/Animations.play("flash")
+
+func set_player_stam_color(color : Color):
+	$Ring/Player_Stambar/l1.material.set_shader_parameter("replace_color", color)
+	$Ring/Player_Stambar/l2.material.set_shader_parameter("replace_color", color)
+	$Ring/Player_Stambar/l3.material.set_shader_parameter("replace_color", color)
+	$Ring/Player_Stambar/l4.material.set_shader_parameter("replace_color", color)
+	$Ring/Player_Stambar/l5.material.set_shader_parameter("replace_color", color)
+	$Ring/Player_Stambar/l6.material.set_shader_parameter("replace_color", color)
+	$Ring/Player_Stambar/l7.material.set_shader_parameter("replace_color", color)
+	$Ring/Player_Stambar/l8.material.set_shader_parameter("replace_color", color)
+
+func set_enemy_stam_color(color : Color):
+	$Ring/Enemy_Stambar/l1.material.set_shader_parameter("replace_color", color)
+	$Ring/Enemy_Stambar/l2.material.set_shader_parameter("replace_color", color)
+	$Ring/Enemy_Stambar/l3.material.set_shader_parameter("replace_color", color)
+	$Ring/Enemy_Stambar/l4.material.set_shader_parameter("replace_color", color)
+	$Ring/Enemy_Stambar/l5.material.set_shader_parameter("replace_color", color)
+	$Ring/Enemy_Stambar/l6.material.set_shader_parameter("replace_color", color)
+	$Ring/Enemy_Stambar/l7.material.set_shader_parameter("replace_color", color)
+	$Ring/Enemy_Stambar/l8.material.set_shader_parameter("replace_color", color)
 
 func player_enter_OTR():
 	#anything needed with the ring
@@ -170,13 +298,11 @@ func player_enter_OTR():
 func player_exit_OTR():
 	enemy.advantage_state &= 13
 	enemy.handle_state()
+	set_player_stam_color(Color8(168,16,0))
 
 func player_tired():
 	enemy.handle_state()
 
-func update_enemy_stam(value):
-	enemy_stam = value
-	enemy_stambar.value = enemy_stam
 
 func handle_player_kod():
 	player_times_kod += 1

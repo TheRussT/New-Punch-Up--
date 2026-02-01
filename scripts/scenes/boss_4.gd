@@ -24,9 +24,10 @@ func _ready():
 	animations = $Animations
 	sprite = $Boss
 	falling_sprite = $Boss_Falling
-	stamina = 255
-	stamina_max = 255
-	stamina_next = 255
+	stamina = 64
+	stamina_max = 64
+	stamina_next = 48
+	stamina_gain_rate = 3
 	base_x = 102
 	base_y = 98
 	idle_guard = [8,8,8,8,3]
@@ -111,7 +112,7 @@ func undo_blizzard():
 	schedule_state = MAIN
 
 func fight_setup():
-	ring.background.texture = load("res://assets/backgrounds/Boxing_Ring_4_FinalNES.png")
+	ring.background.texture = load("res://assets/backgrounds/Boxing_Ring_v3_4.png")
 	whiteout = $Whiteout
 	whiteout.reparent(ring, false)
 	ring.enemy_ko_table = ko_table

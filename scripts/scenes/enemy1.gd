@@ -49,30 +49,30 @@ func handle_state():
 	var prior_state = schedule_state
 	if player.stamina < 1:
 		schedule_state = PLAYER_TIRED
-		print("player tired")
+		#print("player tired")
 	else:
 		if schedule_state == PLAYER_TIRED:
 			schedule_state = MAIN
-			print("Main from player tired")
+			#print("Main from player tired")
 		if schedule_state == TAUNT && has_taunted == true:
 			schedule_state = MAIN
-			print("Main from taunt")
+			#print("Main from taunt")
 		if advantage_state == 1:
 			schedule_state = OTR
-			print("OTR")
+			#print("OTR")
 		elif advantage_state == 2:
 			schedule_state = PLAYER_OTR
-			print("player OTR")
+			#print("player OTR")
 		else:
 			schedule_state = MAIN
-			print("Main from else")
+			#print("Main from else")
 	if prior_state != schedule_state:
 		if schedule_state == MAIN:
 			schedule_index = 1
 		else:
 			schedule_index = 0
 		handle_state_schedule()
-		print("New schedule")
+		#print("New schedule")
 
 func check_conditions(value, result, state):
 	pass
@@ -177,7 +177,7 @@ func taunt_complete():
 	handle_state()
 
 func fight_setup():
-	ring.background.texture = load("res://assets/backgrounds/Boxing_Ring_1_FinalNES.png")
+	ring.background.texture = load("res://assets/backgrounds/Boxing_Ring_v3_1.png")
 	ring.enemy_ko_table = ko_table
 	
 	#player.stamina_max = 24
@@ -191,7 +191,7 @@ func enter_OTR():
 	advantage_state |= 1
 	animation_speed = 0.92
 	animations.speed_scale = animation_speed
-	$Boss.material.set_shader_parameter("replace_color", Color("e40058"))
+	#$Boss.material.set_shader_parameter("replace_color", Color("f878f8"))
 	$Boss.material.set_shader_parameter("tolerance", 0.1)
 	handle_state()
 

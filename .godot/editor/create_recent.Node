@@ -1,8 +1,8 @@
+AnimationPlayer
 Sprite2D
+Node2D
 Control
 ColorRect
-Node2D
-AnimationPlayer
 Node
 TileMap
 ProgressBar

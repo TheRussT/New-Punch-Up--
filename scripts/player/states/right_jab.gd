@@ -18,7 +18,7 @@ func process(delta):
 	return null
 
 func damage_enemy():
-	var result = parent.punch_enemy(0x104)
+	var result = parent.punch_enemy(0x103)
 	if result == 0:
 		next_state = walking_down
 	#if result == 1:

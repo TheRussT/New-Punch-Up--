@@ -56,6 +56,12 @@ var recent_combos = 0
 var recent_player_dodges = 0
 var recent_player_parries = 0
 
+var recent_action_multiplier = 1.3
+var idle_multiplier = 0.3
+var recent_big_actions = 0
+var recent_actions = 0
+
+
 var available_hits = 1
 var recovery_hits = 0
 
@@ -84,7 +90,11 @@ func _process(delta):
 		handle_shake(delta)
 	else:
 		state_machine.process(delta)
-	
+	if stamina < stamina_max:
+		stamina_regain_amount += delta * ring.timer_speed * stamina_gain_rate * recent_action_multiplier * idle_multiplier
+		if stamina_regain_amount >= 0:
+			stamina_regain_amount -= 1
+			change_stamina(1)
 	# print(recent_strays)
 
 func handle_shake(delta):
@@ -115,8 +125,8 @@ func damage(value):
 func damage_player(value):
 	return player.damage(value)
 
-func set_guard(up_left, up_right, down_left, down_right, star, hits):
-	guard = [up_left, up_right, down_left, down_right, star]
+func set_guard(up_left, up_right, down_left, down_right, star_guard, hits):
+	guard = [up_left, up_right, down_left, down_right, star_guard]
 	#available_hits = hits
 
 func advance_state():
@@ -158,6 +168,7 @@ func change_stamina(value : int, handles_stamina_loss : bool = false):
 			#could have it flash when enemy is close to recovering
 			if OTR_buffer >= OTR_max:
 				#OTR_buffer = 0
+				#print("change stamina OTR")
 				exit_OTR()
 				stamina += 16
 				#undo ring settings
@@ -184,15 +195,18 @@ func enter_OTR():
 	advantage_state |= 1
 	animation_speed = 0.92
 	animations.speed_scale = animation_speed
+	#ring.enemy_enter_OTR()
 
 func exit_OTR():
 	#print("parent OTR exit")
 	advantage_state &= 6
 	animation_speed = 1
 	animations.speed_scale = animation_speed
+	#ring.enemy_exit_OTR()
 
 func exit_stamina_loss():
 	advantage_state &= 3
+	#print("exit OTR called from stamina_loss")
 	exit_OTR()
 	stamina = 0
 	change_stamina(stamina_next)
@@ -217,17 +231,34 @@ func player_parry():
 
 func player_dodge(value):
 	change_stamina(-value - recent_player_dodges, true)
-	add_player_dodges()
+	#add_player_dodges()
 
 func add_player_parries():
 	recent_player_parries += 1
 	await get_tree().create_timer(8).timeout
 	recent_player_parries -= 1
 
-func add_player_dodges():
-	recent_player_dodges += 1
-	await get_tree().create_timer(5).timeout
-	recent_player_dodges -= 1
+#func add_player_dodges():
+	#recent_player_dodges += 1
+	#await get_tree().create_timer(5).timeout
+	#recent_player_dodges -= 1
+
+func event_action(time):
+	if recent_big_actions < 1:
+		recent_actions += 1
+		recent_action_multiplier = 1
+		await get_tree().create_timer(time)
+		recent_actions -= 1
+		if recent_actions < 1:
+			recent_action_multiplier = 1.5
+
+func event_big_action(time):
+	recent_big_actions += 1
+	recent_action_multiplier = 0.1
+	await get_tree().create_timer(time)
+	recent_big_actions -= 1
+	if recent_big_actions < 1:
+		event_action(time)
 
 func between_round_setup(round_number : int):
 	#can maybe verify this is the between fights scene

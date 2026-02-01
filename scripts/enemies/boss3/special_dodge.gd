@@ -12,6 +12,7 @@ func enter():
 	#else:
 		#parent.animations.play("dodge")
 	parent.animations.advance(0)
+	parent.change_stamina(-2)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func process(delta):

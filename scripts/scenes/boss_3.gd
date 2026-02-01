@@ -1,7 +1,7 @@
 extends "res://scripts/generics/general_enemy.gd"
 
 enum {
-	MAIN, SEVEN, SIX, FIVE, FOUR, THREE, TWO, ONE, PLAYER_TIRED, FOLLOWUP
+	MAIN, OTR, PLAYER_OTR, FOLLOWUP, PLAYER_TIRED, TAUNT
 }
 @export var jab : State
 @export var hook : State
@@ -18,8 +18,8 @@ func _ready():
 	animations = $Animations
 	sprite = $Boss
 	falling_sprite = $Boss_Falling
-	stamina = 8
-	stamina_max = 8
+	stamina = 64
+	stamina_max = 64
 	stamina_next = 1
 	#stamina_regain_threshold = 1000
 	idle_cooldown = 0.05
@@ -28,22 +28,18 @@ func _ready():
 	idle_guard = [6,6,6,6,3]
 	idle_guard_low = [5,5,5,5,3]
 	idle_time_guard_lowered = 0.02
+	stamina_gain_rate = 0.5
 	guard = [6,6,6,6,3]
 	schedule_state = MAIN
 	#MAIN: [0x100a0, hook, 0x10080, jab, 0x10040, hook_feint, 0x20207, 0x10080, 0x30002,
-	#uppercut, 0x30002, hook, 0x30002]
-	enemy_schedule = {MAIN: [0x10100, jab, 0x10000, jab, 0x10000, jab, 0x10000, uppercut, 0x100a0, 0x30001],
-		SEVEN: [0x100f0, hook, 0x10012, left_hook, 0x10012, hook, 0x10012, uppercut, 0x100a0, 0x30001],
-		SIX: [0x100e0, jab, 0x10000, hook, 0x10012, uppercut_left, 0x10016, uppercut, 0x100a0, 0x30001],
-		FIVE: [0x100d0, jab, 0x10000, jab, 0x10000, uppercut_left, 0x10080, left_hook, 0x1000c, uppercut, 0x100a0, 0x30001],
-		FOUR: [0x100d0, hook, 0x2030d, 0x1000a, hook, 0x1000a, jab, 0x10070, hook, 0x1000a, left_hook, 0x1000c, 0x30016, 0x1000f, left_hook, 0x10040,
-		uppercut_left, 0x10010, jab, 0x10000, jab, 0x10028, uppercut, 0x100a0, 0x30001],
-		THREE: [0x100c0, jab, 0x20315, jab, 0x20517, jab, 0x20719, jab, 0x3001b, 0x10010, hook, 0x10009, left_hook, 0x1000a, hook, 0x10009, left_hook,
-		0x1000a, uppercut, 0x100a0, 0x30001, uppercut_left, 0x30009, uppercut_left, 0x3000b, uppercut_left, 0x3000d, uppercut_left, 0x3000f],
-		TWO: [0x100c0, hook_feint, 0x20308, jab, 0x10020, 0x30008, left_hook, 0x10029, hook_feint, 0x20a0f, left_hook, 0x10009, uppercut_left, 0x10029, 
-		0x30015, jab, 0x10000, jab, 0x10000, jab, 0x10020, hook_feint, 0x10010, hook_feint, uppercut, 0x100a0, 0x30001],
-		ONE: [0x100b0, uppercut, 0x100a0, 0x30001],
-		PLAYER_TIRED: [0x10010, uppercut, 0x20003, 0x10040, hook, 0x30000],
+	#uppercut, 0x30002, hook, 0x30002]                                                                                      10
+	enemy_schedule = {MAIN: [0x10100, left_hook, 0x10028, hook, 0x20506, 0x20006, 0x10060, special_dodge, 0x2090a, 0x10010, 0x10020, uppercut, 
+		0x10040, 0x20d14, jab, jab, jab, 0x10070, special_dodge, 0x10040, special_dodge, 0x10028, uppercut_left, 0x30000],
+		OTR: [0x10010, jab, jab, 0x10010, uppercut_left, 0x2060a,0x10060, hook, 0x100b0, 0x3000f, 0x10048, special_dodge, 0x10010,
+		left_hook, 0x10070, special_dodge, 0x10016, uppercut, 0x30000],
+		PLAYER_OTR: [0x100a0, uppercut, 0x10008, uppercut_left, 0x100b0, jab, 0x10070, uppercut, 0x10010, 0x20a0c, uppercut,
+		0x30000, 0x10010, jab, 0x30000],
+		PLAYER_TIRED: [0x10010, uppercut_left, 0x10060, hook_feint, 0x10040, left_hook, 0x20207, 0x10050, uppercut, 0x30000],
 		FOLLOWUP: [uppercut_quick, 0x30000]
 	}
 	ko_table = {0:[1,0,0,0,0,0,0,0,0,0,0], 1:[1,0,0,0,0,0,0,0,0,0,0]}
@@ -51,54 +47,38 @@ func _ready():
 	handle_state_schedule()
 
 func handle_state():
+	var prior_state = schedule_state
 	if player.stamina < 1:
-		if schedule_state != PLAYER_TIRED:
-			schedule_index = 0
 		schedule_state = PLAYER_TIRED
+		#print("player tired")
 	else:
-		var new_state = schedule_state
-		new_state = MAIN
-		if new_state == MAIN:
-			if stamina == 7:
-				new_state = SEVEN
-			elif stamina == 6:
-				new_state = SIX
-			elif stamina == 5:
-				new_state = FIVE
-			elif stamina == 4:
-				$State_Machine/Idle.animation = "idle_old"
-				new_state = FOUR
-			elif stamina == 3:
-				new_state = THREE
-			elif stamina == 2:
-				new_state = TWO
-			elif stamina == 1:
-				new_state = ONE
-		if new_state != schedule_state:
-			# print(str(schedule_state) +" -> " + str(new_state))
-			schedule_state = new_state
+		if schedule_state == PLAYER_TIRED:
+			schedule_state = MAIN
+			#print("Main from player tired")
+		if advantage_state == 1:
+			schedule_state = OTR
+			#print("OTR")
+		elif advantage_state == 2:
+			schedule_state = PLAYER_OTR
+			#print("player OTR")
+		else:
+			schedule_state = MAIN
+			#print("Main from else")
+	if prior_state != schedule_state && health > 0: #might need to change health, just so schedule changes 
+													#only haddpen when the enemy is active
+		if schedule_state == MAIN:
+			schedule_index = 1
+		else:
 			schedule_index = 0
+		handle_state_schedule()
 
 func check_conditions(value, result, state):
-	if result == 5:
+	if result == 5 && state_machine.current_state != special_dodge:
+		#print("state change from check_conds 5")
 		state_machine.change_state(special_dodge)
-	if result == 6:
-		schedule_index = 0
-		schedule_timer = 0
-		schedule_state = FOLLOWUP
-		#state_machine.change_state(uppercut_quick)
-	
-	#if result == 0:
-	#if schedule_state != ENRAGED:
-		#if (value >> 9) & 1 == 1 && result < 4: #low shot
-			#health -= 2
-			#ring.update_enemy_health(health)
-			#available_hits = 1
-			#rage += 1
-		#if rage > 1:
-			#schedule_state = TAUNT
-			#schedule_index = 0
-	# Checks 
+	elif result == 6 && state_machine.current_state == special_dodge:
+		#print("state change from check_conds 6")
+		state_machine.change_state(uppercut_quick)
 
 func damage_player(value):
 	var result = player.damage(value)
@@ -118,10 +98,30 @@ func between_round_setup(round_number):
 
 
 func fight_setup():
-	ring.background.texture = load("res://assets/backgrounds/Boxing_Ring_3_FinalNES.png")
+	ring.background.texture = load("res://assets/backgrounds/Boxing_Ring_v3_3.png")
 	ring.enemy_ko_table = ko_table
 	
-	player.stamina_max = 8
-	player.stamina = 8
+	player.stamina_max = 64
+	player.stamina = 64
 	player.stamina_recovery_threshold = 40
 	player.stamina_recovered_amount = 12
+
+func enter_OTR():
+	OTR_buffer = 0
+	advantage_state |= 1
+	animation_speed = 0.92
+	animations.speed_scale = animation_speed
+	#$Boss.material.set_shader_parameter("replace_color", Color("f878f8"))
+	$State_Machine/Idle.animation = "idle_old"
+	$Boss.material.set_shader_parameter("tolerance", 0.1)
+	handle_state()
+
+func exit_OTR():
+	#print("OTR exit")
+	advantage_state &= 2
+	animation_speed = 1
+	animations.speed_scale = animation_speed
+	$State_Machine/Idle.animation = "idle"
+	$Boss.material.set_shader_parameter("tolerance", 0.0)
+	print("handle state from exitOTR")
+	handle_state()

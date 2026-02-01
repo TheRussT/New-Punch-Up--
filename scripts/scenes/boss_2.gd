@@ -1,7 +1,7 @@
 extends "res://scripts/generics/general_enemy.gd"
 
 enum {
-	MAIN, LOW, TIRED, ENRAGED, PLAYER_TIRED, TAUNT
+	MAIN, OTR, PLAYER_OTR, ENRAGED, PLAYER_TIRED, TAUNT
 }
 @export var hook : State
 @export var left_hook : State
@@ -33,13 +33,13 @@ func _ready():
 	schedule_state = MAIN
 	enemy_schedule = {MAIN: [0x100d0, jab, 0x10040, jab, 0x100c0, hook, 
 		0x20705, left_hook, 0x30000],
-		LOW: [0x10020, jab, 0x10080, left_hook, 0x20005, 0x10040, jab, 0x10030, hook, 
+		OTR: [0x10020, jab, 0x10080, left_hook, 0x20005, 0x10040, jab, 0x10030, hook, 
 		0x20002],
-		TIRED: [0x100020, jab, 0x20003, 0x10060, jab, 0x20006, 0x10010, hook_big, 
-		0x20009, 0x30006],
+		PLAYER_OTR: [0x100020, jab, 0x20003, 0x10020, jab, 0x10060, hook_big, 
+		0x20008, left_hook_big, 0x30000],
 		ENRAGED: [0x10010, hook_big, 0x20003, 0x10040, left_hook_big, 0x20005,
 		left_hook_big, 0x30000],
-		PLAYER_TIRED: [0x10010, hook, 0x20003, 0x10040, hook, 0x30000],
+		PLAYER_TIRED: [0x10010, hook, 0x20003, 0x10040, left_hook_big, 0x30000],
 		TAUNT: [taunt, 0x30000]
 	}
 	ko_table = {0:[1,0,0,0,0,0,0,0,0,0,0], 1:[80,0,0,3], 2:[64,0,0,1,0,3], 3:[56,0,1,0,1,0,1,0,3], 4:[48,3]}
@@ -47,29 +47,32 @@ func _ready():
 	handle_state_schedule()
 
 func handle_state():
+	var prior_state = schedule_state
 	if player.stamina < 1:
-		if schedule_state != PLAYER_TIRED:
-			schedule_index = 0
 		schedule_state = PLAYER_TIRED
-		#
-		#handle_state_schedule()
-	else:
+		if prior_state == ENRAGED:
+			unrage()
+		#print("player tired")
+	elif schedule_state != ENRAGED:
 		if schedule_state == PLAYER_TIRED:
 			schedule_state = MAIN
-		if schedule_state == ENRAGED:
-			pass
-		elif stamina < 10:
-			if schedule_state != TIRED:
-				schedule_index = 0
-			schedule_state = TIRED
-		elif stamina > 11 || schedule_state != TIRED:
-			if health > 48 && schedule_state == LOW:
-				schedule_state = MAIN
-				schedule_index = 0
-			elif health <= 48 && schedule_state == MAIN:
-				schedule_state = MAIN
-				schedule_index = 0
-			
+			#print("Main from player tired")
+		if schedule_state == TAUNT && has_taunted == true:
+			schedule_state = ENRAGED
+			#print("Main from taunt")
+		if advantage_state == 1:
+			schedule_state = OTR
+			#print("OTR")
+		elif advantage_state == 2:
+			schedule_state = PLAYER_OTR
+			#print("player OTR")
+		else:
+			schedule_state = MAIN
+			#print("Main from else")
+	if prior_state != schedule_state:
+		schedule_index = 0
+		handle_state_schedule()
+
 
 func check_conditions(value, result, state):
 	if result == 0:
@@ -104,8 +107,9 @@ func taunt_complete():
 	schedule_state = ENRAGED
 	$State_Machine/Idle.animation = "idle_up"
 	schedule_index = 0
-	stamina = 8
-	ring.update_enemy_stam(stamina)
+	$Boss.material.set_shader_parameter("replace_color", Color("ff0000"))
+	if stamina > 16:
+		change_stamina(-(stamina - 16))
 
 func unrage():
 	#print("unrage")
@@ -115,14 +119,32 @@ func unrage():
 		$State_Machine/Idle.animation = "idle"
 		schedule_state = MAIN
 		handle_state()
-		schedule_index = 0
-		$Boss.material.set_shader_parameter("tolerance", 0.0)
+		$Boss.material.set_shader_parameter("replace_color", Color("f8b8f8"))
+		if stamina > 0:
+			$Boss.material.set_shader_parameter("tolerance", 0.0)
 
 func fight_setup():
-	ring.background.texture = load("res://assets/backgrounds/Boxing_Ring_2_FinalNES.png")
+	ring.background.texture = load("res://assets/backgrounds/Boxing_Ring_v3_2.png")
 	ring.enemy_ko_table = ko_table
 	
 	player.stamina_max = 64
 	player.stamina = 64
 	player.stamina_recovery_threshold = 32
 	player.stamina_recovered_amount = 16
+
+func enter_OTR():
+	OTR_buffer = 0
+	advantage_state |= 1
+	animation_speed = 0.92
+	animations.speed_scale = animation_speed
+	#$Boss.material.set_shader_parameter("replace_color", Color("f878f8"))
+	$Boss.material.set_shader_parameter("tolerance", 0.1)
+	handle_state()
+
+func exit_OTR():
+	#print("OTR exit")
+	advantage_state &= 2
+	animation_speed = 1
+	animations.speed_scale = animation_speed
+	$Boss.material.set_shader_parameter("tolerance", 0.0)
+	handle_state()

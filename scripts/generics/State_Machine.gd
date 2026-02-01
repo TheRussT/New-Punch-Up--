@@ -15,6 +15,7 @@ func change_state(new_state):
 		current_state.exit()
 	
 	current_state = new_state
+	#print("new state is " + str(new_state))
 	current_state.enter()
 
 func process(delta):
