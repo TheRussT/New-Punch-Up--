@@ -2,6 +2,7 @@ extends Enemy_Damage_State
 
 @export var idle: State
 @export var stamina_loss: State
+@export var uppercut: State
 
 # Called when the node enters the scene tree for the first time.
 func enter():
@@ -21,3 +22,9 @@ func process(delta):
 			return stamina_loss
 		return idle
 	return null
+
+func check_player():
+	var curr_state = parent.ring.player.state_machine.current_state
+	if (curr_state == parent.ring.player.get_child(2).get_child(10) ||
+	curr_state == parent.ring.player.get_child(2).get_child(15)):
+		parent.state_machine.change_state(uppercut)

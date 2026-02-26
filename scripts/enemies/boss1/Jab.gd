@@ -30,7 +30,7 @@ func process(delta):
 	return null
 
 func damage_player():
-	var result = parent.damage_player(0x20214640d)
+	var result = parent.damage_player(0x40214640d)
 	# if punch lands avail_hits = 6, parent.changestae(daze)
 	if result == 0: #32 frames
 		parent.shake_timer = 0.267

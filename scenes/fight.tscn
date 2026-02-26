@@ -1,16 +1,16 @@
-[gd_scene load_steps=71 format=3 uid="uid://dlj06bmwedjwi"]
+[gd_scene load_steps=72 format=3 uid="uid://dlj06bmwedjwi"]
 
 [ext_resource type="Script" uid="uid://k3gm1lif0mn2" path="res://scripts/scenes/fight.gd" id="1_5mf5x"]
 [ext_resource type="PackedScene" uid="uid://dqyhbm5jgsaui" path="res://scenes/player.tscn" id="3_5mf5x"]
 [ext_resource type="Script" uid="uid://qjk7bgi88ekw" path="res://scripts/ref.gd" id="3_57w1i"]
-[ext_resource type="Texture2D" uid="uid://ctfhvefnc13oo" path="res://assets/backgrounds/Boxing_Ring_v3_1.png" id="3_b8bj8"]
-[ext_resource type="Texture2D" uid="uid://cj3eyir3gde5s" path="res://assets/backgrounds/ref.png" id="3_qogor"]
-[ext_resource type="Texture2D" uid="uid://dlxotyl28axk1" path="res://assets/backgrounds/Round_number.png" id="4_i268b"]
-[ext_resource type="Texture2D" uid="uid://b3kgr3xcwqkkk" path="res://assets/stamina_heart.png" id="5_b8bj8"]
+[ext_resource type="Texture2D" uid="uid://ctfhvefnc13oo" path="res://assets/sprites/backgrounds/Boxing_Ring_v3_1.png" id="3_b8bj8"]
+[ext_resource type="Texture2D" uid="uid://cj3eyir3gde5s" path="res://assets/sprites/backgrounds/ref.png" id="3_qogor"]
+[ext_resource type="Texture2D" uid="uid://dlxotyl28axk1" path="res://assets/sprites/backgrounds/Round_number.png" id="4_i268b"]
+[ext_resource type="Texture2D" uid="uid://b3kgr3xcwqkkk" path="res://assets/sprites/stamina_heart.png" id="5_b8bj8"]
 [ext_resource type="Shader" uid="uid://do160ashhfwf8" path="res://scripts/shaders/boss.gdshader" id="5_d0pif"]
-[ext_resource type="Texture2D" uid="uid://dn5uyh1bdrbuv" path="res://assets/stars.png" id="5_f43n0"]
-[ext_resource type="Texture2D" uid="uid://i4k4ek7a6pn" path="res://assets/Timer_Text.png" id="6_i268b"]
-[ext_resource type="Texture2D" uid="uid://df4m5lm8h5rg" path="res://assets/backgrounds/crowd.png" id="9_tyxkw"]
+[ext_resource type="Texture2D" uid="uid://dn5uyh1bdrbuv" path="res://assets/sprites/stars.png" id="5_f43n0"]
+[ext_resource type="Texture2D" uid="uid://i4k4ek7a6pn" path="res://assets/sprites/Timer_Text.png" id="6_i268b"]
+[ext_resource type="Texture2D" uid="uid://df4m5lm8h5rg" path="res://assets/sprites/backgrounds/crowd.png" id="9_tyxkw"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qogor"]
 bg_color = Color(0, 0, 0, 1)
@@ -3380,6 +3380,54 @@ tracks/0/keys = {
 "update": 1,
 "values": [2]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../Timer/Minute:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../Timer/Decond:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../Timer/Second:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../Timer/Colon:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_dhtev"]
 resource_name = "flashing"
@@ -3398,10 +3446,78 @@ tracks/0/keys = {
 "values": [2, 3, 4, 5, 2, 3, 4, 5]
 }
 
+[sub_resource type="Animation" id="Animation_mod34"]
+resource_name = "round_end"
+length = 2.0
+step = 0.0166667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Timer/Minute:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.333333, 0.666667, 1, 1.33333, 1.66667, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [true, false, true, false, true, false, true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../Timer/Decond:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.333333, 0.666667, 1, 1.33333, 1.66667, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [true, false, true, false, true, false, true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../Timer/Second:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.333333, 0.666667, 1, 1.33333, 1.66667, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [true, false, true, false, true, false, true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../Timer/Colon:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.333333, 0.666667, 1, 1.33333, 1.66667, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [false, true, false, true, false, true, false]
+}
+tracks/4/type = "method"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../..")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(2),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"end_round"
+}]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_cipto"]
 _data = {
 &"RESET": SubResource("Animation_rejdh"),
-&"flashing": SubResource("Animation_dhtev")
+&"flashing": SubResource("Animation_dhtev"),
+&"round_end": SubResource("Animation_mod34")
 }
 
 [sub_resource type="Animation" id="Animation_i268b"]
@@ -3931,6 +4047,14 @@ hframes = 10
 position = Vector2(241, 14)
 texture = ExtResource("6_i268b")
 hframes = 10
+
+[node name="Colon" type="ColorRect" parent="Ring/Timer"]
+visible = false
+offset_left = 223.0
+offset_top = 10.0
+offset_right = 227.0
+offset_bottom = 18.0
+color = Color(0, 0, 0, 1)
 
 [node name="Ref" type="Node2D" parent="Ring"]
 z_index = 1

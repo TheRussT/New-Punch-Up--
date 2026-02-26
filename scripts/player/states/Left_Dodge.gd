@@ -33,6 +33,7 @@ func damage(value):
 		return 5
 	else:
 		parent.health -= value & 255
+		parent.event_hit((value & 255) / 3)
 		parent.change_stamina(-((value >> 32) & 255))
 		parent.stamina_recovery_progress = 0
 	# update here as needed

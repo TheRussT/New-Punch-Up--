@@ -1,0 +1,94 @@
+[gd_scene load_steps=5 format=3 uid="uid://cnyrs1sjamvrt"]
+
+[ext_resource type="Script" uid="uid://nbemw2eqcg3p" path="res://scripts/scenes/control_screen.gd" id="1_3ca67"]
+[ext_resource type="Texture2D" uid="uid://brghlpi4h4032" path="res://assets/sprites/backgrounds/controller.png" id="1_b2wnj"]
+[ext_resource type="FontFile" uid="uid://2qrl2e1ftj04" path="res://assets/sprites/backgrounds/punch-out-nes.ttf" id="2_ycxxt"]
+[ext_resource type="Texture2D" uid="uid://cl5csac1bxjq8" path="res://assets/sprites/backgrounds/cursor_gloves.png" id="3_ycxxt"]
+
+[node name="control_screen" type="Node2D"]
+script = ExtResource("1_3ca67")
+
+[node name="Background" type="ColorRect" parent="."]
+offset_right = 256.0
+offset_bottom = 224.0
+color = Color(0, 0, 0, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="controller" type="Sprite2D" parent="."]
+position = Vector2(143, 24)
+texture = ExtResource("1_b2wnj")
+centered = false
+
+[node name="controls" type="Label" parent="."]
+texture_filter = 1
+offset_left = 96.0
+offset_top = 8.0
+offset_right = 160.0
+offset_bottom = 16.0
+theme_override_colors/font_color = Color(0.988235, 0.988235, 0.988235, 1)
+theme_override_constants/line_spacing = 0
+theme_override_fonts/font = ExtResource("2_ycxxt")
+theme_override_font_sizes/font_size = 8
+text = "controls"
+metadata/_edit_use_anchors_ = true
+
+[node name="types" type="Label" parent="."]
+texture_filter = 1
+offset_left = 24.0
+offset_top = 24.0
+offset_right = 88.0
+offset_bottom = 80.0
+theme_override_colors/font_color = Color(0.988235, 0.988235, 0.988235, 1)
+theme_override_constants/line_spacing = 8
+theme_override_fonts/font = ExtResource("2_ycxxt")
+theme_override_font_sizes/font_size = 8
+text = "punches
+dodging
+blocking
+stars
+back"
+metadata/_edit_use_anchors_ = true
+
+[node name="keys" type="Label" parent="."]
+texture_filter = 1
+offset_left = 144.0
+offset_top = 32.0
+offset_right = 208.0
+offset_bottom = 104.0
+theme_override_colors/font_color = Color(0.988235, 0.988235, 0.988235, 1)
+theme_override_constants/line_spacing = 8
+theme_override_fonts/font = ExtResource("2_ycxxt")
+theme_override_font_sizes/font_size = 8
+text = "  w d
+a
+  s    o p
+    space"
+metadata/_edit_use_anchors_ = true
+
+[node name="explanation" type="Label" parent="."]
+texture_filter = 1
+offset_left = 24.0
+offset_top = 120.0
+offset_right = 240.0
+offset_bottom = 208.0
+theme_override_colors/font_color = Color(0.345098, 0.847059, 0.329412, 1)
+theme_override_constants/line_spacing = 0
+theme_override_fonts/font = ExtResource("2_ycxxt")
+theme_override_font_sizes/font_size = 8
+text = "this developer
+stinks!!!"
+visible_characters = 0
+visible_ratio = 0.0
+metadata/_edit_use_anchors_ = true
+
+[node name="selector" type="Sprite2D" parent="."]
+position = Vector2(8, 16)
+texture = ExtResource("3_ycxxt")
+centered = false
+hframes = 2
+
+[node name="Fade" type="ColorRect" parent="."]
+offset_right = 256.0
+offset_bottom = 224.0
+color = Color(0, 0, 0, 0)
+metadata/_edit_use_anchors_ = true

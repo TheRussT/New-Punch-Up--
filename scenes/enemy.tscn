@@ -1,9 +1,9 @@
 [gd_scene load_steps=60 format=3 uid="uid://ddlmp8qduv260"]
 
 [ext_resource type="Script" uid="uid://chvgycvbsx17w" path="res://scripts/enemies/enemy.gd" id="1_6cb6j"]
-[ext_resource type="Texture2D" uid="uid://di8fidndwhodx" path="res://assets/enemies/SirRendrefinalNES.png" id="2_2pwtc"]
-[ext_resource type="Texture2D" uid="uid://cjixtmx40ga4j" path="res://assets/enemies/Sir Rendre_falling_finalNES.png" id="3_2pwtc"]
-[ext_resource type="Texture2D" uid="uid://b5gjpmwrkxhea" path="res://assets/Star.png" id="3_t3vcr"]
+[ext_resource type="Texture2D" uid="uid://di8fidndwhodx" path="res://assets/sprites/enemies/SirRendrefinalNES.png" id="2_2pwtc"]
+[ext_resource type="Texture2D" uid="uid://cjixtmx40ga4j" path="res://assets/sprites/enemies/Sir Rendre_falling_finalNES.png" id="3_2pwtc"]
+[ext_resource type="Texture2D" uid="uid://b5gjpmwrkxhea" path="res://assets/sprites/Star.png" id="3_t3vcr"]
 [ext_resource type="Script" uid="uid://c0y76ue11d7tn" path="res://scripts/generics/State_Machine.gd" id="4_02mra"]
 [ext_resource type="Script" uid="uid://dk1bv3dvq14sg" path="res://scripts/enemies/states/Daze.gd" id="5_fj0yw"]
 [ext_resource type="Script" uid="uid://dii8vfoe7u4l6" path="res://scripts/enemies/states/Dodge.gd" id="6_4vouf"]

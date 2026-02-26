@@ -2,9 +2,9 @@
 
 [ext_resource type="PackedScene" uid="uid://cpx4tj35xbcij" path="res://scenes/generic_enemy.tscn" id="1_0wh14"]
 [ext_resource type="Script" uid="uid://d32hnd7by6p4b" path="res://scripts/scenes/enemy1.gd" id="2_7vm6n"]
-[ext_resource type="Texture2D" uid="uid://di8fidndwhodx" path="res://assets/enemies/SirRendrefinalNES.png" id="3_gwncw"]
+[ext_resource type="Texture2D" uid="uid://di8fidndwhodx" path="res://assets/sprites/enemies/SirRendrefinalNES.png" id="3_gwncw"]
 [ext_resource type="Shader" uid="uid://do160ashhfwf8" path="res://scripts/shaders/boss.gdshader" id="3_s6kl7"]
-[ext_resource type="Texture2D" uid="uid://cjixtmx40ga4j" path="res://assets/enemies/Sir Rendre_falling_finalNES.png" id="4_wpsue"]
+[ext_resource type="Texture2D" uid="uid://cjixtmx40ga4j" path="res://assets/sprites/enemies/Sir Rendre_falling_finalNES.png" id="4_wpsue"]
 [ext_resource type="Script" uid="uid://ci21xin6150ge" path="res://scripts/enemies/boss1/Jab.gd" id="5_rmc3d"]
 [ext_resource type="Script" uid="uid://dtyl45bcje1dq" path="res://scripts/enemies/boss1/Hook.gd" id="6_jeprl"]
 [ext_resource type="Script" uid="uid://dral8eeglnw7r" path="res://scripts/enemies/boss1/hook_big.gd" id="7_2s8eg"]
@@ -2100,7 +2100,7 @@ area_hit = 4
 punch_damage = 12
 available_hits = 4
 recovery_hits = 2
-stamina_taken = 6
+stamina_taken = 12
 miss_stamina = 2
 
 [node name="Hook_Big" type="Node" parent="State_Machine" index="23" node_paths=PackedStringArray("idle", "stamina_loss", "walking_up")]

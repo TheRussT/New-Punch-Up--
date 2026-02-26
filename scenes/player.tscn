@@ -1,7 +1,7 @@
 [gd_scene load_steps=50 format=3 uid="uid://dqyhbm5jgsaui"]
 
 [ext_resource type="Script" uid="uid://ddu7tow35015g" path="res://scripts/player/Player.gd" id="1_psbi0"]
-[ext_resource type="Texture2D" uid="uid://cc8p8vu8mcele" path="res://assets/Player.png" id="2_l71n6"]
+[ext_resource type="Texture2D" uid="uid://cc8p8vu8mcele" path="res://assets/sprites/Player.png" id="2_l71n6"]
 [ext_resource type="Shader" uid="uid://do160ashhfwf8" path="res://scripts/shaders/boss.gdshader" id="2_ujl30"]
 [ext_resource type="Script" uid="uid://c0y76ue11d7tn" path="res://scripts/generics/State_Machine.gd" id="3_ymm6l"]
 [ext_resource type="Script" uid="uid://kf6mycj3kk08" path="res://scripts/player/states/block.gd" id="4_a8ls1"]
@@ -838,7 +838,7 @@ libraries = {
 
 [node name="State_Machine" type="Node" parent="." node_paths=PackedStringArray("starting_state")]
 script = ExtResource("3_ymm6l")
-starting_state = NodePath("Idle")
+starting_state = NodePath("Walking_Up")
 
 [node name="Block" type="Node" parent="State_Machine" node_paths=PackedStringArray("idle", "left_jab", "right_jab")]
 script = ExtResource("4_a8ls1")

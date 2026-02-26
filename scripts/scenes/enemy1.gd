@@ -38,7 +38,7 @@ func _ready():
 		PLAYER_OTR: [0x10050, 0x10030, hook, 0x20104, 0x10010, jab, 0x20007, 0x10040, hook, 0x30000],
 		OTR: [0x1000f0, jab, 0x20003, 0x10010, hook, 0x30000],
 		PLAYER_TIRED: [0x10010, hook, 0x20003, 0x10040, hook, 0x30000],
-		TAUNT: [taunt, 0x30000]
+		TAUNT: [0x10001, taunt, 0x30000]
 	}
 	ko_table = {0:[1,0,0,0,0,0,0,0,0,0,0], 1:[72,0,1,0,3], 2:[46,0,0,0,0,1,0,0,3], 3:[32,0,1,0,0,0,0,1,0,3], 4:[1,0,0,0,0,0,0,0,0,2,0]}
 	state_machine.init(self)
@@ -177,7 +177,7 @@ func taunt_complete():
 	handle_state()
 
 func fight_setup():
-	ring.background.texture = load("res://assets/backgrounds/Boxing_Ring_v3_1.png")
+	ring.background.texture = load("res://assets/sprites/backgrounds/Boxing_Ring_v3_1.png")
 	ring.enemy_ko_table = ko_table
 	
 	#player.stamina_max = 24

@@ -15,6 +15,8 @@ enum {
 @export var special_dodge : State
 
 func _ready():
+	dodge_stam = 0
+	big_dodge_stam = 2
 	animations = $Animations
 	sprite = $Boss
 	falling_sprite = $Boss_Falling
@@ -28,7 +30,7 @@ func _ready():
 	idle_guard = [6,6,6,6,3]
 	idle_guard_low = [5,5,5,5,3]
 	idle_time_guard_lowered = 0.02
-	stamina_gain_rate = 0.5
+	stamina_gain_rate = 1
 	guard = [6,6,6,6,3]
 	schedule_state = MAIN
 	#MAIN: [0x100a0, hook, 0x10080, jab, 0x10040, hook_feint, 0x20207, 0x10080, 0x30002,
@@ -73,18 +75,19 @@ func handle_state():
 		handle_state_schedule()
 
 func check_conditions(value, result, state):
-	if result == 5 && state_machine.current_state != special_dodge:
+	if result == 5 && state_machine.current_state != special_dodge && available_hits > 1:
 		#print("state change from check_conds 5")
+		available_hits = 0
 		state_machine.change_state(special_dodge)
-	elif result == 6 && state_machine.current_state == special_dodge:
+	elif (result == 6 || result == -1) && state_machine.current_state == special_dodge:
 		#print("state change from check_conds 6")
 		state_machine.change_state(uppercut_quick)
 
 func damage_player(value):
 	var result = player.damage(value)
-	if result == 2 or result == 0:
-		# If player is hit, the schedule is reset
-		schedule_index = -1
+	#if result == 2 or result == 0:
+		## If player is hit, the schedule is reset
+		#schedule_index = -1
 	return result
 
 func between_round_setup(round_number):
@@ -98,7 +101,7 @@ func between_round_setup(round_number):
 
 
 func fight_setup():
-	ring.background.texture = load("res://assets/backgrounds/Boxing_Ring_v3_3.png")
+	ring.background.texture = load("res://assets/sprites/backgrounds/Boxing_Ring_v3_3.png")
 	ring.enemy_ko_table = ko_table
 	
 	player.stamina_max = 64
@@ -123,5 +126,4 @@ func exit_OTR():
 	animations.speed_scale = animation_speed
 	$State_Machine/Idle.animation = "idle"
 	$Boss.material.set_shader_parameter("tolerance", 0.0)
-	print("handle state from exitOTR")
 	handle_state()

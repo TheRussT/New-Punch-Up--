@@ -1,9 +1,9 @@
 [gd_scene load_steps=26 format=3 uid="uid://cpx4tj35xbcij"]
 
 [ext_resource type="Script" uid="uid://qaw0suhaoho1" path="res://scripts/generics/general_enemy.gd" id="1_4tvi2"]
-[ext_resource type="Texture2D" uid="uid://b5gjpmwrkxhea" path="res://assets/Star.png" id="2_ph7tg"]
+[ext_resource type="Texture2D" uid="uid://b5gjpmwrkxhea" path="res://assets/sprites/Star.png" id="2_ph7tg"]
 [ext_resource type="Script" uid="uid://c0y76ue11d7tn" path="res://scripts/generics/State_Machine.gd" id="3_fmbhw"]
-[ext_resource type="Texture2D" uid="uid://nmib24ymgx3j" path="res://assets/enemies/spit_particle.png" id="3_ph7tg"]
+[ext_resource type="Texture2D" uid="uid://nmib24ymgx3j" path="res://assets/sprites/enemies/spit_particle.png" id="3_ph7tg"]
 [ext_resource type="Script" uid="uid://dk1bv3dvq14sg" path="res://scripts/enemies/states/Daze.gd" id="4_nfr5l"]
 [ext_resource type="Script" uid="uid://dii8vfoe7u4l6" path="res://scripts/enemies/states/Dodge.gd" id="5_haa3b"]
 [ext_resource type="Script" uid="uid://cy4rajir0rytx" path="res://scripts/enemies/states/fallen.gd" id="6_yu6ce"]

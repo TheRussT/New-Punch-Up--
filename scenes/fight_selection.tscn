@@ -1,11 +1,11 @@
 [gd_scene load_steps=7 format=3 uid="uid://dpwnsp30q53pu"]
 
 [ext_resource type="Script" uid="uid://75e2htm3qay0" path="res://scripts/scenes/fight_selection.gd" id="1_judbu"]
-[ext_resource type="Texture2D" uid="uid://cwu4cj1cccqxv" path="res://assets/backgrounds/Fightscreen.png" id="2_ku3ac"]
-[ext_resource type="Texture2D" uid="uid://bykypqxnt78wl" path="res://assets/backgrounds/Enemy_Round.png" id="3_35ve0"]
-[ext_resource type="Texture2D" uid="uid://dh1a6g7wfyfub" path="res://assets/backgrounds/Lights.png" id="4_46lnd"]
-[ext_resource type="FontFile" uid="uid://2qrl2e1ftj04" path="res://assets/backgrounds/punch-out-nes.ttf" id="5_ye1us"]
-[ext_resource type="Texture2D" uid="uid://cl5csac1bxjq8" path="res://assets/backgrounds/cursor_gloves.png" id="6_4obqt"]
+[ext_resource type="Texture2D" uid="uid://cwu4cj1cccqxv" path="res://assets/sprites/backgrounds/Fightscreen.png" id="2_ku3ac"]
+[ext_resource type="Texture2D" uid="uid://bykypqxnt78wl" path="res://assets/sprites/backgrounds/Enemy_Round.png" id="3_35ve0"]
+[ext_resource type="Texture2D" uid="uid://dh1a6g7wfyfub" path="res://assets/sprites/backgrounds/Lights.png" id="4_46lnd"]
+[ext_resource type="FontFile" uid="uid://2qrl2e1ftj04" path="res://assets/sprites/backgrounds/punch-out-nes.ttf" id="5_ye1us"]
+[ext_resource type="Texture2D" uid="uid://cl5csac1bxjq8" path="res://assets/sprites/backgrounds/cursor_gloves.png" id="6_4obqt"]
 
 [node name="fight_selection" type="Node2D"]
 script = ExtResource("1_judbu")

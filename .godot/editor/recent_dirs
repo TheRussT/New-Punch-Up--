@@ -1,7 +1,8 @@
-res://assets/backgrounds
-res://assets
+C:/Users/Russell/Documents/Punch_Up_New
+res://assets/sprites/backgrounds
 res://scenes
-res://assets/enemies
+res://scripts/game_management
+res://assets
 res://scripts/scenes
 res://scenes/enemies
 res://

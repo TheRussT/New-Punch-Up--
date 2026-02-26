@@ -10,14 +10,23 @@ config_version=5
 
 [application]
 
-config/name="Punch_Up_New"
+config/name="Punch_Up!!"
 run/main_scene="uid://ciexwgwyladge"
 config/features=PackedStringArray("4.4", "Mobile")
-config/icon="res://icon.svg"
+boot_splash/bg_color=Color(0, 0, 0, 1)
+boot_splash/fullsize=false
+boot_splash/use_filter=false
+boot_splash/image="uid://c5npfr4xokex1"
+config/icon="uid://dof1ib044bioh"
+
+[audio]
+
+buses/default_bus_layout="res://assets/sounds/default_bus_layout.tres"
 
 [autoload]
 
 Global="*res://scripts/game_management/global.gd"
+Saveload="*res://scripts/game_management/saveload.gd"
 
 [display]
 

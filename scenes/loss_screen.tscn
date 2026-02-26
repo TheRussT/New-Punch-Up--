@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://dyp44iifjmhm6"]
 
 [ext_resource type="Script" uid="uid://b3vwt2v34hjw7" path="res://scripts/scenes/loss_screen.gd" id="1_ydadx"]
-[ext_resource type="Texture2D" uid="uid://cmhcj5dwj7syk" path="res://assets/backgrounds/Lossscreen.png" id="2_mwy8c"]
-[ext_resource type="FontFile" uid="uid://2qrl2e1ftj04" path="res://assets/backgrounds/punch-out-nes.ttf" id="3_bc3b8"]
+[ext_resource type="Texture2D" uid="uid://cmhcj5dwj7syk" path="res://assets/sprites/backgrounds/Lossscreen.png" id="2_mwy8c"]
+[ext_resource type="FontFile" uid="uid://2qrl2e1ftj04" path="res://assets/sprites/backgrounds/punch-out-nes.ttf" id="3_bc3b8"]
 
 [node name="loss_screen" type="Node2D"]
 script = ExtResource("1_ydadx")

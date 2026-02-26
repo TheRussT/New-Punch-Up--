@@ -38,5 +38,5 @@ func process(delta):
 		time_lowered -= delta
 	else:
 		parent.guard = parent.idle_guard
-	if parent.schedule_timer <= 0:
+	if parent.schedule_timer <= 0 && parent.animations.is_playing():
 		parent.advance_state()

@@ -23,6 +23,11 @@ var OTR_buffer = 0
 
 var stamina_regain_rate = 1
 var stamina_regain_amount = 0.0
+
+var recent_action_multiplier = 1
+var idle_multiplier = 0.3
+var recent_hits = 0
+
 # bits:  is OTR  is player OTR
 #       |   0   |      0      |
 # maps to 0 = true neutral 1 = disadvantage 2 = advantage 3 = both are OTR
@@ -48,6 +53,11 @@ func _process(delta):
 		handle_shake(delta)
 	else:
 		state_machine.process(delta)
+		if stamina < stamina_max:
+			stamina_regain_amount += delta * ring.timer_speed * recent_action_multiplier * idle_multiplier
+		if stamina_regain_amount >= 0:
+			stamina_regain_amount -= 1
+			change_stamina(1)
 
 func process_input():
 	if Input.is_action_just_pressed("ui_right"):
@@ -173,21 +183,24 @@ func enter_OTR():
 	OTR_buffer = 0
 	advantage_state |= 1
 	$Sprite.material.set_shader_parameter("replace_color", Color("f878f8"))
-	$Sprite.material.set_shader_parameter("tolerance", 0.1)
+	if $Sprite.material.get_shader_parameter("tolerance") != 1.0:
+		$Sprite.material.set_shader_parameter("tolerance", 0.1)
 	ring.player_enter_OTR()
 	#inform ring
 
 
 func exit_OTR():
 	advantage_state &= 6
-	$Sprite.material.set_shader_parameter("tolerance", 0.0)
+	if $Sprite.material.get_shader_parameter("tolerance") != 1.0:
+		$Sprite.material.set_shader_parameter("tolerance", 0.0)
 	change_stamina(16)
 	ring.player_exit_OTR()
 	#inform ring
 
 func exit_tired():
+	$Sprite.material.set_shader_parameter("tolerance", 0.0)
 	stamina_recovery_progress = 0
-	change_stamina(stamina_recovered_amount - 16)
+	change_stamina(64 - 16)
 	exit_OTR()
 
 func damage(value):
@@ -198,3 +211,11 @@ func damage(value):
 
 func activate(value):
 	state_machine.current_state.activate(value)
+
+func event_hit(time):
+	recent_hits += 1
+	recent_action_multiplier = 0.2
+	await get_tree().create_timer(time)
+	recent_hits -= 1
+	if recent_hits < 1:
+		recent_action_multiplier = 1

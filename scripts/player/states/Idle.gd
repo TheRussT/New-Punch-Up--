@@ -21,12 +21,7 @@ func enter():
 
 func process(delta):
 	#parent.stamina_regain_amount += delta * parent.stamina_regain_rate
-	if parent.stamina < parent.stamina_max:
-		parent.stamina_regain_amount += delta * parent.ring.timer_speed * parent.stamina_regain_rate
-		if parent.stamina_regain_amount >= 0:
-			parent.stamina_regain_amount -= 1
-			parent.change_stamina(1)
-	if parent.input_buffer.size() != 0:
+	if parent.input_buffer.size() != 0 && parent.animations.is_playing():
 		var key = parent.input_buffer.back()
 		if Input.is_action_pressed(key):
 			if key == "ui_accept":

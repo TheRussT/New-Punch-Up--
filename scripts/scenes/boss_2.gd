@@ -40,7 +40,7 @@ func _ready():
 		ENRAGED: [0x10010, hook_big, 0x20003, 0x10040, left_hook_big, 0x20005,
 		left_hook_big, 0x30000],
 		PLAYER_TIRED: [0x10010, hook, 0x20003, 0x10040, left_hook_big, 0x30000],
-		TAUNT: [taunt, 0x30000]
+		TAUNT: [0x10001, taunt, 0x30000]
 	}
 	ko_table = {0:[1,0,0,0,0,0,0,0,0,0,0], 1:[80,0,0,3], 2:[64,0,0,1,0,3], 3:[56,0,1,0,1,0,1,0,3], 4:[48,3]}
 	state_machine.init(self)
@@ -124,7 +124,7 @@ func unrage():
 			$Boss.material.set_shader_parameter("tolerance", 0.0)
 
 func fight_setup():
-	ring.background.texture = load("res://assets/backgrounds/Boxing_Ring_v3_2.png")
+	ring.background.texture = load("res://assets/sprites/backgrounds/Boxing_Ring_v3_2.png")
 	ring.enemy_ko_table = ko_table
 	
 	player.stamina_max = 64

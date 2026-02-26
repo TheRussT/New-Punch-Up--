@@ -44,6 +44,7 @@ func _ready():
 	
 	#may refactor to not be an if-else but currently is the best option
 	if fight_index == 0:
+		$Player/rank.text = "ranked: #4"
 		$Enemy/record.text = " 1- 9  1ko"
 		$Enemy/name.text = "\nsir rendre"
 		$Enemy/rank.text = "ranked: #3"
@@ -51,6 +52,7 @@ func _ready():
 		$Enemy/Statistics/weight.text = "weight:144"
 		$Enemy/Statistics/location.text = "from\n lyon,\n    france"
 	elif fight_index == 1:
+		$Player/rank.text = "ranked: #3"
 		$Enemy/record.text = "13-23 10ko"
 		$Enemy/name.text = "\nsarwat"
 		$Enemy/rank.text = "ranked: #2"
@@ -58,6 +60,7 @@ func _ready():
 		$Enemy/Statistics/weight.text = "weight:261"
 		$Enemy/Statistics/location.text = "from\n cairo,\n     egypt"
 	elif fight_index == 2:
+		$Player/rank.text = "ranked: #2"
 		$Enemy/record.text = "16-5  14ko"
 		$Enemy/name.text = "m'babe\nfutbol"
 		$Enemy/rank.text = "ranked: #1"
@@ -65,6 +68,7 @@ func _ready():
 		$Enemy/Statistics/weight.text = "weight:227"
 		$Enemy/Statistics/location.text = "from\nsao paulo,\n    brazil"
 	elif fight_index == 3:
+		$Player/rank.text = "ranked: #1"
 		$Enemy/record.text = "20-2  19ko"
 		$Enemy/name.text = "gelje\nsherpa"
 		$Enemy/rank.text = "champion"

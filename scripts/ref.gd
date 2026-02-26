@@ -58,6 +58,11 @@ func process(delta):
 				Global.scene_manager.current_scene.display_screen(ring.time + 180 * (ring.round_number - 1), 0)
 				if Global.fights_available < Global.current_fight_index + 2:
 					Global.fights_available = Global.current_fight_index + 2
+			Saveload.SaveFileData.fights_available = Global.fights_available
+			Saveload.SaveFileData.wins = Global.wins
+			Saveload.SaveFileData.losses = Global.losses
+			Saveload.SaveFileData.kos = Global.kos
+			Saveload._save()
 	elif state == TKO:
 		if !animations.is_playing():
 			if is_player_kod:
@@ -70,6 +75,11 @@ func process(delta):
 				Global.scene_manager.current_scene.display_screen(ring.time + 180 * (ring.round_number - 1), 1)
 				if Global.fights_available < Global.current_fight_index + 2:
 					Global.fights_available = Global.current_fight_index + 2
+			Saveload.SaveFileData.fights_available = Global.fights_available
+			Saveload.SaveFileData.wins = Global.wins
+			Saveload.SaveFileData.losses = Global.losses
+			Saveload.SaveFileData.kos = Global.kos
+			Saveload._save()
 	elif state == FIGHT:
 		if !animations.is_playing():
 			state = WALKING_BACK

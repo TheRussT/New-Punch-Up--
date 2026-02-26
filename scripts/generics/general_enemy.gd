@@ -61,6 +61,8 @@ var idle_multiplier = 0.3
 var recent_big_actions = 0
 var recent_actions = 0
 
+var dodge_stam = 1
+var big_dodge_stam = 3
 
 var available_hits = 1
 var recovery_hits = 0
@@ -259,6 +261,9 @@ func event_big_action(time):
 	recent_big_actions -= 1
 	if recent_big_actions < 1:
 		event_action(time)
+
+func schedule_event():
+	pass
 
 func between_round_setup(round_number : int):
 	#can maybe verify this is the between fights scene

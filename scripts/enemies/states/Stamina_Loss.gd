@@ -30,6 +30,7 @@ func exit():
 	parent.sprite.visible = true
 	parent.falling_sprite.visible = false
 	parent.falling_sprite.material.set_shader_parameter("tolerance", 0.0)
+	parent.star.visible = false
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func process(delta):

@@ -34,6 +34,7 @@ func damage(value):
 		damage_react(8, 0, parent.get_child(4).get_child(1))
 		parent.guard = parent.idle_guard
 		parent.event_action(1)
+		parent.change_stamina(-parent.dodge_stam, true)
 		return 6
 	elif parent.guard[guard_position] == 5:
 		damage_react(12, 0, parent.get_child(4).get_child(1))
@@ -41,7 +42,7 @@ func damage(value):
 			#parent.state_machine.change_state(parent.get_child(4).get_child(18))
 		#else:
 			#parent.guard = parent.idle_guard
-		parent.change_stamina(-3, true)
+		parent.change_stamina(-parent.big_dodge_stam, true)
 		parent.event_action(6)
 		return 5
 	elif parent.guard[guard_position] == 4:
@@ -90,6 +91,7 @@ func damage(value):
 			parent.shake_timer = 0.167
 			parent.total_shake_time = 0.167
 			parent.shake_magnitude = 4
+			parent.ring.set_timer_speed(0)
 			return 0
 		if parent.available_hits > 1:
 			parent.event_big_action(1)
@@ -115,4 +117,3 @@ func damage_react(time, magnitude, state):
 	parent.shake_magnitude = magnitude
 	parent.total_shake_time = parent.shake_timer
 	parent.state_machine.change_state(state)
-	print("in damage react")

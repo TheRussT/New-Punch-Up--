@@ -27,6 +27,10 @@ var timer_speed = 0
 var time = 180.0
 
 var enemy_ko_table = {0:[1,0,0,0,0,0,0,0,0,0,0], 1:[1,0,0,0,0,0,0,0,0,0,0]}
+# has list of times where events will occur, max 3 slots for each round.
+#                  
+var event_table = [-1, -1, -1, -1, -1, -1, -1, -1, -1]
+var event_index = 0
 
 func _ready() -> void:
 	ref.instantiate(self)
@@ -57,15 +61,17 @@ func start_round():
 	time = 180.0
 	timer_speed = 0
 	
+	event_index = 3 * (round_number - 1)
+	
 	enemy.advantage_state = 0
 	player.advantage_state = 0
 	
 	enemy.state_machine.change_state(enemy.intro_state)
-	enemy.stamina = enemy.stamina_max
+	player.change_stamina(enemy.stamina_max - enemy.stamina)
 	enemy_stam = enemy.stamina
 	
 	player.state_machine.change_state(player.intro_state)
-	player.stamina = player.stamina_max
+	player.change_stamina(player.stamina_max - player.stamina)
 	
 	player_stam = player.stamina
 	
@@ -109,21 +115,31 @@ func manage_progress_bars(delta):
 			#enemy_stambar.value += (enemy_stam - enemy_stambar.value) * 5 * delta
 
 func process_timer(delta):
+	var prior = int(time)
 	time -= delta * timer_speed
 	if (time <= 0):
 		if round_number == 3:
 			handle_decision()
 		else:
-			time = 180
-			Global.scene_manager.change_scene("res://scenes/between_fights.tscn", false)
-			enemy.between_round_setup(round_number)
+			$Ring/Stars/Animations.play("round_end")
+			enemy.animations.pause()
+			player.animations.pause()
 	else:
 		var time_display = int(time)
+		if (prior != time_display):
+			if time_display == event_table[event_index]:
+				enemy.schedule_event()
+				event_index += 1
 		@warning_ignore("integer_division")
 		$Ring/Timer/Minute.set_frame(time_display/60)
 		@warning_ignore("integer_division")
 		$Ring/Timer/Decond.set_frame((time_display%60)/10)
 		$Ring/Timer/Second.set_frame(time_display%10)
+
+func end_round():
+	time = 180
+	Global.scene_manager.change_scene("res://scenes/between_fights.tscn", false)
+	enemy.between_round_setup(round_number)
 
 func handle_decision():
 	if player_times_kod > enemy_times_kod || (player_times_kod
@@ -137,6 +153,10 @@ func handle_decision():
 		Global.losses += 1;
 		Global.scene_manager.change_scene("res://scenes/loss_screen.tscn")
 		#lose screen
+	Saveload.SaveFileData.fights_available = Global.fights_available
+	Saveload.SaveFileData.wins = Global.wins
+	Saveload.SaveFileData.losses = Global.losses
+	Saveload._save()
 
 func handle_stars(value):
 	if value == 0:
